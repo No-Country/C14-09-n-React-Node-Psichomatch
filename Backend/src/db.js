@@ -3,6 +3,7 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const user = require("./models/User");
+const patient = require("./models/Patient")
 const contact = require("./models/Contact")
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT,DB_NAME  } = process.env;
 
@@ -49,12 +50,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 user(sequelize);
 contact(sequelize);
+patient(sequelize);
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 const {
   User,
-  Contact
+  Contact,
+  Patient
 } = sequelize.models;
 
 /*
