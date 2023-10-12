@@ -3,6 +3,7 @@ const { Router } = require("express");
 const userRoutes = require("./user");
 const contactRoutes = require("./contact")
 const authRoutes = require("./auth");
+const patientRoutes = require("./patient");
 const passport = require("passport");
 const router = Router();
 
@@ -15,5 +16,7 @@ router.use("/auth",passport.authenticate("auth-google",{
     ],
     session: false,
 }), authRoutes);
+router.use("/", patientRoutes);
+
 
 module.exports = router;
