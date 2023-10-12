@@ -26,7 +26,7 @@ const authGoogle = async (req, res) => {
         }
       });
 
-      if(patientExist) res.redirect("https://ar.pinterest.com/pin/32440059807606035/");
+      if(patientExist) res.stauts(200).redirect("https://ar.pinterest.com/pin/32440059807606035/");
       const password = generateRandomPassword();
       await Patient.create({
         name: userName,
@@ -37,7 +37,7 @@ const authGoogle = async (req, res) => {
 
       main(patientEmail, password);
 
-      res.redirect("https://ar.pinterest.com/pin/1/")
+      res.status(200).redirect("https://ar.pinterest.com/pin/1/")
     }
       
       
