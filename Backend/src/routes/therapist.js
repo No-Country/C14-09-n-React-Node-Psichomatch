@@ -1,21 +1,22 @@
 const { Router } = require("express");
 const router = Router();
-const { getTherapist,
+const {
     createTherapist,
     addInfoTherapist,
-    updateTherapistDescription,
+    updateDescriptionTherapist,
     updateImgTherapist,
     updateTherapistPrice,
     updateTherapistPriceByPorcent,
     updateLanguagesTherapist,
     deleteTherapist,
     switchTherapistState,
+    getTherapists
 } = require("../controllers/therapist")
 
-// router.get("/", getTherapist);
+router.get("/", getTherapists);
 router.post("/create", createTherapist)
 router.put("/addInfo/:id", addInfoTherapist)
-router.put("/changeDescription/:id", updateTherapistDescription)
+router.put("/changeDescription/:id", updateDescriptionTherapist)
 router.put("/updateImg/:id", updateImgTherapist)
 router.put("/updatePrice/:id", updateTherapistPrice)
 router.put("/updatePricePercent/:id", updateTherapistPriceByPorcent)
