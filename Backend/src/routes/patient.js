@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const { getpatients,insertPatient,updatePatient,deletePatient, getPatientById } = require("../controllers/patient")
+const { getpatients,insertPatient,recoverPass,updatePatient,deletePatient, getPatientById } = require("../controllers/patient")
 
 
 
@@ -10,6 +10,7 @@ const { getpatients,insertPatient,updatePatient,deletePatient, getPatientById } 
 router.get("/patients", getpatients);
 router.get("/patient/:id", getPatientById);
 router.post("/registerPatient", insertPatient);
+router.get("/recoverPass",recoverPass)
 router.put("/patient/:id", updatePatient);
 router.delete("/patient/:id", deletePatient);
 

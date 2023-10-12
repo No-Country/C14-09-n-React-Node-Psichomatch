@@ -77,6 +77,26 @@ const getpatients = async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
+
+  const recoverPass = async (req, res) => {
+    try {
+      const { patientEmail } = req.body;
+      const patientExist = await Patient.findOne({
+        where:{
+          email:patientEmail
+        }
+      })
+      
+      const password = patientExist.password
+      main(patientEmail, password);
+
+
+      res.status(200).send("Please check you email");
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: error.message });
+    }
+  };
   
   const updatePatient = async (req, res) => {
     const { id } = req.params;
@@ -246,6 +266,7 @@ const getpatients = async (req, res) => {
    fillPatient,
    updatePatient,
    deletePatient,
+   recoverPass,
    insertPatient,
    getPatientById
   };
