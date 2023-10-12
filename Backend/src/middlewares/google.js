@@ -1,6 +1,9 @@
 var passport = require('passport')
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const emails = ["kevinreyes005@gmail.com"]
+
+
+// Emails Allows
+const emails = ["kevinreyes005@gmail.com","zeduard89@gmail.com"]
 require("dotenv").config();
 const { GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET} = process.env;
 passport.use("auth-google",
@@ -11,6 +14,7 @@ passport.use("auth-google",
 },
 
 function(accessToken, refreshToken, profile, done){
+    //Update emails to DB -FIX IT-
    const response = emails.includes(profile.emails[0].value)
     if(response){
         done(null,profile);

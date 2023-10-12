@@ -1,23 +1,29 @@
-
 const { Patient } = require("../db");
+const main = require("../middlewares/nodeMailer");
+
 const { Op } = require("sequelize");
 
 const getpatients = async (req, res) => {
     try {
-      const page = parseInt(req.query.page) || 1;
-      const perPage = 6;
-      const offset = (page - 1) * perPage;
-      const limit = perPage;
-      const patients = await Patient.findAll({
-        offset,
-        limit,
-        order: [["id", "ASC"]],
-      });
+      // const page = parseInt(req.query.page) || 1;
+      // const perPage = 6;
+      // const offset = (page - 1) * perPage;
+      // const limit = perPage;
+      // const patients = await Patient.findAll({
+      //   offset,
+      //   limit,
+      //   order: [["id", "ASC"]],
+      // });
   
-      const totalCount = await Patient.count();
+      // const totalCount = await Patient.count();
   
-      const totalPages = Math.ceil(totalCount / perPage);
-      res.status(200).json({ patients, totalPages });
+      // const totalPages = Math.ceil(totalCount / perPage);
+      // res.status(200).json({ patients, totalPages });
+
+      const patients = await Patient.findAll();
+      res.status(200).json(patients);
+
+
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -50,9 +56,22 @@ const getpatients = async (req, res) => {
   
   const insertPatient = async (req, res) => {
     try {
-      const { name, lastName, phone, email, password} = req.body;
-        const patient = await Patient.create({ name, lastName, phone, email, password });
-        res.status(200).json(patient);
+      const { patientEmail, password} = req.body;
+      const patientExist = await Patient.findOne({
+        where:{
+          email:patientEmail
+        }
+      })
+      if(patientExist) res.status(400).send("Patient already Exist")
+      await Patient.create({
+          email:patientEmail,
+          password
+        }
+      );
+      main(patientEmail, password);
+
+
+      res.status(200).send("Patient Registered, please check you email");
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: error.message });

@@ -9,7 +9,7 @@ const { getpatients,insertPatient,updatePatient,deletePatient, getPatientById } 
 
 router.get("/patients", getpatients);
 router.get("/patient/:id", getPatientById);
-router.post("/patient", insertPatient);
+router.post("/registerPatient", insertPatient);
 router.put("/patient/:id", updatePatient);
 router.delete("/patient/:id", deletePatient);
 
