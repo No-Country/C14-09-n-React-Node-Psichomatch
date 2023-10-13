@@ -63,7 +63,7 @@ you can obtain therapist and the pages of all therapist.
 
 **Condition** : If 'path route' is wrong.
 
-**Code** : `404 BAD REQUEST`
+**Code** : `404 NOT FOUND`
 
 **Content** :
 

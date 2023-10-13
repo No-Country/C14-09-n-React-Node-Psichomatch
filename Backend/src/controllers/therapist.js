@@ -38,7 +38,7 @@ const createTherapist = async (req, res) => {
       } = req.body;
     if (!name || !lastName || !adress)
       return res.status(400).json({ error: "Missing fields" });
-    const therapist = await Therapist.create({
+    await Therapist.create({
       name: name,
       lastName: lastName,
       adress: adress,
@@ -49,32 +49,32 @@ const createTherapist = async (req, res) => {
       email: email || '',
       password: password || '',
     });
-    res.status(201).json(therapist);
+    res.status(201).json({ message: "Therapist created" });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
 const addInfoTherapist = async (req, res) => {
   try {
     const { id, phone, image, description } = req.body;
-    console.log("Datos: ", id, phone, image, description)
     if (!id || !phone || !image || !description)
       return res.status(400).json({ error: "Missing fields" });
 
-    const therapist = await Therapist.findByPk(id);
-    console.log(therapist)
+    const therapist = await Therapist.findOne({ where: { id: id }});
+    // console.log("Datos: ", id, phone, image, description)
+    // console.log(therapist.dataValues)
 
     if (!therapist)
       return res.status(404).json({ error: "Therapist not found" });
 
-    const updatedTherapist = await therapist.update({
+    await therapist.update({
       phone: phone,
       image: image,
       description: description,
     });
 
-    res.status(200).json(updatedTherapist);
+    res.status(200).json({ message: "Therapist updated" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
