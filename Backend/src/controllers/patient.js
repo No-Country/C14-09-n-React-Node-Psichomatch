@@ -1,23 +1,32 @@
-
 const { Patient } = require("../db");
+const {main, mainRecovery, mainRecovery2} = require("../middlewares/nodeMailer");
+const bcrypt = require("bcryptjs");
+const generateRandomPassword = require("../middlewares/password")
+const { CHANGE_PASS  } = process.env;
+const patientEmail = '';
+
+
 const { Op } = require("sequelize");
 
 const getpatients = async (req, res) => {
     try {
-      const page = parseInt(req.query.page) || 1;
+       const page = parseInt(req.query.page) || 1;
       const perPage = 6;
       const offset = (page - 1) * perPage;
       const limit = perPage;
       const patients = await Patient.findAll({
-        offset,
-        limit,
-        order: [["id", "ASC"]],
+       offset,
+       limit,
+      order: [["id", "ASC"]],
       });
   
-      const totalCount = await Patient.count();
+       const totalCount = await Patient.count();
   
       const totalPages = Math.ceil(totalCount / perPage);
       res.status(200).json({ patients, totalPages });
+
+
+
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -50,9 +59,104 @@ const getpatients = async (req, res) => {
   
   const insertPatient = async (req, res) => {
     try {
-      const { name, lastName, phone, email, password} = req.body;
-        const patient = await Patient.create({ name, lastName, phone, email, password });
-        res.status(200).json(patient);
+      const { patientEmail, password} = req.body;
+      const salt = bcrypt.genSaltSync(10);
+      const encryptPassword = bcrypt.hashSync(password, salt);
+
+      const patientExist = await Patient.findOne({
+        where:{
+          email:patientEmail
+        }
+      })
+      if(patientExist) res.status(400).send("Patient already Exist")
+      await Patient.create({
+          email:patientEmail,
+          password:encryptPassword
+        }
+      );
+      main(patientEmail, password);
+
+
+      res.status(200).send("Patient Registered, please check you email");
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: error.message });
+    }
+  };
+
+  const logInPatient = async (req, res) => {
+    try {
+      const { patientEmail, password } = req.body;
+      const patientExist = await Patient.findOne({ where: { email:patientEmail } });
+  
+      if (patientExist) {
+        const ValidatePassword = await bcrypt.compareSync(
+          password,
+          patientExist.password
+        );
+  
+        if (ValidatePassword) res.status(200).json(true);
+        else res.status(400).json(false);
+      } else {
+        res.status(400).json(false);
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+
+  const recoverPass = async (req, res) => {
+    try {
+      const { patientEmail } = req.body;
+      const patientExist = await Patient.findOne({
+        where:{
+          email:patientEmail
+        }
+      })
+
+      const id = patientExist.id
+
+      if(patientExist){
+      const link = `${CHANGE_PASS}`
+      await mainRecovery(patientEmail,link,id);
+
+      res.status(200).send("Please check you email");
+      }
+      else{
+        res.status(400).send("The Email doesn't exist")
+      }
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: error.message });
+    }
+  };
+
+  const recoverPass2 = async (req, res) => {
+    try {
+      
+      const { id } = req.params;
+
+      const password = generateRandomPassword();
+      const patientExist = await Patient.findByPk(id)
+      const patientEmail = patientExist.email
+
+      mainRecovery2(patientEmail,password);
+      
+      const salt = bcrypt.genSaltSync(10);
+      const encryptPassword = bcrypt.hashSync(password, salt);
+
+      await Patient.update(
+        { password: encryptPassword },
+        {
+          where: {
+            id: id, // Utiliza el ID del paciente para identificar al paciente a actualizar
+          },
+        }
+      );
+
+      res.status(200).send("Please check you email");
+      
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: error.message });
@@ -70,6 +174,8 @@ const getpatients = async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
+
+
 
 
   const fillPatient = async (Patient) => {
@@ -227,6 +333,9 @@ const getpatients = async (req, res) => {
    fillPatient,
    updatePatient,
    deletePatient,
+   recoverPass,
+   recoverPass2,
    insertPatient,
-   getPatientById
+   getPatientById,
+   logInPatient
   };
