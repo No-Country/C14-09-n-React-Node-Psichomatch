@@ -5,7 +5,7 @@ const { getpatients,insertPatient,logInPatient,recoverPass,recoverPass2,updatePa
 
 
 // Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
+//Ejemplo: router.use('/auth', authRouter);
 
 router.get("/patients", getpatients);
 router.get("/patient/:id", getPatientById);
