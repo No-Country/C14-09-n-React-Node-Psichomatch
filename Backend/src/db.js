@@ -6,6 +6,8 @@ const user = require("./models/User");
 const patient = require("./models/Patient")
 const contact = require("./models/Contact")
 const therapist = require("./models/Therapist")
+const category = require("./models/Category")
+
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT,DB_NAME  } = process.env;
 
 const sequelize = new Sequelize(
@@ -52,7 +54,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 user(sequelize);
 contact(sequelize);
 patient(sequelize);
-therapist(sequelize)
+therapist(sequelize);
+category(sequelize);
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -60,8 +63,14 @@ const {
   User,
   Contact,
   Patient,
-  Therapist
+  Therapist,
+  Category
 } = sequelize.models;
+
+//Therapist.belongsToMany(Category, { through: 'TherapistCategory' })
+//Category.belongsToMany(Therapist, { through: 'TherapistCategory' })
+Therapist.belongsTo(Category)
+Category.hasOne(Therapist)
 
 /*
 User.hasOne(Rating);
