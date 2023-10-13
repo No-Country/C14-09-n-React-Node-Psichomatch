@@ -19,19 +19,35 @@ const getTherapists = async (req, res) => {
     const totalPages = Math.ceil(totalCount / perPage);
     res.status(200).json({ therapists, totalPages });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(404).json({ error: error.message });
   }
 };
 
 const createTherapist = async (req, res) => {
   try {
-    const { name, lastName, adress } = req.body;
+    const { 
+       name,
+       lastName, 
+       adress,
+       price,
+       phone,
+       image,
+       description,
+       email,
+       password,
+      } = req.body;
     if (!name || !lastName || !adress)
       return res.status(400).json({ error: "Missing fields" });
     const therapist = await Therapist.create({
       name: name,
       lastName: lastName,
       adress: adress,
+      price: price || '',
+      phone: phone || '',
+      image: image || '',
+      description: description || '',
+      email: email || '',
+      password: password || '',
     });
     res.status(201).json(therapist);
   } catch (error) {
@@ -41,15 +57,18 @@ const createTherapist = async (req, res) => {
 
 const addInfoTherapist = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { languages, phone, image, description } = req.body;
+    const { id, phone, image, description } = req.body;
+    console.log("Datos: ", id, phone, image, description)
+    if (!id || !phone || !image || !description)
+      return res.status(400).json({ error: "Missing fields" });
+
     const therapist = await Therapist.findByPk(id);
+    console.log(therapist)
 
     if (!therapist)
       return res.status(404).json({ error: "Therapist not found" });
 
     const updatedTherapist = await therapist.update({
-      languages: languages,
       phone: phone,
       image: image,
       description: description,

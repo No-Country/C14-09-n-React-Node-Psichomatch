@@ -15,7 +15,7 @@ const {
 
 router.get("/", getTherapists);
 router.post("/create", createTherapist)
-router.put("/addInfo/:id", addInfoTherapist)
+router.put("/addInfo/", addInfoTherapist)
 router.put("/changeDescription/:id", updateDescriptionTherapist)
 router.put("/updateImg/:id", updateImgTherapist)
 router.put("/updatePrice/:id", updateTherapistPrice)
