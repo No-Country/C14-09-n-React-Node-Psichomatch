@@ -1,9 +1,9 @@
 const { Category } = require("../db");
 const { Op } = require("sequelize");
 
-  const fillCategory = async (Patient) => {
+  const fillCategory = async (category) => {
     try {
-      await Category.bulkCreate([
+      await category.bulkCreate([
         {
             name: "Terapia psicoanalítica",
           },
