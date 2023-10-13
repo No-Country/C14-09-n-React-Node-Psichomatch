@@ -1,5 +1,10 @@
 const { Patient } = require("../db");
-const main = require("../middlewares/nodeMailer");
+const {main, mainRecovery, mainRecovery2} = require("../middlewares/nodeMailer");
+const bcrypt = require("bcryptjs");
+const generateRandomPassword = require("../middlewares/password")
+const { CHANGE_PASS  } = process.env;
+const patientEmail = '';
+
 
 const { Op } = require("sequelize");
 
@@ -57,6 +62,9 @@ const getpatients = async (req, res) => {
   const insertPatient = async (req, res) => {
     try {
       const { patientEmail, password} = req.body;
+      const salt = bcrypt.genSaltSync(10);
+      const encryptPassword = bcrypt.hashSync(password, salt);
+
       const patientExist = await Patient.findOne({
         where:{
           email:patientEmail
@@ -65,7 +73,7 @@ const getpatients = async (req, res) => {
       if(patientExist) res.status(400).send("Patient already Exist")
       await Patient.create({
           email:patientEmail,
-          password
+          password:encryptPassword
         }
       );
       main(patientEmail, password);
@@ -78,6 +86,27 @@ const getpatients = async (req, res) => {
     }
   };
 
+  const logInPatient = async (req, res) => {
+    try {
+      const { patientEmail, password } = req.body;
+      const patientExist = await Patient.findOne({ where: { email:patientEmail } });
+  
+      if (patientExist) {
+        const ValidatePassword = await bcrypt.compareSync(
+          password,
+          patientExist.password
+        );
+  
+        if (ValidatePassword) res.status(200).json(true);
+        else res.status(400).json(false);
+      } else {
+        res.status(400).json(false);
+      }
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+
   const recoverPass = async (req, res) => {
     try {
       const { patientEmail } = req.body;
@@ -86,12 +115,50 @@ const getpatients = async (req, res) => {
           email:patientEmail
         }
       })
-      
-      const password = patientExist.password
-      main(patientEmail, password);
 
+      const id = patientExist.id
+
+      if(patientExist){
+      const link = `${CHANGE_PASS}`
+      await mainRecovery(patientEmail,link,id);
 
       res.status(200).send("Please check you email");
+      }
+      else{
+        res.status(400).send("The Email doesn't exist")
+      }
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: error.message });
+    }
+  };
+
+  const recoverPass2 = async (req, res) => {
+    try {
+      
+      const { id } = req.params;
+
+      const password = generateRandomPassword();
+      const patientExist = await Patient.findByPk(id)
+      const patientEmail = patientExist.email
+
+      mainRecovery2(patientEmail,password);
+      
+      const salt = bcrypt.genSaltSync(10);
+      const encryptPassword = bcrypt.hashSync(password, salt);
+
+      await Patient.update(
+        { password: encryptPassword },
+        {
+          where: {
+            id: id, // Utiliza el ID del paciente para identificar al paciente a actualizar
+          },
+        }
+      );
+
+      res.status(200).send("Please check you email");
+      
     } catch (error) {
       console.log(error);
       res.status(500).json({ error: error.message });
@@ -109,6 +176,8 @@ const getpatients = async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
+
+
 
 
   const fillPatient = async (Patient) => {
@@ -267,6 +336,8 @@ const getpatients = async (req, res) => {
    updatePatient,
    deletePatient,
    recoverPass,
+   recoverPass2,
    insertPatient,
-   getPatientById
+   getPatientById,
+   logInPatient
   };

@@ -35,4 +35,58 @@ const main = async (
   }
 }
 
-module.exports = main;
+const mainRecovery = async (
+  patientEmail,link,id
+) => {
+  try {
+    // send mail with defined transport object
+    await transporter.sendMail({
+      from: '"Therapyst United 👨‍💻 " <ccrewdb@gmail.com>',
+      to: `${patientEmail}`,
+      subject: `The Biggest center Of Therapys`,
+      text: `Hi User`,
+      html: `
+    <html>
+      <body>
+        <p>Hi,</p>
+        <p>Please save you Password</p>
+        <p>Clic in the link to change the password:${link}/${id}</p>
+      </body>
+    </html>
+    `
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const mainRecovery2 = async (
+  patientEmail,password
+) => {
+  try {
+    // send mail with defined transport object
+    await transporter.sendMail({
+      from: '"Therapyst United 👨‍💻 " <ccrewdb@gmail.com>',
+      to: `${patientEmail}`,
+      subject: `The Biggest center Of Therapys`,
+      text: `Hi User`,
+      html: `
+    <html>
+      <body>
+        <p>Hi,</p>
+        <p>Please save you Password</p>
+        <p>Clic in the link to change the password:${password}</p>
+      </body>
+    </html>
+    `
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+module.exports = {
+  main,
+  mainRecovery,
+  mainRecovery2
+};

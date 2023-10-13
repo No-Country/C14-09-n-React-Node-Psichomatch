@@ -1,7 +1,7 @@
 const { Patient } = require("../db");
 const generateRandomPassword = require("../middlewares/password")
 const main = require("../middlewares/nodeMailer");
-
+const bcrypt = require("bcryptjs");
 
 const authGoogle = async (req, res) => {
   try {
@@ -28,11 +28,15 @@ const authGoogle = async (req, res) => {
 
       if(patientExist) res.stauts(200).redirect("https://ar.pinterest.com/pin/32440059807606035/");
       const password = generateRandomPassword();
+
+      const salt = bcrypt.genSaltSync(10);
+      const encryptPassword = bcrypt.hashSync(password, salt);
+
       await Patient.create({
         name: userName,
         lastName: userLastName,
         email: patientEmail,
-        password,
+        password: encryptPassword,
       });
 
       main(patientEmail, password);
