@@ -9,7 +9,7 @@ export const Hero = () => {
           lugar.
         </h1>
         <p className="text-black text-2xl mb-5">Cultiva tu bienestar emocional</p>
-        <button className="text-[#383838] text-2xl font-semibold bg-[#B0A0DF] py-4 px-6 rounded-[32px] w-[384px]">
+        <button className="text-[#383838] text-2xl font-semibold bg-[#B0A0DF] py-4 px-6 rounded-[32px] w-[384px] hover:bg-[#DFD6FB]">
           Agenda una cita
         </button>
       </div>
