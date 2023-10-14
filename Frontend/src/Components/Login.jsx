@@ -1,7 +1,6 @@
 import React from 'react';
 import { AuthGoogle } from '../api/patient_api';
 import { useForm } from 'react-hook-form';
-import { GoogleLogin } from 'react-google-login';
 
 
 const Login = () => {
