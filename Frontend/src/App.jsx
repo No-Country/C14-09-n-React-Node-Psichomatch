@@ -1,10 +1,12 @@
-import React from 'react'
+import { CardRanking } from './components/CardRanking'
+import { Hero } from './components/Hero'
 
 function App() {
   return (
     <>
-      <div>
-       <h1 className="text-3xl font-bold text-center mt-20">Sistema de Citas de Terapia Psicologica</h1>
+      <div className='xl:ml-32 xl:mr-24'>
+       <Hero></Hero>
+       <CardRanking />
       </div>
     </>
   )
