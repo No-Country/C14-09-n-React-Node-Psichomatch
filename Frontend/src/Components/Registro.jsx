@@ -15,7 +15,7 @@ const Registro = () => {
         <div className="md:mx-6 md:p-12">
          	<div className="text-center">         
                      <h1 className="mb-12 mt-1 pb-1 text-xl font-semibold">
-                        Crea una Cuenta
+                        Registro de nuevo Paciente
                       </h1>
                     </div>
          <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
