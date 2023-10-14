@@ -3,13 +3,14 @@ const { Router } = require("express");
 const userRoutes = require("./user");
 const contactRoutes = require("./contact")
 const authRoutes = require("./auth");
+const patientRoutes = require("./patient");
 const therapistRoutes = require("./therapist");
 const passport = require("passport");
 const router = Router();
 
 router.use("/", userRoutes);
-router.use("/", contactRoutes);
-router.use("/therapist", therapistRoutes);
+router.use("/",contactRoutes);
+// Auth0 goggle (Patient)
 router.use("/auth",passport.authenticate("auth-google",{
     scope:[
         "https://www.googleapis.com/auth/userinfo.profile",
@@ -17,5 +18,11 @@ router.use("/auth",passport.authenticate("auth-google",{
     ],
     session: false,
 }), authRoutes);
+
+//Patients
+router.use("/", patientRoutes);
+
+//Therapyst
+router.use("/therapist", therapistRoutes);
 
 module.exports = router;

@@ -4,6 +4,7 @@ const {authGoogle} = require("../controllers/auth")
 
 
 
+
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
