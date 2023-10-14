@@ -6,11 +6,8 @@ export const registerPatient = async (patient) => {
 }
 
 
-export const AuthGoogle = async (response) => {
+export const AuthGoogle = async () => {
 
-return await axios.post('http://localhost:3001/auth/google', 
-{ token: response.tokenId }
-
-);
+return await axios.get('http://localhost:3001/auth/google');
 
 }

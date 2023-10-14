@@ -8,8 +8,8 @@ const Login = () => {
 
 const { register, handleSubmit, errors } = useForm();
 
-const onSubmitGoogle = async (data) => {
-   const response = await AuthGoogle(data);
+const onSubmitGoogle = async () => {
+   const response = await AuthGoogle();
 }
 
 
