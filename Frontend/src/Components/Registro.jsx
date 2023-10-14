@@ -7,7 +7,6 @@ const Registro = () => {
 
   const onSubmit = async (data) => {
     const response = await registerPatient(data);
-    console.log(data);
   }
 
   return(
