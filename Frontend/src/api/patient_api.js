@@ -6,3 +6,6 @@ export const registerPatient = async (patient) => {
 }
 
 
+export const recoverPass = async () => {
+	return await axios.get('http://localhost:3001/recoverPass')
+}
