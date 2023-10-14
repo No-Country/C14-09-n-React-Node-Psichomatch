@@ -1,9 +1,11 @@
+import Login from './components/Login';
+import Registro from './components/Registro';
+
 function App() {
   return (
     <>
-      <div className="xl:ml-32 xl:mr-24">
-        <h1>prueba</h1>
-      </div>
+      <Login />
+      <Registro />
     </>
   );
 }

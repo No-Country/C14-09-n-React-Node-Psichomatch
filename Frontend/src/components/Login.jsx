@@ -1,13 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { loginPatient } from "../api/patient_api";
+import {loginPatient} from "../api/patient_api";
 
 const Login = () => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
-    console.log({ data });
+    console.log(response);
   };
 
   return (
@@ -28,7 +28,7 @@ const Login = () => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 type="email"
-                {...register("email")}
+                {...register("patientEmail")}
               />
             </div>
             <div>
