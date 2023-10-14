@@ -112,7 +112,7 @@ const logInPatient = async (req, res) => {
       );
 
       if (ValidatePassword) res.status(200).json(true);
-      else res.status(400).json(false);
+      
     } else {
       res.status(400).json(false);
     }
