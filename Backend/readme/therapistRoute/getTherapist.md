@@ -1,6 +1,6 @@
 # Get Therapist
 
-**URL** : `/therapist/`
+**URL** : `/therapist/:page`
 
 **Method** : `GET`
 
@@ -13,6 +13,9 @@ you can obtain therapist and the pages of all therapist.
 ```
   Body parameter:
     - none
+
+  Query parameter:
+    - none 
 ```
 
 

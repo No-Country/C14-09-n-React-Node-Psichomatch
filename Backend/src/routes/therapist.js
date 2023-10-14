@@ -7,7 +7,6 @@ const {
     updateImgTherapist,
     updateTherapistPrice,
     updateTherapistPriceByPorcent,
-    updateLanguagesTherapist,
     deleteTherapist,
     switchTherapistState,
     getTherapists
@@ -15,13 +14,12 @@ const {
 
 router.get("/", getTherapists);
 router.post("/create", createTherapist)
-router.put("/addInfo/", addInfoTherapist)
+router.put("/addInfo/:id", addInfoTherapist)
 router.put("/changeDescription/:id", updateDescriptionTherapist)
 router.put("/updateImg/:id", updateImgTherapist)
 router.put("/updatePrice/:id", updateTherapistPrice)
 router.put("/updatePricePercent/:id", updateTherapistPriceByPorcent)
-router.put("/updateLanguages/:id", updateLanguagesTherapist)
 router.delete("/delete/:id", deleteTherapist)   
-router.put("/therapist/switchTherapist", switchTherapistState)
+router.put("/switchTherapist/:id", switchTherapistState)
 
 module.exports = router;
