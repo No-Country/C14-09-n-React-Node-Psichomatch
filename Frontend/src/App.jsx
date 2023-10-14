@@ -5,7 +5,6 @@ import Registro from './Components/Registro'
 function App() {
   return (
     <>
-     <Login />
      <Registro />
     </>
   )
