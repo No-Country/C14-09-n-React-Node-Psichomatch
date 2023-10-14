@@ -1,13 +1,13 @@
-import Login from './components/Login';
-import Registro from './components/Registro';
+import React from 'react'
+import Login from './components/Login'
+import Registro from './components/Registro'
 
 function App() {
   return (
     <>
-      <Login />
-      <Registro />
+     <Login />
     </>
-  );
+  )
 }
 
-export default App;
+export default App
