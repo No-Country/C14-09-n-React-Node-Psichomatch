@@ -20,7 +20,8 @@ Token is provided with the request:
 
 - [Patient Register](./readme/patientRoute/registerPatient.md) : `POST /registerPatient`
 - [Patient Register Google](./readme/Auth0/Auth0Google.md) : `GET /auth/google`
-
+- [Patient Login](./readme/patientRoute/login.md) : `POST /patient/login`
+- [Patient RecoverPass](./readme/patientRoute/recoverPass.md) : `POST /recoverPass`
 - [All Patients](./readme/patientRoute/getAllPatients.md) : `GET /patients`
 
 ### Medics related
