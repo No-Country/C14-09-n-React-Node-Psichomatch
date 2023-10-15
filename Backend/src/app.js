@@ -2,13 +2,16 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index");
-
+const { authGoogle } = require("./controllers/auth");
+const passport = require('passport');
+const cors = require('cors');
 require("./db.js");
-
+require("./middlewares/google");
 const server = express();
 
 server.name = "API";
-
+server.use(passport.initialize());
+server.use(cors());
 server.use(express.urlencoded({ extended: true, limit: "50mb" }));
 server.use(express.json({ limit: "50mb" }));
 server.use(cookieParser());

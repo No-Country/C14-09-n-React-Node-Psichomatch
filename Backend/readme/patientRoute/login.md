@@ -1,6 +1,6 @@
-# Create Patient with Email
+# Login Patient
 
-**URL** : `/registerPatient`
+**URL** : `/patient/login`
 
 **Method** : `POST`
 
@@ -32,22 +32,26 @@
 
 ```json
 {
-  "message": "Patient Registered, please check you email"
+  "message": "true"
+}
+```
+
+## Success Response
+
+**Code** : `400 NO`
+
+**Content example**
+
+```json
+{
+  "message": "false"
 }
 ```
 
 ## Error Response
 
-**Condition** : If 'email' exist.
+**Condition** : If 'email' don't exist.
 
-**Code** : `400 BAD REQUEST`
-
-**Content** :
-
-```json
-{
-  "errorMessage": "Patient already Exist"
-}
-```
+**Code** : `500 BAD REQUEST`
 
 - [Back](../../README.md) : `MainPage`

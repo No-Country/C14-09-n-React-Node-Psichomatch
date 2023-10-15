@@ -1,6 +1,6 @@
 # Get all Patients
 
-**URL** : `/patientRoute/getAllPatients`
+**URL** : `/patients`
 
 **Method** : `GET`
 
@@ -17,14 +17,12 @@
   //Example of Success Response
 [
     {
-        "id": "ac8ec82d-fc39-450b-bcab-bc2cc4b539b1",
-        "name": "Gwendolyn1",
-        "lastName": "Gleichner",
-        "email": "Gwendolyn1_Gleichner@yahoo.com",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/921.jpg",
-        "date": "Mon Jun 19 02:10:03 2023 +0300",
-        "createdAt": "2023-06-19T02:36:34.834Z",
-        "updatedAt": "2023-06-19T02:36:34.834Z"
+        "id": 20,
+        "name": "Julia",
+        "lastName": "Apellido20",
+        "phone": "809-565-4343",
+        "email": "julia@example.com",
+        "password": "password987"
     },
  {}... ]
 }
