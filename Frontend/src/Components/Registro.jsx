@@ -1,12 +1,19 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import {registerPatient} from '../api/patient_api'
+import {registerPatient} from '../api/patient_api';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const Registro = () => {
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = async (data) => {
     const response = await registerPatient(data);
+    const MySwal = withReactContent(Swal);
+    MySwal.fire({
+      title: <p>Paciente Creado Exitosamente</p>,
+      icon: 'success'
+    })
   }
 
   return(
