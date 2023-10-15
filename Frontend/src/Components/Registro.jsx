@@ -11,7 +11,7 @@ const Registro = () => {
     const response = await registerPatient(data);
     const MySwal = withReactContent(Swal);
     MySwal.fire({
-      title: <p>Paciente Creado Exitosamente</p>,
+      title: <p>Paciente Agregado Exitosamente</p>,
       icon: 'success'
     })
   }
