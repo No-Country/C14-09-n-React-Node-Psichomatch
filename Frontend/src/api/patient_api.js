@@ -6,8 +6,3 @@ export const registerPatient = async (patient) => {
 }
 
 
-export const AuthGoogle = async () => {
-
-return await axios.get('http://localhost:3001/auth/google');
-
-}
