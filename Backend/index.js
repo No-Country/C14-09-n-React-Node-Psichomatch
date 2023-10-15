@@ -3,7 +3,7 @@ const { conn, User, Contact} = require("./src/db.js");
 const {fillUser} = require("./src/controllers/user.js")
 const {fillContact} = require("./src/controllers/Contact.js")
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
     fillUser(User);
     fillContact(Contact);
