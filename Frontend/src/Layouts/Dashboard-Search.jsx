@@ -12,7 +12,7 @@ const DashboardSearchTherapist = function () {
   }
 
   const [therapist, setTherapist] = useState({});
-  const [page, setPage] = useState(1);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,9 +30,8 @@ const DashboardSearchTherapist = function () {
     e.preventDefault();
     
     
-    if(page !== 1) {
-      setPage((prev)=> prev-1)
-      const therapistData = await getTherapist(page);
+    if(therapist.actualPage !== 1) {
+      const therapistData = await getTherapist(therapist.actualPage - 1);
       setTherapist(therapistData);
     }
     
@@ -42,9 +41,8 @@ const DashboardSearchTherapist = function () {
   const nextButtonHandler = async (e) =>{
     e.preventDefault();
     
-    if(page < therapist.totalPages) {
-      setPage((prev)=> prev+1)
-      const therapistData = await getTherapist(page);
+    if(therapist.actualPage < therapist.totalPages) {
+      const therapistData = await getTherapist(therapist.actualPage + 1);
       setTherapist(therapistData);
     }
   } 

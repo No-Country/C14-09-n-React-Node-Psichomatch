@@ -24,9 +24,9 @@ const getpatients = async (req, res) => {
     });
 
     const totalCount = await Patient.count();
-
+    const actualPage = page || 1;
     const totalPages = Math.ceil(totalCount / perPage);
-    res.status(200).json({ patients, totalPages });
+    res.status(200).json({ patients, totalPages, actualPage });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

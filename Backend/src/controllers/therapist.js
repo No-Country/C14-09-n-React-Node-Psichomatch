@@ -20,10 +20,12 @@ const getTherapists = async (req, res) => {
       order: [["id", "ASC"]],
     });
 
+    const actualPage = page || 1;
+
     const totalCount = await Therapist.count();
 
     const totalPages = Math.ceil(totalCount / perPage);
-    res.status(200).json({ therapists, totalPages });
+    res.status(200).json({ therapists, totalPages, actualPage });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
