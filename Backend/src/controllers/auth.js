@@ -26,7 +26,7 @@ const authGoogle = async (req, res) => {
         }
       });
 
-      if(patientExist) res.stauts(200).redirect("https://ar.pinterest.com/pin/32440059807606035/");
+      if(patientExist) res.stauts(200).redirect("http://localhost:5173");
       const password = generateRandomPassword();
 
       const salt = bcrypt.genSaltSync(10);
@@ -41,7 +41,7 @@ const authGoogle = async (req, res) => {
 
       main(patientEmail, password);
 
-      res.status(200).redirect("https://ar.pinterest.com/pin/1/")
+      res.status(200).redirect("http://localhost:5173")
     }
       
       
