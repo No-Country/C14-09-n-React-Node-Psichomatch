@@ -1,6 +1,6 @@
 const { Patient } = require("../db");
 const generateRandomPassword = require("../middlewares/password")
-const main = require("../middlewares/nodeMailer");
+const {main} = require("../middlewares/nodeMailer");
 const bcrypt = require("bcryptjs");
 
 const authGoogle = async (req, res) => {
@@ -26,7 +26,7 @@ const authGoogle = async (req, res) => {
         }
       });
 
-      if(patientExist) res.stauts(200).redirect("http://localhost:5173");
+      if(patientExist) res.status(200).redirect("http://localhost:5173");
       const password = generateRandomPassword();
 
       const salt = bcrypt.genSaltSync(10);
