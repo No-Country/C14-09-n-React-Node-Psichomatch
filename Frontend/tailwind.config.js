@@ -5,14 +5,18 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      'purple':  '#B0A0DF',
-      'purple-ligth':  '#DFD6FB',
-      'green': '#BEDEBA',
-      'gray-dark': '#383838',
-      'gray': '#E9E9E9',
+    extend: {
+      fontFamily: {
+        body: ['Montserrat']
+      },
+      colors: {
+        'Purple':  '#B0A0DF',
+        'Purple-ligth':  '#DFD6FB',
+        'Green': '#BEDEBA',
+        'Gray-dark': '#383838',
+        'Gray': '#E9E9E9',
+      },
     },
-    extend: {},
   },
   plugins: [],
 }
