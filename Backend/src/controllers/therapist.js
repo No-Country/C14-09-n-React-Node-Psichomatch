@@ -1,4 +1,4 @@
-const { Therapist } = require("../db");
+const { Therapist, Category } = require("../db");
 const { fillTherapistData } = require("../common/filledDates");
 
 // Functions for therapist CRUD
@@ -9,6 +9,12 @@ const getTherapists = async (req, res) => {
     const offset = (page - 1) * perPage;
     const limit = perPage;
     const therapists = await Therapist.findAll({
+      include: [
+        {
+          model: Category,
+          attributes: ["name"],
+  
+        },],
       offset,
       limit,
       order: [["id", "ASC"]],
