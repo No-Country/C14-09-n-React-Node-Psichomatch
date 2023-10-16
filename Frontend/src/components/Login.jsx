@@ -1,4 +1,4 @@
-//import React from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { loginPatient } from "../api/patient_api";
 
@@ -7,7 +7,7 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
-    console.log({data});
+    console.log({ data });
   };
 
   return (
@@ -29,16 +29,7 @@ const Login = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 type="email"
                 {...register("email")}
-                // ref={register}
-                // {...register("email", { required: true })}
-                // aria-invalid={errors.email ? "true" : "false"}
               />
-              {/* {errors.email?.type === "required" && (
-                <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                  <p className="font-bold">Error</p>
-                  <p>{errors.email}</p>
-                </div>
-              )} */}
             </div>
             <div>
               <label className="text-lg font-medium">Contraseña</label>
@@ -46,14 +37,7 @@ const Login = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 type="password"
                 {...register("password")}
-                // ref={register}
               />
-              {/* {errors.password(
-                <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                  <p className="font-bold">Error</p>
-                  <p>{errors.password}</p>
-                </div>
-              )} */}
             </div>
             <div className="mt-4">
               <input type="checkbox" />
@@ -66,7 +50,10 @@ const Login = () => {
               >
                 Iniciar Sesion
               </button>
-              <button className="flex items-center justify-center shadow appearance-none gap-2 border-4 border-gray-100">
+              <a
+                className="flex items-center justify-center shadow appearance-none gap-2 border-4 border-gray-100"
+                href="http://localhost:3001/auth/google"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   x="0px"
@@ -93,10 +80,8 @@ const Login = () => {
                   ></path>
                 </svg>
                 Iniciar Sesión con Google
-              </button>
-              <a href="" className="">
-                ¿Olvidaste tu contraseña?
               </a>
+              <a href="">¿Olvidaste tu contraseña?</a>
             </div>
           </form>
         </div>

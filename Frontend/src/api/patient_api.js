@@ -1,10 +1,9 @@
-import axios from 'axios';
-
+import axios from "axios";
 
 export const registerPatient = async (patient) => {
-	return await axios.post('http://localhost:3001/patient', patient)
-}
+  return await axios.post("http://localhost:3001/patient", patient);
+};
 
 export const loginPatient = async (patient) => {
-	return await axios.post('http://localhost:3001/patient/login', patient)
-}
+  return await axios.post("http://localhost:3001/patient/login", patient);
+};
