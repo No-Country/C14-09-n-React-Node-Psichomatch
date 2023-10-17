@@ -1,22 +1,22 @@
-import React from 'react'
-import Login from './components/Login'
-import Registro from './components/Registro'
-import HomePatient from "./Layouts/Dashboard-Search"
-import Footer from "./Layouts/Footer"
-import { Routes, Route } from "react-router-dom";
-import Dashboard from "./Pages/Dashboard"
+
+import Header from "./Layouts/Header";
+import Hero from "./components/Hero";
+import CardRanking from "./components/CardRanking";
+import Footer from "./Layouts/Footer";
 
 function App() {
   return (
     <>
-     <Routes>
-        <Route exact path="/" element={<Registro />} />
-        <Route exact path="/home" element={<HomePatient/>} />
-      </Routes>
-      <Footer/>
-      <Dashboard/>
+
+      <Header />
+      <div className="xl:ml-32 xl:mr-24">
+        <Hero />
+        <CardRanking />
+      </div>
+
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

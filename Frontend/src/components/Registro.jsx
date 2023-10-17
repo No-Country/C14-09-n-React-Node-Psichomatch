@@ -20,7 +20,7 @@ const Registro = () => {
       <div className="flex w-full h-screen items-center justify-center">
        <div className="w-full flex items-center justify-center lg:w-1/2">
         <div className="md:mx-6 md:p-12">
-         	<div className="text-center">         
+          <div className="text-center">         
                      <h1 className="mb-12 mt-1 pb-1 text-xl font-semibold">
                         Registro de Paciente
                       </h1>
@@ -98,8 +98,8 @@ const Registro = () => {
           }
          </div>
          <div className="mb-4">
-         	<label className="text-lg font-medium">Email</label>
-         	<input 
+          <label className="text-lg font-medium">Email</label>
+          <input 
                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                type="email"
               {...register("email", {
@@ -115,14 +115,14 @@ const Registro = () => {
 
               })}
 
-         	/>
+          />
           {
             errors.email && <span className="text-rose-600 text-sm">{errors.email.message}</span>
           }
          </div>
             <div>
-         	<label className="text-lg font-medium">Contraseña</label>
-         	<input 
+          <label className="text-lg font-medium">Contraseña</label>
+          <input 
                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                type="password"
                {...register("password", {
@@ -136,7 +136,7 @@ const Registro = () => {
                  message: "La contraseña debe ser mayor a 4 caracteres"
                } 
               })}
-         	/>
+          />
           {
             errors.password && <span className="text-rose-600 text-sm">{errors.password.message}</span>
           }
@@ -149,8 +149,7 @@ const Registro = () => {
  </div>
      </div>
       </div>
-  	)
+    )
 }
 
 export default Registro;
-
