@@ -81,7 +81,7 @@ const Login = () => {
                 </svg>
                 Iniciar Sesión con Google
               </a>
-              <a href="">¿Olvidaste tu contraseña?</a>
+              <a>¿Olvidaste tu contraseña?</a>
             </div>
           </form>
         </div>
