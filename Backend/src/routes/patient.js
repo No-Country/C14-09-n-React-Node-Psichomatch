@@ -13,7 +13,7 @@ router.post("/registerPatient", insertPatient);
 router.post("/patient", inserNewPatient)
 router.post("/patient/login",logInPatient);
 
-router.get("/recoverPass",recoverPass)
+router.put("/recoverPass",recoverPass)
 router.get("/recoverPass2/:id",recoverPass2)
 
 router.put("/patient/:id", updatePatient);
