@@ -4,10 +4,18 @@
 
 ## 📕 Descripción del proyecto
 
+<b>PsichoMATCH</b> es una innovadora plataforma en línea diseñada para conectar a personas que buscan asesoramiento o terapia psicológica con terapeutas y psicólogos altamente calificados. Esta aplicación web se ha desarrollado con el propósito de hacer que la búsqueda y programación de sesiones de terapia sean más accesibles y convenientes para todos aquellos que buscan apoyo emocional, asesoramiento o tratamiento psicológico. 
 
 
 
 ## 👷 Miembros del equipo
+
+
+
+
+## 🚀 ¿Cómo usar PsichoMATCH?
+
+
 
 
 ## ⚙️ Stack Tecnológico
