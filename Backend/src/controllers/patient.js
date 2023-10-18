@@ -111,7 +111,11 @@ const logInPatient = async (req, res) => {
         patientExist.password
       );
 
-      if (ValidatePassword) res.status(200).json(true);
+      if (ValidatePassword){
+        res.status(200).json(true)
+      } else{
+        res.status(400).send("Wrong Password")
+      }
       
     } else {
       res.status(400).json(false);
