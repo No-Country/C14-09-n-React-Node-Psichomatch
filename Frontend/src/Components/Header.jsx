@@ -3,28 +3,27 @@ import { Dialog } from "@headlessui/react";
 //import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/Images/logo.svg";
 import searchIcon from "../assets/Icons/search.svg";
-import calendarIcon from "../assets/Icons/calendar.svg";
 import clearIcon from "../assets/Icons/clear.svg";
 import bars3Icon from "../assets/Icons/bars3.svg";
-import userIcon from "../assets/Icons/user.svg";
+import logoIcon from "../assets/Images/logoIcon.svg";
 import { Link, NavLink } from "react-router-dom";
 
 const navigation = [
-  { name: "Encuentra psicólogos", to: "/" },
-  { name: "Servicios", to: "/" },
+  { name: "Encuentra psicólogos", to: "/psicologos" },
+  { name: "Servicios", to: "/servicios" },
 ];
 
 const Header = function () {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <header className=" inset-x-0 top-0 z-50">
+    <header className="">
       <nav
-        className="flex items-center justify-between p-6 lg:px-8"
+        className="flex items-center justify-between p-4 lg:px-6"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <Link to="/" className="-m-1.5 p-1.5">
-            <img className="h-8 w-auto" src={logo} alt="" />
+          <Link to="/" className="ml-4">
+            <img src={logo} alt="" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -37,20 +36,24 @@ const Header = function () {
             <img src={bars3Icon} alt="" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="hidden lg:flex justify-center items-center lg:gap-x-6 lg:flex-1 lg:justify-end">
           {navigation.map((item) => (
             <NavLink
               key={item.name}
               to={item.to}
-              className="text-sm leading-6 text-gray-900"
+              className="text-base text-black font-medium"
             >
               {item.name}
             </NavLink>
           ))}
-        </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <NavLink to="/" className="">
             <img src={searchIcon} alt="" />
+          </NavLink>
+          <NavLink
+            to="/login"
+            className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
+          >
+            Iniciar sesión
           </NavLink>
         </div>
       </nav>
@@ -64,7 +67,7 @@ const Header = function () {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link to="/" className="-m-1.5 p-1.5">
-              <img className="h-8 w-auto" src={logo} alt="" />
+              <img className="" src={logoIcon} alt="" />
             </Link>
             <button
               type="button"
@@ -88,13 +91,16 @@ const Header = function () {
                   </NavLink>
                 ))}
               </div>
-              <div className="py-6">
-                <NavLink to="/login" className="">
+              <div className="py-6 gap-4 flex flex-col items-start">
+                <NavLink to="/" className="">
                   <img src={searchIcon} alt="" />
                 </NavLink>
-                <button className="text-Gray-dark text-2xl font-semibold bg-Gray-dark py-4 px-6 rounded-[32px] w-[384px] hover:[#4F4F4F]">
-                Iniciar sesión
-                </button>
+                <NavLink
+                  to="/login"
+                  className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
+                >
+                  Iniciar sesión
+                </NavLink>
               </div>
             </div>
           </div>
