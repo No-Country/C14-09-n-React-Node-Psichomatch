@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
-//import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/Images/logo.svg";
 import searchIcon from "../assets/Icons/search.svg";
 import clearIcon from "../assets/Icons/clear.svg";
 import bars3Icon from "../assets/Icons/bars3.svg";
 import logoIcon from "../assets/Images/logoIcon.svg";
-import { Link, NavLink } from "react-router-dom";
 
 const navigation = [
-  { name: "Encuentra psicólogos", to: "/" },
-  { name: "Servicios", to: "/" },
+  { name: "Encuentra psicólogos", to: "/psicologos" },
+  { name: "Servicios", to: "/servicios" },
   { name: "Registrarme", to: "/registro" },
-  { name: "Iniciar Sesión", to: "/login" },
 ];
 
 const Header = function () {
@@ -20,7 +18,7 @@ const Header = function () {
   return (
     <header className="">
       <nav
-        className="flex items-center justify-between p-4 lg:px-6"
+        className="flex items-center justify-between p-4 md:px-6"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
