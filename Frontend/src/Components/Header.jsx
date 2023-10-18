@@ -12,7 +12,6 @@ const navigation = [
   { name: "Encuentra psicólogos", to: "/" },
   { name: "Servicios", to: "/" },
   { name: "Registrarme", to: "/registro" },
-  { name: "Iniciar Sesión", to: "/login" },
 ];
 
 const Header = function () {
