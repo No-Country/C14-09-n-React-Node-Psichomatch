@@ -13,7 +13,7 @@ const Hero = () => {
           Cultiva tu bienestar emocional
         </p>
         <button className="text-Gray-dark text-2xl font-semibold bg-Purple py-4 px-6 rounded-[32px] w-[384px] hover:bg-Purple-ligth">
-          Agenda una cita
+        Encontrar un psicólogo 
         </button>
       </div>
       <div className="img max-w-xl flex justify-center items-center lg:flex-1">
