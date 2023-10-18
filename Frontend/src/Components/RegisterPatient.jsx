@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import {Link} from 'react-router-dom';
 
-const Registro = () => {
+const RegisterPatient = () => {
   const { register, handleSubmit, formState: {errors} } = useForm();
 
   const onSubmit = async (data) => {
@@ -153,4 +153,4 @@ const Registro = () => {
     )
 }
 
-export default Registro;
+export default RegisterPatient;

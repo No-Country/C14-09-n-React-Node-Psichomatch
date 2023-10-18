@@ -1,8 +1,8 @@
 import React from 'react'
-import Registro from '../Components/Registro'
+import RegisterPatient from '../Components/RegisterPatient'
 
 export const RegisterPage = () => {
   return (
-    <Registro />
+    <RegisterPatient />
   )
 }

@@ -4,7 +4,7 @@ import {loginPatient} from "../api/patient_api";
 import {Link} from 'react-router-dom';
 
 const Login = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, formState: {errors} } = useForm();
 
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
@@ -42,7 +42,11 @@ const Login = () => {
 
               })}
               />
-         
+             {
+
+            errors.patientEmail && <span className="text-rose-600 text-sm">{errors.patientEmail.message}</span>
+            
+            }
             </div>
             <div>
               <label className="text-lg font-medium">Contraseña</label>
@@ -61,7 +65,11 @@ const Login = () => {
                } 
               })}
               />
-            
+              {
+
+              errors.password && <span className="text-rose-600 text-sm">{errors.password.message}</span>
+          
+              }
             </div>
             <div className="mt-4">
               <input type="checkbox" />
