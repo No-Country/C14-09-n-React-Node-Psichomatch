@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs");
 const generateRandomPassword = require("../middlewares/password");
 const { CHANGE_PASS } = process.env;
 const patientEmail = "";
+const  {tokenSign}  = require('../helpers/generateToken')
 
 const { Op } = require("sequelize");
 
@@ -111,8 +112,13 @@ const logInPatient = async (req, res) => {
         patientExist.password
       );
 
+      const tokenSession = await tokenSign(patientExist) //Token
+
       if (ValidatePassword){
-        res.status(200).json(true)
+        res.status(200).json({
+          data:patientExist,
+          tokenSession
+        })
       } else{
         res.status(400).send("Wrong Password")
       }
