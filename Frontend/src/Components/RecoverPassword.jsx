@@ -6,7 +6,7 @@ import withReactContent from 'sweetalert2-react-content';
 
 const RecoverPassword = () => {
 
-const { register, handleSubmit, errors } = useForm();
+const { register, handleSubmit, formState: {errors} } = useForm();
 
 const onSubmit = async (data) => {
   const response = await recoverPassword(data);
@@ -37,8 +37,23 @@ const onSubmit = async (data) => {
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
               type="email"
-              {...register("patientEmail")}
+               {...register("patientEmail", {
+                required: {
+                  value: true,
+                  message: "El email es requerido"
+                },
+
+                pattern: {
+                  value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                  message: "Email no válido"
+                }
+
+              })}
+    
             />
+            {
+            errors.patientEmail && <span className="text-rose-600 text-sm">{errors.patientEmail.message}</span>
+            }
              <div className="mt-8 flex flex-col gap-y-4 text-center">
              <button
                 type="submit"
