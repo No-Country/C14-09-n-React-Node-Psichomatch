@@ -43,9 +43,15 @@ const getRatingsByTherapistIdWithPagination = async (req, res) => {
       order: [["id", "ASC"]],
     });
 
+    const rating2 = await Rating.findAll({
+        where: {
+          TherapistId: id,
+        }
+      });
+
     const actualPage = page || 1;
 
-    const totalCount = await Rating.count();
+    const totalCount = await rating2.length;
 
     const totalPages = Math.ceil(totalCount / perPage);
 

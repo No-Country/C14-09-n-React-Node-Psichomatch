@@ -9,10 +9,12 @@ const {
     updateTherapistPriceByPorcent,
     deleteTherapist,
     switchTherapistState,
-    getTherapists
+    getTherapists,
+    filterTherapistByCategoryId
 } = require("../controllers/therapist")
 
 router.get("/", getTherapists);
+router.get("/category/:id",filterTherapistByCategoryId)
 router.post("/create", createTherapist)
 router.put("/addInfo/:id", addInfoTherapist)
 router.put("/changeDescription/:id", updateDescriptionTherapist)
