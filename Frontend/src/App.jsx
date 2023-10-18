@@ -1,18 +1,22 @@
 import React from "react";
-import Header from "./Layouts/Header";
-import Hero from "./components/Hero";
-import CardRanking from "./components/CardRanking";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Header from "./Components/Header";
 import Footer from "./Layouts/Footer";
+import { RegisterPage } from "./Routes/RegisterPage";
+import { LoginPage } from "./Routes/LoginPage";
+import { HomePage } from "./Routes/HomePage";
+import Login from "./Components/Login";
 
 function App() {
   return (
     <>
       <Header />
-      <div className="xl:ml-32 xl:mr-24">
-        <Hero />
-        <CardRanking />
-      </div>
-
+      <Routes>
+        <Route path="/" element={<HomePage></HomePage>}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/registro" element={<RegisterPage></RegisterPage>}></Route>
+        <Route path="/*" element={<Navigate to="/" />}></Route>
+      </Routes>
       <Footer />
     </>
   );
