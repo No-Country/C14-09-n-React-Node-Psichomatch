@@ -6,7 +6,7 @@ import withReactContent from 'sweetalert2-react-content';
 
 const RecoverPassword = () => {
 
-const { register, handleSubmit, formState: {errors} } = useForm();
+const { register, handleSubmit, formState: {errors}, reset } = useForm();
 
 const onSubmit = async (data) => {
   const response = await recoverPassword(data);
@@ -16,6 +16,8 @@ const onSubmit = async (data) => {
       title: <p>Por favor verifica tu correo electrónico</p>,
       icon: 'success'
    })
+
+  reset()
 }
 
 	return(
