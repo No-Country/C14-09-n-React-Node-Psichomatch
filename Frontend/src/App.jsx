@@ -6,6 +6,7 @@ import { RegisterPage } from "./Routes/RegisterPage";
 import { LoginPage } from "./Routes/LoginPage";
 import { HomePage } from "./Routes/HomePage";
 import Login from "./Components/Login";
+import RecoverPassword from "./Components/RecoverPassword";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/registro" element={<RegisterPage></RegisterPage>}></Route>
+        <Route path="/recuperarclave" element={<RecoverPassword />}></Route>
         <Route path="/*" element={<Navigate to="/" />}></Route>
       </Routes>
       <Footer />

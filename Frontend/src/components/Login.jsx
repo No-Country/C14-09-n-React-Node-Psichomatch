@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import {loginPatient} from "../api/patient_api";
+import {Link} from 'react-router-dom';
 
 const Login = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -28,16 +29,39 @@ const Login = () => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 type="email"
-                {...register("patientEmail")}
+                {...register("patientEmail", {
+                required: {
+                  value: true,
+                  message: "El email es requerido"
+                },
+
+                pattern: {
+                  value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                  message: "Email no válido"
+                }
+
+              })}
               />
+         
             </div>
             <div>
               <label className="text-lg font-medium">Contraseña</label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 type="password"
-                {...register("password")}
+              {...register("password", {
+                required: {
+                value: true,
+                message: "La contraseña es requerida"
+               },
+
+               minLength: {
+                 value: 6,
+                 message: "La contraseña debe ser mayor a 4 caracteres"
+               } 
+              })}
               />
+            
             </div>
             <div className="mt-4">
               <input type="checkbox" />
@@ -81,7 +105,7 @@ const Login = () => {
                 </svg>
                 Iniciar Sesión con Google
               </a>
-              <a href="">¿Olvidaste tu contraseña?</a>
+              <Link to="/recuperarclave">¿Olvidaste tu contraseña?</Link>
             </div>
           </form>
         </div>
