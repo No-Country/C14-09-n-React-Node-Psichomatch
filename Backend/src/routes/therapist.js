@@ -9,7 +9,10 @@ const {
     updateTherapistPriceByPorcent,
     deleteTherapist,
     switchTherapistState,
-    getTherapists
+    getTherapists,
+    searchByNameLastName,
+    searchByPrice,
+    searchByUbication,
 } = require("../controllers/therapist")
 
 router.get("/", getTherapists);
@@ -21,5 +24,11 @@ router.put("/updatePrice/:id", updateTherapistPrice)
 router.put("/updatePricePercent/:id", updateTherapistPriceByPorcent)
 router.delete("/delete/:id", deleteTherapist)   
 router.put("/switchTherapist/:id", switchTherapistState)
+
+/* Routes for searches */ 
+
+router.get("/search/:name/:lastName", searchByNameLastName)
+router.get("/searchPrice/:price", searchByPrice)
+router.get("/searchUbication/:ubication", searchByUbication)
 
 module.exports = router;
