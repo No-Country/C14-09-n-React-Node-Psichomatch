@@ -2,31 +2,30 @@ import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 //import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/Images/logo.svg";
-import searchIcon from "../assets/Images/search.svg";
-import calendarIcon from "../assets/Images/calendar.svg";
-import clearIcon from "../assets/Images/clear.svg";
-import bars3Icon from "../assets/Images/bars3.svg";
-import userIcon from "../assets/Images/user.svg";
+import searchIcon from "../assets/Icons/search.svg";
+import clearIcon from "../assets/Icons/clear.svg";
+import bars3Icon from "../assets/Icons/bars3.svg";
+import logoIcon from "../assets/Images/logoIcon.svg";
+import { Link, NavLink } from "react-router-dom";
 
 const navigation = [
-  { name: "Encuentra psicólogos", href: "#" },
-  { name: "Servicios", href: "#" },
-  { name: "Preguntas frecuentes", href: "#" },
+  { name: "Encuentra psicólogos", to: "/" },
+  { name: "Servicios", to: "/" },
+  { name: "Registrarme", to: "/registro" },
 ];
 
 const Header = function () {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <header className=" inset-x-0 top-0 z-50">
+    <header className="">
       <nav
-        className="flex items-center justify-between p-6 lg:px-8"
+        className="flex items-center justify-between p-4 lg:px-6"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src={logo} alt="" />
-          </a>
+          <Link to="/" className="ml-4">
+            <img src={logo} alt="" />
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -38,27 +37,25 @@ const Header = function () {
             <img src={bars3Icon} alt="" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="hidden lg:flex justify-center items-center lg:gap-x-6 lg:flex-1 lg:justify-end">
           {navigation.map((item) => (
-            <a
+            <NavLink
               key={item.name}
-              href={item.href}
-              className="text-sm leading-6 text-gray-900"
+              to={item.to}
+              className="text-base text-black font-medium"
             >
               {item.name}
-            </a>
+            </NavLink>
           ))}
-        </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="">
+          <NavLink to="/" className="">
             <img src={searchIcon} alt="" />
-          </a>
-          <a href="#" className="">
-            <img src={calendarIcon} alt="" />
-          </a>
-          <a href="#" className="">
-            <img src={userIcon} alt="" />
-          </a>
+          </NavLink>
+          <NavLink
+            to="/login"
+            className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
+          >
+            Iniciar sesión
+          </NavLink>
         </div>
       </nav>
       <Dialog
@@ -70,10 +67,9 @@ const Header = function () {
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img className="h-8 w-auto" src={logo} alt="" />
-            </a>
+            <Link to="/" className="-m-1.5 p-1.5">
+              <img className="" src={logoIcon} alt="" />
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -87,25 +83,25 @@ const Header = function () {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
-                  <a
+                  <NavLink
                     key={item.name}
-                    href={item.href}
+                    to={item.to}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     {item.name}
-                  </a>
+                  </NavLink>
                 ))}
               </div>
-              <div className="py-6">
-                <a href="#" className="">
+              <div className="py-6 gap-4 flex flex-col items-start">
+                <NavLink to="/" className="">
                   <img src={searchIcon} alt="" />
-                </a>
-                <a href="#" className="">
-                  <img src={calendarIcon} alt="" />
-                </a>
-                <a href="#" className="">
-                  <img src={userIcon} alt="" />
-                </a>
+                </NavLink>
+                <NavLink
+                  to="/login"
+                  className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
+                >
+                  Iniciar sesión
+                </NavLink>
               </div>
             </div>
           </div>

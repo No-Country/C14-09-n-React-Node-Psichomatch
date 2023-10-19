@@ -21,7 +21,7 @@ router.post("/patient", inserNewPatient)
 router.post("/patient/login",logInPatient);
 
 
-router.put("/recoverPass",recoverPass)
+router.post("/recoverPass",recoverPass)
 router.get("/recoverPass2/:id",recoverPass2)
 
 router.put("/patient/:id", updatePatient);
