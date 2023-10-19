@@ -31,6 +31,43 @@ const getTherapists = async (req, res) => {
   }
 };
 
+
+const filterTherapistByCategoryId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const page = parseInt(req.query.page) || 1;
+    const perPage = 6;
+    const offset = (page - 1) * perPage;
+    const limit = perPage;
+    const therapists = await Therapist.findAll({
+      where:{CategoryId: id},
+      include: [
+        {
+          model: Category,
+          attributes: ["name"],
+  
+        },],
+      offset,
+      limit,
+      order: [["id", "ASC"]],
+    });
+
+
+    const therapists2 = await Therapist.findAll({
+      where:{CategoryId: id},
+    });
+
+    const actualPage = page || 1;
+
+    const totalCount =  therapists2.length;
+
+    const totalPages = Math.ceil(totalCount / perPage);
+    res.status(200).json({ therapists, totalPages, actualPage });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const createTherapist = async (req, res) => {
   try {
     const {
@@ -354,4 +391,5 @@ module.exports = {
   searchByNameLastName,
   searchByPrice,
   searchByUbication,
+  filterTherapistByCategoryId
 };

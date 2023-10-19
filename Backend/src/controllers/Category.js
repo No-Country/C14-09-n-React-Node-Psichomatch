@@ -1,6 +1,20 @@
 const { Category } = require("../db");
 const { Op } = require("sequelize");
 
+
+  const getCategories = async (req, res) =>{
+    try {
+      const categories = await Category.findAll();
+      res.status(200).json(categories);
+
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+
+
+
   const fillCategory = async (category) => {
     try {
       await category.bulkCreate([
@@ -35,5 +49,6 @@ const { Op } = require("sequelize");
 
   module.exports = {
    fillCategory,
+   getCategories
    
   };
