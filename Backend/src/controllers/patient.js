@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs");
 const generateRandomPassword = require("../middlewares/password");
 const { CHANGE_PASS } = process.env;
 const patientEmail = "";
+const  {tokenSign}  = require('../helpers/generateToken')
 
 const { Op } = require("sequelize");
 
@@ -24,9 +25,9 @@ const getpatients = async (req, res) => {
     });
 
     const totalCount = await Patient.count();
-
+    const actualPage = page || 1;
     const totalPages = Math.ceil(totalCount / perPage);
-    res.status(200).json({ patients, totalPages });
+    res.status(200).json({ patients, totalPages, actualPage });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -111,7 +112,16 @@ const logInPatient = async (req, res) => {
         patientExist.password
       );
 
-      if (ValidatePassword) res.status(200).json(true);
+      const tokenSession = await tokenSign(patientExist) //Token
+
+      if (ValidatePassword){
+        res.status(200).json({
+          data:patientExist,
+          tokenSession
+        })
+      } else{
+        res.status(400).send("Wrong Password")
+      }
       
     } else {
       res.status(400).json(false);
