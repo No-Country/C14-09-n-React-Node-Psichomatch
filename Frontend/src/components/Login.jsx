@@ -1,7 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { loginPatient } from "../api/patient_api";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 import googleIcon from "../assets/Icons/google.svg";
 
 const Login = () => {
@@ -11,9 +12,14 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate(); // Use useNavigate here
+
+
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
-    console.log(response);
+    if(response.data.tokenSession) {
+      navigate('/dashboard')
+    }
   };
 
   return (
