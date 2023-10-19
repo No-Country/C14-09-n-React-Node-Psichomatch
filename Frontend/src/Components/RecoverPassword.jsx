@@ -10,7 +10,7 @@ const { register, handleSubmit, formState: {errors}, reset } = useForm();
 
 const onSubmit = async (data) => {
   const response = await recoverPassword(data);
-  console.log(response)
+  console.log(response.data)
   const MySwal = withReactContent(Swal);
     MySwal.fire({
       title: <p>Por favor verifica tu correo electrónico</p>,
