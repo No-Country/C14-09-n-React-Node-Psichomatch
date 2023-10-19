@@ -18,6 +18,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
     if(response.data.tokenSession) {
+      console.log(response.data.tokenSession) //Token con inicio simple
       navigate('/dashboard')
     }
   };
@@ -96,6 +97,7 @@ const Login = () => {
                 className="flex items-center justify-center shadow appearance-none gap-2 border-4 border-gray-100"
                 href="http://localhost:3001/auth/google"
               >
+                
                 <img src={googleIcon} alt="" />
                 Iniciar Sesión con Google
               </a>

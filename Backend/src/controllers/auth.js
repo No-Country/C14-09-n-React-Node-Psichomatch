@@ -27,23 +27,27 @@ const authGoogle = async (req, res) => {
         }
       });
 
-      if(patientExist) res.status(200).redirect("http://localhost:5173/dashboard");
-      const password = generateRandomPassword();
-      const tokenSession = await tokenSign(patientExist) //Token
-      const salt = bcrypt.genSaltSync(10);
-      const encryptPassword = bcrypt.hashSync(password, salt);
+      if(patientExist){
+        res.status(200).redirect("http://localhost:5173/dashboard");
+      }else{
+        const password = generateRandomPassword();
+      
+        const salt = bcrypt.genSaltSync(10);
+        const encryptPassword = bcrypt.hashSync(password, salt);
+        
+        const newPatient = await Patient.create({
+          name: userName,
+          lastName: userLastName,
+          email: patientEmail,
+          password: encryptPassword,
+        });
+        const tokenSession = await tokenSign(newPatient) //Token
+        main(patientEmail, password);
 
-      await Patient.create({
-        name: userName,
-        lastName: userLastName,
-        email: patientEmail,
-        password: encryptPassword,
-      });
+        res.status(200).redirect(`http://localhost:5173/dashboard`)
+      }
+      
 
-      main(patientEmail, password);
-
-      res.status(200).redirect("http://localhost:5173/dashboard")
-      res.status(200).send(tokenSession)
     }
       
       
