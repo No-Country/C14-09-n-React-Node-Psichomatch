@@ -16,7 +16,7 @@ const navigation = [
 const Header = function () {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <header className="">
+    <header className="border-2 border-[#e9e9e9]">
       <nav
         className="flex items-center justify-between p-4 md:px-6"
         aria-label="Global"
