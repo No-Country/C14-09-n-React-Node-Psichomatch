@@ -1,13 +1,12 @@
-# Search By Ubication
+# Search By Name and Lastname
 
-**URL** : `/therapist/searchUbication/:ubication`
+**URL** : `/therapist/search/:name/:lastname`
 
 **Method** : `GET`
 
 **Auth required** : YES
 
-**Description** : Filter with ubication param, you should use a ubication like 'Argentina' or 'Estados Unidos'
-this end point give to you the most similar ubication.
+**Description** : Filter with the name and lastname on the therapist, it make a pagination of 6 therapist for page.
 
 ## Required Dates
 ```
@@ -76,7 +75,7 @@ this end point give to you the most similar ubication.
 "Route not found"
 ```
 
-**Condition** : If 'ubication' is missing.
+**Condition** : If 'name' or 'lastName' is missing.
 
 **Code** : `400 BAD REQUEST`
 

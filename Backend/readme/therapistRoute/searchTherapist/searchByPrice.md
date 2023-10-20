@@ -1,13 +1,13 @@
-# Search By Ubication
+# Search By Price
 
-**URL** : `/therapist/searchUbication/:ubication`
+**URL** : `/therapist/searchPrice/:price`
 
 **Method** : `GET`
 
 **Auth required** : YES
 
-**Description** : Filter with ubication param, you should use a ubication like 'Argentina' or 'Estados Unidos'
-this end point give to you the most similar ubication.
+**Description** : Filter with price param, you should use a number and the function return
+the therapist with under price. 
 
 ## Required Dates
 ```
@@ -76,7 +76,7 @@ this end point give to you the most similar ubication.
 "Route not found"
 ```
 
-**Condition** : If 'ubication' is missing.
+**Condition** : If 'price' is missing.
 
 **Code** : `400 BAD REQUEST`
 
@@ -84,6 +84,16 @@ this end point give to you the most similar ubication.
 
 ```String
 "Missing fields"
+```
+
+**Condition** : If 'price' is under 0.
+
+**Code** : `406 NOT ACCEPTABLE`
+
+**Content** :
+
+```String
+"Price must be > 0"
 ```
 
 **Condition** : If any 'Therapist' not found.
