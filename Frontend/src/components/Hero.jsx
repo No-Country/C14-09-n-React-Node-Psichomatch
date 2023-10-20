@@ -3,9 +3,9 @@ import imgHero from "../assets/Images/img-hero.png";
 
 const Hero = () => {
   return (
-    <div className="hero flex gap-4 flex-col my-6 mx-4 lg:flex-row lg:justify-between lg:my-12 lg:mx-20">
-      <div className="content max-w-lg flex justify-between flex-col gap-6 lg:flex-1">
-        <h1 className="text-Gray-dark text-5xl font-semibold">
+    <div className="flex gap-4 flex-col my-6 mx-4 lg:flex-row lg:justify-between lg:my-16 lg:mx-32">
+      <div className="flex justify-between flex-col gap-6 lg:flex-1">
+        <h1 className="text-Gray-dark max-w-xl leading-[4rem] text-5xl font-semibold">
           Encuentra apoyo psicológico con facilidad, en cualquier momento y
           lugar.
         </h1>
@@ -20,7 +20,7 @@ const Hero = () => {
         <img
           src={imgHero}
           alt="Relaxed Woman"
-          className="bg-contain bg-no-repeat"
+          className="bg-contain bg-no-repeat h-[419px] w-[628px]"
         />
       </div>
     </div>

@@ -11,6 +11,7 @@ const  checkRoleAuth  = require('../middlewares/roleAuth')
 //Para utilizar esta ruta necesito 
 //                      (Una session Valida |  Que El rol sea de Usuario)
 router.get("/patients",     checkAuth,         checkRoleAuth(['patient']),  getpatients);
+//
 
 router.get("/patient/:id", getPatientById);
 router.post("/registerPatient", insertPatient);

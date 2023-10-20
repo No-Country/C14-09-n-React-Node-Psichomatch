@@ -76,7 +76,7 @@ const inserNewPatient = async (req, res) => {
 };
 const insertPatient = async (req, res) => {
   try {
-    const { patientEmail, password, patientName, patientLastName, patientPhone } = req.body;
+    const { patientEmail, password } = req.body;
     const salt = bcrypt.genSaltSync(10);
     const encryptPassword = bcrypt.hashSync(password, salt);
 
@@ -86,19 +86,11 @@ const insertPatient = async (req, res) => {
       },
     });
     if (patientExist) res.status(400).send("Patient already Exist");
-    
-
     await Patient.create({
       email: patientEmail,
       password: encryptPassword,
-      name: patientName,
-      lastName:patientLastName,
-      phone: patientPhone
     });
-
     main(patientEmail, password);
-
-
 
     res.status(200).send("Patient Registered, please check you email");
   } catch (error) {
@@ -122,13 +114,11 @@ const logInPatient = async (req, res) => {
 
       const tokenSession = await tokenSign(patientExist) //Token
 
-      
-      await patientExist.update({
-        session:tokenSession
-       });
-
       if (ValidatePassword){
-        res.status(200).json(patientExist)
+        res.status(200).json({
+          data:patientExist,
+          tokenSession
+        })
       } else{
         res.status(400).send("Wrong Password")
       }
@@ -209,10 +199,7 @@ const updatePatient = async (req, res) => {
 
 const fillPatient = async (Patient) => {
   try {
-
-    const saltRounds = 10; 
-
-    const patientsData = [
+    await Patient.bulkCreate([
       {
         name: "Kevin",
         lastName: "Apellido1",
@@ -353,15 +340,7 @@ const fillPatient = async (Patient) => {
         email: "julia@example.com",
         password: "password987",
       },
-    ]
-
-    const patientsWithHashedPasswords = patientsData.map((patient) => {
-      const passwordHash = bcrypt.hashSync(patient.password, saltRounds);
-      return { ...patient, password: passwordHash };
-    });
-
-    await Patient.bulkCreate(patientsWithHashedPasswords);
-
+    ]);
   } catch (error) {
     console.log(error.message);
   }

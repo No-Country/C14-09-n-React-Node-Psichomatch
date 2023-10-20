@@ -9,7 +9,6 @@ const passport = require("passport");
 const router = Router();
 const ratingRoutes = require("./rating")
 const categoryRoutes = require("./category")
-const decode  = require('./decoding')
 
 router.use("/", userRoutes);
 router.use("/",contactRoutes);
@@ -29,8 +28,4 @@ router.use("/", patientRoutes);
 router.use("/therapist", therapistRoutes);
 router.use("/rating", ratingRoutes)
 router.use("/category", categoryRoutes)
-
-//Decoding
-router.use('/decoding', decode)
-
 module.exports = router;
