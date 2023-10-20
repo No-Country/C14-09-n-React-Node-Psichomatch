@@ -1,7 +1,16 @@
 import React, { useEffect, useState }  from 'react';
-
+import { GetTherapist } from "../api/therapist_api";
 
 const Therapist = () => {
+
+const loadTherapist = async () => {
+   const response = await GetTherapist()
+   console.log(response)
+}
+
+useEffect(() => {
+ loadTherapist()
+}, [])
 
 return(
 <div className="flex w-full h-screen items-center justify-center">
