@@ -7,6 +7,8 @@ const patientRoutes = require("./patient");
 const therapistRoutes = require("./therapist");
 const passport = require("passport");
 const router = Router();
+const ratingRoutes = require("./rating")
+const categoryRoutes = require("./category")
 
 router.use("/", userRoutes);
 router.use("/",contactRoutes);
@@ -24,5 +26,6 @@ router.use("/", patientRoutes);
 
 //Therapyst
 router.use("/therapist", therapistRoutes);
-
+router.use("/rating", ratingRoutes)
+router.use("/category", categoryRoutes)
 module.exports = router;
