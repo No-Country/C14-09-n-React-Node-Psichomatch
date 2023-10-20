@@ -8,6 +8,8 @@ const contact = require("./models/Contact")
 const therapist = require("./models/Therapist")
 const category = require("./models/Category")
 const rating = require("./models/Rating")
+const hour = require("./models/Hour")
+const availability = require("./models/Availability")
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT,DB_NAME  } = process.env;
 
@@ -58,6 +60,8 @@ patient(sequelize);
 therapist(sequelize);
 category(sequelize);
 rating(sequelize);
+hour(sequelize);
+availability(sequelize);
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -67,7 +71,9 @@ const {
   Patient,
   Therapist,
   Category,
-  Rating
+  Rating,
+  Hour,
+  Availability
 } = sequelize.models;
 
 //Therapist.belongsToMany(Category, { through: 'TherapistCategory' })
@@ -82,9 +88,11 @@ Rating.belongsTo(Therapist);
 Patient.hasOne(Rating);
 Rating.belongsTo(Patient);
 
+Therapist.hasMany(Availability)
+Availability.belongsTo(Therapist)
 
-
-
+Hour.hasMany(Availability)
+Availability.belongsTo(Hour)
 
 /*
 User.hasOne(Rating);
