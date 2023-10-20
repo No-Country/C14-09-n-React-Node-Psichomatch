@@ -7,7 +7,7 @@ const {fillTherapist} = require("./src/controllers/therapist.js");
 const { fillCategory } = require("./src/controllers/Category.js");
 const {fillRating} = require("./src/controllers/rating.js")
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     fillCategory(Category);
     fillPatient(Patient);
