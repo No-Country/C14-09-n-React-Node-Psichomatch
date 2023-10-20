@@ -4,22 +4,24 @@ import iconOne from "../assets/Icons/iconWhyPM-One.svg";
 import iconTwo from "../assets/Icons/iconWhyPM-Two.svg";
 import iconThree from "../assets/Icons/iconWhyPM-Three.svg";
 
-
-const list = [
+const lists = [
   {
-    name: "Educación formal",
+    title: "Privacidad y Confidencialidad:",
     imageUrl: iconOne,
-    description: ""
+    description:
+      "Estrictos protocolos de confidencialidad y seguridad de datos para proteger tu privacidad.",
   },
   {
-    name: "Experiencia",
+    title: "Evaluación Profesional:",
     imageUrl: iconTwo,
-    
+    description:
+      "Selección rigurosa de psicólogos para asegurar terapeutas altamente calificados y atención de alta calidad.",
   },
   {
-    name: "Especialización",
+    title: "Atención y soporte:",
     imageUrl: iconThree,
-    descripcion: ""
+    description:
+      "Tenemos un centro de atención para apoyarte. ¡Nos encantará ayudarte!",
   },
 ];
 
@@ -34,28 +36,25 @@ export const SectionWhyPsichoMatch = () => {
               className="absolute inset-0 h-full w-full object-cover"
             />
           </div>
-
-          <div className="lg:py-24">
+          <div>
             <h3 className="text-2xl font-bold text-black">
               Por qué elegir Psycomatch
             </h3>
-
-            <p className="mt-4 text-gray-600">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut qui
-              hic atque tenetur quis eius quos ea neque sunt, accusantium soluta
-              minus veniam tempora deserunt? Molestiae eius quidem quam
-              repellat.
-            </p>
-            <img
-              src={IconOne}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <a
-              href="#"
-              className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
-            >
-              Get Started Today
-            </a>
+            <div className="grid sm:grid-cols-1 xl:col-span-2">
+              {lists.map((list) => (
+                <div key={list.title}  className="flex gap-6 items-start">
+                  <img src={list.imageUrl} alt="" />
+                  <div>
+                    <p className="text-2xl font-medium text-black ml-6">
+                      {list.title}
+                    </p>
+                    <p className="text-xl font-medium text-black ml-6">
+                      {list.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
