@@ -21,13 +21,19 @@ const authGoogle = async (req, res) => {
     if(isVerified){
 
       //If user is validated, check if exist in DB
-      const patientExist = await Patient.findOne({
+      let patientExist = await Patient.findOne({
         where: {
           email: patientEmail
         }
       });
 
       if(patientExist){
+        const tokenSession = await tokenSign(patientExist) //Token
+        
+        await patientExist.update({
+          session:tokenSession
+         });
+
         res.status(200).redirect("http://localhost:5173/dashboard");
       }else{
         const password = generateRandomPassword();
@@ -41,7 +47,14 @@ const authGoogle = async (req, res) => {
           email: patientEmail,
           password: encryptPassword,
         });
-        const tokenSession = await tokenSign(newPatient) //Token
+
+        patientExist = newPatient
+        const tokenSession = await tokenSign(patientExist) //Token
+
+        await patientExist.update({
+          session:tokenSession
+         });
+
         main(patientEmail, password);
 
         res.status(200).redirect(`http://localhost:5173/dashboard`)
