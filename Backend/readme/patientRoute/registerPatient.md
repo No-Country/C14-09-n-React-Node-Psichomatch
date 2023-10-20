@@ -11,7 +11,10 @@
 ```json
 {
   "patientEmail": "Email",
-  "password": "PASSWORD"
+  "password": "PASSWORD",
+  "patientName": "name",
+  "patientLastName": "lastName",
+  "patientPhone": "phone"
 }
 ```
 
@@ -20,7 +23,10 @@
 ```json
 {
   "patientEmail": "zeduard89@gmail.com",
-  "password": "123456"
+  "password": "123456",
+  "patientName": "Guillermo",
+  "patientLastName": "Paez",
+  "patientPhone": "0111111"
 }
 ```
 

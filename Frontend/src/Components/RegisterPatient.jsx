@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form';
 import {registerPatient} from '../api/patient_api';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import {Link} from 'react-router-dom';
 
-const Registro = () => {
-  const { register, handleSubmit, formState: {errors} } = useForm();
+const RegisterPatient = () => {
+  const { register, handleSubmit, formState: {errors}, reset } = useForm();
 
   const onSubmit = async (data) => {
     const response = await registerPatient(data);
@@ -14,6 +15,8 @@ const Registro = () => {
       title: <p>Paciente Agregado Exitosamente</p>,
       icon: 'success'
     })
+
+    reset()
   }
 
   return(
@@ -143,7 +146,7 @@ const Registro = () => {
          </div>
          <div className="mt-8 flex flex-col gap-y-4 text-center">
          <button className="py-4 rounded-xl bg-violet-500 text-white text-lg font-bold">Crear Cuenta</button>
-         <a href="">¿Ya tienes cuenta?</a>
+         <Link to="/login">¿Ya tienes cuenta?</Link>
          </div>
      </form>
  </div>
@@ -152,4 +155,4 @@ const Registro = () => {
     )
 }
 
-export default Registro;
+export default RegisterPatient;
