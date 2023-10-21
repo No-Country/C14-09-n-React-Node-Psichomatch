@@ -1,6 +1,6 @@
 import React from "react";
 import TeamImg from "../assets/Images/team.png";
-import IconTeamOne from "../assets/Icons/iconTeamOne.svg";
+import IconTeamOne from "../HomePage/./";
 import IconTeamTwo from "../assets/Icons/iconTeamTwo.svg";
 import IconTeamThree from "../assets/Icons/iconTeamThree.svg";
 
@@ -29,7 +29,7 @@ const team = [
   },
 ];
 
-export const TeamCard = () => {
+export const TeamSection = () => {
   return (
     <div className="bg-[#F9F6FF]">
       <div className="lg:ml-32 lg:pt-12 lg:pb-16">

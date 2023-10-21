@@ -8,7 +8,7 @@ import bars3Icon from "../assets/Icons/bars3.svg";
 import logoIcon from "../assets/Images/logoIcon.svg";
 
 const navigation = [
-  { name: "Encuentra psicólogos", to: "/psicologos" },
+  { name: "Psicólogos", to: "/psicologos" },
   { name: "Servicios", to: "/servicios" },
   { name: "Registrarme", to: "/registro" },
 ];
@@ -29,14 +29,14 @@ const Header = function () {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-5"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
             <img src={bars3Icon} alt="" />
           </button>
         </div>
-        <div className="hidden lg:flex justify-center items-center lg:gap-x-6 lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex justify-center items-center lg:gap-6 lg:flex-1 lg:justify-end">
           {navigation.map((item) => (
             <NavLink
               key={item.name}
