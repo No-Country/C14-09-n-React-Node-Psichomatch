@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { loginPatient } from "../api/patient_api";
 import { Link, useNavigate } from "react-router-dom";
 import googleIcon from "../assets/Icons/google.svg";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const Login = () => {
   const {
@@ -17,7 +19,6 @@ const Login = () => {
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
     if(response.data.tokenSession) {
-      console.log(response.data.tokenSession) //Token con inicio simple
       navigate('/dashboard')
     }
   };
