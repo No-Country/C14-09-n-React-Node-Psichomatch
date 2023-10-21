@@ -1,5 +1,6 @@
 import React from "react";
 import imgHero from "../assets/Images/img-hero.png";
+import { ButtonLilacSlim } from "./Buttons";
 
 const Hero = () => {
   return (
@@ -13,9 +14,7 @@ const Hero = () => {
           Cultiva tu bienestar emocional
         </p>
         <div className="flex justify-center md:justify-start">
-          <button className="text-Gray-dark text-2xl font-semibold bg-Purple py-4 px-6 rounded-[32px] w-[384px] hover:bg-Purple-ligth">
-            Encontrar un psicólogo
-          </button>
+          <ButtonLilacSlim additionalClasses="w-[384px]" text={"Encontrar un psicólogo"} />
         </div>
       </div>
       <div className="flex justify-center items-center lg:flex-1">

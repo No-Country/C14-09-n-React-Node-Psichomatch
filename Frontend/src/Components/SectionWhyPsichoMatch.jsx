@@ -3,6 +3,7 @@ import WomenImg from "../assets/Images/women.png";
 import iconOne from "../assets/Icons/iconWhyPM-One.svg";
 import iconTwo from "../assets/Icons/iconWhyPM-Two.svg";
 import iconThree from "../assets/Icons/iconWhyPM-Three.svg";
+import { ButtonBlack } from "./Buttons";
 
 const lists = [
   {
@@ -50,9 +51,7 @@ export const SectionWhyPsichoMatch = () => {
               ))}
             </div>
             <div className="flex justify-center items-center mt-12">
-              <button className="text-white bg-Gray-dark text-2xl font-medium py-4 px-6 rounded-[32px] w-[279px] hover:bg-[#4f4f4f]">
-                Agendar ahora
-              </button>
+              <ButtonBlack text="Agendar ahora" additionalClasses="w-[279px]" />
             </div>
           </div>
           <div className="flex justify-center items-center">

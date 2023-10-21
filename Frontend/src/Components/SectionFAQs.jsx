@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentFAQs } from "./ComponentFAQs";
+import { ButtonBlack, ButtonLilacSlim } from "./Buttons";
 
 const faqs = [
   {
@@ -37,9 +38,7 @@ export const SectionFAQs = () => {
         ))}
       </div>
       <div className="flex justify-center items-center mt-12">
-        <button className="text-Gray-dark text-2xl font-semibold bg-[#CFBFFF] py-4 px-6 rounded-[48px] w-[331px] hover:bg-Purple">
-          Buscar un psicólogo
-        </button>
+        <ButtonLilacSlim text="Buscar un psicólogo" additionalClasses="my-4 lg:my-10 w-[331px]" />
       </div>
     </div>
   );
