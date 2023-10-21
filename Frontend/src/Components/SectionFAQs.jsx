@@ -28,13 +28,18 @@ export const SectionFAQs = () => {
         Preguntas frecuentes
       </h3>
       <div className="grid gap-4 sm:gap-6 md:gap-8 lg:gap-10">
-      {faqs.map((faq, index) => (
-        <ComponentFAQs
-          key={index}
-          question={faq.question}
-          answer={faq.answer}
-        />
-      ))}
+        {faqs.map((faq, index) => (
+          <ComponentFAQs
+            key={index}
+            question={faq.question}
+            answer={faq.answer}
+          />
+        ))}
+      </div>
+      <div className="flex justify-center items-center mt-12">
+        <button className="text-Gray-dark text-2xl font-semibold bg-[#CFBFFF] py-4 px-6 rounded-[48px] w-[331px] hover:bg-Purple">
+          Buscar un psicólogo
+        </button>
       </div>
     </div>
   );

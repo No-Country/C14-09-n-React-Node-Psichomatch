@@ -13,6 +13,7 @@ export const HomePage = () => {
       <TeamSection />
       <SectionWhyPsichoMatch />
       <SectionFAQs />
+
     </div>
   );
 };

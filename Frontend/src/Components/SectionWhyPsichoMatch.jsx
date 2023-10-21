@@ -30,19 +30,14 @@ export const SectionWhyPsichoMatch = () => {
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-          <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
-            <img
-              src={WomenImg}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
+
           <div>
-            <h3 className="text-2xl font-bold text-black">
+            <h3 className="text-2xl font-bold text-black ml-[90px] mb-12">
               Por qué elegir Psycomatch
             </h3>
-            <div className="grid sm:grid-cols-1 xl:col-span-2">
+            <div className="grid gap-6 sm:grid-cols-1 xl:col-span-2">
               {lists.map((list) => (
-                <div key={list.title}  className="flex gap-6 items-start">
+                <div key={list.title} className="flex items-start">
                   <img src={list.imageUrl} alt="" />
                   <div>
                     <p className="text-2xl font-medium text-black ml-6">
@@ -55,6 +50,14 @@ export const SectionWhyPsichoMatch = () => {
                 </div>
               ))}
             </div>
+            <div className="flex justify-center items-center mt-12">
+              <button className="text-white bg-Gray-dark text-2xl font-medium py-4 px-6 rounded-[32px] w-[279px] hover:bg-[#4f4f4f]">
+                Agendar ahora
+              </button>
+            </div>
+          </div>
+          <div className="h-[402px] w-[577px] ">
+            <img src={WomenImg} className=" h-full w-full object-cover" />
           </div>
         </div>
       </div>

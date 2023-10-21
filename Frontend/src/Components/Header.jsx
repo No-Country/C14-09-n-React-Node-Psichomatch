@@ -41,7 +41,7 @@ const Header = function () {
             <NavLink
               key={item.name}
               to={item.to}
-              className="text-base text-black font-medium"
+              className="text-base text-black font-medium hover:text-[#A9A9A9]"
             >
               {item.name}
             </NavLink>
@@ -85,7 +85,7 @@ const Header = function () {
                   <NavLink
                     key={item.name}
                     to={item.to}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2 hover:font-bold text-base font-semibold leading-7 text-black hover:bg-gray-50"
                   >
                     {item.name}
                   </NavLink>
