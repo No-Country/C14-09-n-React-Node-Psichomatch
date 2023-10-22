@@ -20,6 +20,9 @@ const getAvailabilityByTherapistIdAndDate = async (req, res) => {
     const availability = await Availability.findAll({
       where: { TherapistId: id, date },
       include: [{ model: Hour, attributes: ["hour"] }],
+      order: [
+        ["HourId", "ASC"] // Order by HourId in ascending order
+      ]
     });
     res.status(200).json(availability);
   } catch (error) {
@@ -106,7 +109,7 @@ const fillAvailability = async (Availability) => {
       },
       {
         TherapistId: 1,
-        HourId: 1,
+        HourId: 7,
         date: new Date(2023, 10 - 1, 26),
       },
       {
@@ -160,7 +163,7 @@ const fillAvailability = async (Availability) => {
       },
       {
         TherapistId: 1,
-        HourId: 1,
+        HourId: 2,
         date: new Date(2023, 10 - 1, 26),
       },
       {
