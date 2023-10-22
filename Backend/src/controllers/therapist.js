@@ -264,6 +264,20 @@ const switchTherapistState = async (req, res) => {
   }
 };
 
+const getTherapistById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if(!id) return res.status(400).json({ error: "Missing fields" });
+
+    const therapist = await Therapist.findByPk(id);
+    if(!therapist) return res.status(404).json({ error: "Therapist not found" });
+
+    res.status(200).json(therapist);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // Search functions for therapist
 
 const searchByNameLastName = async (req, res) => {
@@ -387,9 +401,10 @@ module.exports = {
   updateTherapistPriceByPorcent,
   deleteTherapist,
   switchTherapistState,
+  getTherapistById,
   fillTherapist,
   searchByNameLastName,
   searchByPrice,
   searchByUbication,
-  filterTherapistByCategoryId
+  filterTherapistByCategoryId,
 };
