@@ -15,7 +15,7 @@ const Dashboard = function () {
               Agenda tu cita
             </h1>
           </div>
-     <Link to="/psicologos"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Elegir a mi psicólogo</button></Link>
+     <Link to="/psicologos"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Elegir a mi terapueta</button></Link>
      </div>
      </div>
      </div>
