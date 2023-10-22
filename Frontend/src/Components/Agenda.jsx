@@ -2,8 +2,23 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 const Agenda = () => {
-   
+  const therapistId = 1;
+  const patientId = 1;
   const [hour,setHour] = useState([])
+
+
+
+  const getAvailabilityHourByTherapistIdAndDate = async (TherapistId, date, HourId) => {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3001/availability/hour`,
+        { date, TherapistId, HourId}
+      );
+      return data
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
     const getHours = async () =>{
       try {
@@ -34,7 +49,7 @@ const Agenda = () => {
       useEffect(() => {
    
         getHours();
-        console.log(hour)
+  
         },[]);
 
         
@@ -97,11 +112,17 @@ const Agenda = () => {
                     <p className='text-black'>{getWeekDay(nextDate(x))}</p>
                     <p className='text-gray-400'>{getDateAndMonth(nextDate(x))}</p>
                     {hour?.map((y)=>{
-                      return(
-                        <p key={uuidv4()} value={y.id} className='bg-indigo-100 border-2  rounded-lg my-1 mx-1 p-2'>
-                          {y.hour}
-                        </p>
-                      )
+
+getAvailabilityHourByTherapistIdAndDate(therapistId, nextDate(x), y.id)
+                    
+                        return(
+                          <p key={uuidv4()} value={y.id} className={`${"bg-indigo-100"} border-2  rounded-lg my-1 mx-1 p-2`}>
+                            {y.hour}
+                          </p>
+                        )
+
+                     
+                      
                     })}
                 </div>
                 
