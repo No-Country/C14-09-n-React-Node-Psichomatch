@@ -3,7 +3,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useParams } from 'react-router-dom';
 
-const AgendaCita = () => {
+const AgendaCita =  () => {
   const params = useParams()
   const therapistId = params.id;
   const patientId = 1;
