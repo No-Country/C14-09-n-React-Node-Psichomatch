@@ -1,9 +1,9 @@
 import React from "react";
-import Hero from "../Components/Hero";
-import { FeaturesCard } from "../Components/FeaturesCard";
-import { TeamSection } from "../Components/TeamSection";
-import { SectionWhyPsichoMatch } from "../Components/SectionWhyPsichoMatch";
-import { SectionFAQs } from "../Components/SectionFAQs";
+import Hero from "../Components/HomePage/Hero";
+import { FeaturesCard } from "../Components/HomePage/FeaturesCard";
+import { TeamSection } from "../Components/HomePage/TeamSection";
+import { SectionWhyPsichoMatch } from "../Components/HomePage/SectionWhyPsichoMatch";
+import { SectionFAQs } from "../Components/HomePage/SectionFAQs";
 
 export const HomePage = () => {
   return (
@@ -13,7 +13,6 @@ export const HomePage = () => {
       <TeamSection />
       <SectionWhyPsichoMatch />
       <SectionFAQs />
-
     </div>
   );
 };

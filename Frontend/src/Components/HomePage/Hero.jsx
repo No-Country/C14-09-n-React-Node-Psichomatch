@@ -1,6 +1,6 @@
 import React from "react";
-import imgHero from "../assets/Images/img-hero.png";
-import { ButtonLilacSlim } from "./Buttons";
+import imgHero from "../../assets/Images/img-hero.png";
+import { ButtonLilacSlim } from "../Buttons";
 
 const Hero = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentFAQs } from "./ComponentFAQs";
-import { ButtonBlack, ButtonLilacSlim } from "./Buttons";
+import { ButtonBlack, ButtonLilacSlim } from "../Buttons";
 
 const faqs = [
   {

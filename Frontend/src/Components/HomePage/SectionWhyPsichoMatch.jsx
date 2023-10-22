@@ -1,9 +1,9 @@
 import React from "react";
-import WomenImg from "../assets/Images/women.png";
-import iconOne from "../assets/Icons/iconWhyPM-One.svg";
-import iconTwo from "../assets/Icons/iconWhyPM-Two.svg";
-import iconThree from "../assets/Icons/iconWhyPM-Three.svg";
-import { ButtonBlack } from "./Buttons";
+import WomenImg from "../../assets/Images/women.png";
+import iconOne from "../../assets/Icons/iconWhyPM-One.svg";
+import iconTwo from "../../assets/Icons/iconWhyPM-Two.svg";
+import iconThree from "../../assets/Icons/iconWhyPM-Three.svg";
+import { ButtonBlack } from "../Buttons";
 
 const lists = [
   {

@@ -1,7 +1,7 @@
 import React from "react";
-import IconOne from "../assets/Icons/featureSectionOne.svg";
-import IconTwo from "../assets/Icons/featureSectionTwo.svg";
-import IconThree from "../assets/Icons/featureSectionThree.svg";
+import IconOne from "../../assets/Icons/featureSectionOne.svg";
+import IconTwo from "../../assets/Icons/featureSectionTwo.svg";
+import IconThree from "../../assets/Icons/featureSectionThree.svg";
 
 const features = [
   {
