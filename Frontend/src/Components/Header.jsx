@@ -8,10 +8,7 @@ import bars3Icon from "../assets/Icons/bars3.svg";
 import logoIcon from "../assets/Images/logoIcon.svg";
 
 const navigation = [
-  { name: "Psicólogos", to: "/psicologos" },
-  { name: "Servicios", to: "/servicios" },
   { name: "Registrarme", to: "/registro" },
-  { name: "Encuentra psicólogos", to: "/psicologos" },
   { name: "Servicios", to: "/servicios" },
 ];
 
