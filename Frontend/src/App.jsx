@@ -7,7 +7,8 @@ import Login from "./Components/Login";
 import { FindPsychologists } from "./Routes/FindPsychologists";
 import { Services } from "./Routes/Services";
 import RecoverPassword from "./Components/RecoverPassword";
-import Dashboard from './Pages/Dashboard'
+import SheduleAppointment from "./Components/AppointmentPatient";
+import Dashboard from './Pages/Dashboard';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/registro" element={<RegisterPage></RegisterPage>}></Route>
         <Route path="/recuperarclave" element={<RecoverPassword />}></Route>
         <Route path="/dashboard" element={<Dashboard/>}></Route>
+        <Route path="/agendarcita" element={<SheduleAppointment/>}></Route>
         <Route path="/*" element={<Navigate to="/" />}></Route>
       </Routes>
       <Footer />
