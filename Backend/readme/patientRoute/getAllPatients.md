@@ -1,10 +1,10 @@
 # Get all Patients
 
-**URL** : `/patientRoute/getAllPatients`
+**URL** : `/patients?page=4`
 
 **Method** : `GET`
 
-**Auth required** : YES
+**Auth required** : YES Bearer Token
 
 ## Success Response
 
@@ -15,18 +15,37 @@
 ```json
 {
   //Example of Success Response
-[
+  "patients": [
     {
-        "id": "ac8ec82d-fc39-450b-bcab-bc2cc4b539b1",
-        "name": "Gwendolyn1",
-        "lastName": "Gleichner",
-        "email": "Gwendolyn1_Gleichner@yahoo.com",
-        "avatar": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/921.jpg",
-        "date": "Mon Jun 19 02:10:03 2023 +0300",
-        "createdAt": "2023-06-19T02:36:34.834Z",
-        "updatedAt": "2023-06-19T02:36:34.834Z"
+      "id": 19,
+      "name": "Oscar",
+      "lastName": "Apellido19",
+      "phone": "809-787-6767",
+      "email": "oscar@example.com",
+      "password": "password654",
+      "role": "patient"
     },
- {}... ]
+    {
+      "id": 20,
+      "name": "Julia",
+      "lastName": "Apellido20",
+      "phone": "809-565-4343",
+      "email": "julia@example.com",
+      "password": "password987",
+      "role": "patient"
+    },
+    {
+      "id": 21,
+      "name": null,
+      "lastName": null,
+      "phone": null,
+      "email": "zeduard89@gmail.com",
+      "password": "$2a$10$ZMJQVSGeO5BDJjfgD2paie9GwQ5eXU.nnb9M8xSgCkXEBWnIt7K5O",
+      "role": "patient"
+    }
+  ],
+  "totalPages": 4,
+  "actualPage": 4
 }
 ```
 
