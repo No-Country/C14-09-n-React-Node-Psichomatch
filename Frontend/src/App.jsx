@@ -24,7 +24,7 @@ function App() {
         <Route path="/registro" element={<RegisterPage></RegisterPage>}></Route>
         <Route path="/recuperarclave" element={<RecoverPassword />}></Route>
         <Route path="/dashboard" element={<Dashboard/>}></Route>
-        <Route path="/agendarcita" element={<SheduleAppointment/>}></Route>
+        <Route path="/agendarcita/:id" element={<SheduleAppointment/>}></Route>
         <Route path="/*" element={<Navigate to="/" />}></Route>
       </Routes>
       <Footer />
