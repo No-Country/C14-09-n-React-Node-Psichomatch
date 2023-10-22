@@ -1,7 +1,8 @@
 const { Patient } = require("../db");
 const generateRandomPassword = require("../middlewares/password")
-const main = require("../middlewares/nodeMailer");
+const {main} = require("../middlewares/nodeMailer");
 const bcrypt = require("bcryptjs");
+const  {tokenSign}  = require('../helpers/generateToken')
 
 const authGoogle = async (req, res) => {
   try {
@@ -20,28 +21,46 @@ const authGoogle = async (req, res) => {
     if(isVerified){
 
       //If user is validated, check if exist in DB
-      const patientExist = await Patient.findOne({
+      let patientExist = await Patient.findOne({
         where: {
           email: patientEmail
         }
       });
 
-      if(patientExist) res.stauts(200).redirect("http://localhost:5173");
-      const password = generateRandomPassword();
+      if(patientExist){
+        const tokenSession = await tokenSign(patientExist) //Token
+        
+        await patientExist.update({
+          session:tokenSession
+         });
 
-      const salt = bcrypt.genSaltSync(10);
-      const encryptPassword = bcrypt.hashSync(password, salt);
+        res.status(200).redirect("http://localhost:5173/dashboard");
+      }else{
+        const password = generateRandomPassword();
+      
+        const salt = bcrypt.genSaltSync(10);
+        const encryptPassword = bcrypt.hashSync(password, salt);
+        
+        const newPatient = await Patient.create({
+          name: userName,
+          lastName: userLastName,
+          email: patientEmail,
+          password: encryptPassword,
+        });
 
-      await Patient.create({
-        name: userName,
-        lastName: userLastName,
-        email: patientEmail,
-        password: encryptPassword,
-      });
+        patientExist = newPatient
+        const tokenSession = await tokenSign(patientExist) //Token
 
-      main(patientEmail, password);
+        await patientExist.update({
+          session:tokenSession
+         });
 
-      res.status(200).redirect("http://localhost:5173")
+        main(patientEmail, password);
+
+        res.status(200).redirect(`http://localhost:5173/dashboard`)
+      }
+      
+
     }
       
       

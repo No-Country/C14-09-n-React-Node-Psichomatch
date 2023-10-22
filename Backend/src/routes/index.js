@@ -9,9 +9,14 @@ const passport = require("passport");
 const router = Router();
 const ratingRoutes = require("./rating")
 const categoryRoutes = require("./category")
+
 const hourRoutes = require("./hour")
 const availabilityRoutes = require("./availability")
 const reservationRoutes = require("./reservation")
+
+const decode  = require('./decoding')
+
+
 router.use("/", userRoutes);
 router.use("/",contactRoutes);
 // Auth0 goggle (Patient)
@@ -30,7 +35,15 @@ router.use("/", patientRoutes);
 router.use("/therapist", therapistRoutes);
 router.use("/rating", ratingRoutes)
 router.use("/category", categoryRoutes)
+
 router.use("/hour", hourRoutes)
 router.use("/availability", availabilityRoutes)
 router.use("/reservation", reservationRoutes)
 module.exports = router;
+
+
+//Decoding
+router.use('/decoding', decode)
+
+module.exports = router;
+
