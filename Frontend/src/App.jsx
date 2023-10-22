@@ -1,11 +1,7 @@
 
 import React from 'react'
-import Login from './components/Login'
-import Registro from './components/Registro'
-import HomePatient from "./Layouts/Dashboard-Search"
 import Agenda from "./Components/Agenda"
 import Agenda2 from "./Components/AgendaCita"
-import { Routes, Route } from "react-router-dom";
 
 
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -36,6 +32,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>}></Route>
         <Route path="/*" element={<Navigate to="/" />}></Route>
         <Route path="/agenda2" element={<Agenda2/>} />
+        <Route path="/agenda" element={<Agenda/>} />
       </Routes>
       <Footer />
     </>

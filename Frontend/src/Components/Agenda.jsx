@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import { v4 as uuidv4 } from 'uuid';
 const Agenda = () => {
-  const therapistId = 1;
+  const therapistId = 3;
   const patientId = 1;
   const [hour,setHour] = useState([])
-
+  const [availabilityData, setAvailabilityData] = useState([]);
 
 
   const getAvailabilityHourByTherapistIdAndDate = async (TherapistId, date, HourId) => {
@@ -15,6 +15,52 @@ const Agenda = () => {
         { date, TherapistId, HourId}
       );
       return data
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+
+  const getAvailabilityByTherapistId = async (TherapistId) => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/availability/${TherapistId}`,
+      );
+      setAvailabilityData(data)
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+
+  const insertAvailabilityByTherapistId = async (TherapistId, HourId, date) => {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3001/availability/create/disp`,{HourId, date, TherapistId}
+      );
+      
+        if(data){
+          getAvailabilityByTherapistId(TherapistId)
+        }
+
+
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+
+  const deleteAvailabilityByTherapistId = async (TherapistId, HourId, date) => {
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:3001/availability?HourId=${HourId}&date=${date}&TherapistId=${TherapistId}`
+      );
+      
+        if(data){
+          getAvailabilityByTherapistId(TherapistId)
+        }
+
+
     } catch (error) {
       console.error(error.message);
     }
@@ -47,8 +93,9 @@ const Agenda = () => {
 
 
       useEffect(() => {
-   
+        getAvailabilityByTherapistId(therapistId);
         getHours();
+
   
         },[]);
 
@@ -92,7 +139,13 @@ const Agenda = () => {
       const nextDate = (num) => {
         const fechaSiguiente = new Date(date);
         fechaSiguiente.setDate(fechaSiguiente.getDate() + num);
-        return fechaSiguiente;
+        const fechaSolo = new Date(
+          fechaSiguiente.getFullYear(),
+          fechaSiguiente.getMonth(),
+          fechaSiguiente.getDate()
+        );
+    
+        return fechaSolo;
       }
 
      const [date, setDate] = useState(new Date);
@@ -111,15 +164,35 @@ const Agenda = () => {
                 <div key={uuidv4()} className='flex-col justify-center space-between text-center w-full'>
                     <p className='text-black'>{getWeekDay(nextDate(x))}</p>
                     <p className='text-gray-400'>{getDateAndMonth(nextDate(x))}</p>
-                    {hour?.map((y)=>{
+                    {hour?.map( (y)=>{
 
-getAvailabilityHourByTherapistIdAndDate(therapistId, nextDate(x), y.id)
-                    
+                       if(availabilityData.some(z=>{ 
+                        const zDate = new Date(z.date);
+                        return zDate.getFullYear() === nextDate(x).getFullYear() &&
+                        zDate.getMonth() === nextDate(x).getMonth() &&
+                        zDate.getDate() === nextDate(x).getDate() -1 &&
+                              z.HourId === y.id;
+                      
+                      
+                      })){
+
                         return(
-                          <p key={uuidv4()} value={y.id} className={`${"bg-indigo-100"} border-2  rounded-lg my-1 mx-1 p-2`}>
+                          <p key={uuidv4()} value={y.id} className={`${"bg-indigo-100"} border-2  rounded-lg my-1 mx-1 p-2 cursor-pointer`} onClick={()=>deleteAvailabilityByTherapistId(therapistId,y.id, nextDate(x))}>
                             {y.hour}
                           </p>
                         )
+                       
+
+                       }else{
+                       
+                        return(
+                          <p key={uuidv4()} value={y.id} className={`border-2  rounded-lg my-1 mx-1 p-2 cursor-pointer`} onClick={()=>insertAvailabilityByTherapistId(therapistId,y.id, nextDate(x))}>
+                            {y.hour}
+                          </p>
+                        )
+                       }
+                    
+                        
 
                      
                       

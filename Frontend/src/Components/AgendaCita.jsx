@@ -3,7 +3,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 const AgendaCita = () => {
-  const therapistId = 1;
+  const therapistId = 3;
   const patientId = 1;
   const [hour, setHour] = useState([]);
   const [availability, setAvailability] = useState(new Array(4).fill([]));
