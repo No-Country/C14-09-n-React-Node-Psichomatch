@@ -47,6 +47,12 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
 
+      rating:{
+        type: DataTypes.FLOAT,
+        allowNull: true,
+        defaultValue: 0
+      },
+
       isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

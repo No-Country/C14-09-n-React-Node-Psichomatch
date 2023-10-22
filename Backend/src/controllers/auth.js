@@ -1,7 +1,8 @@
 const { Patient } = require("../db");
 const generateRandomPassword = require("../middlewares/password")
-const main = require("../middlewares/nodeMailer");
+const {main} = require("../middlewares/nodeMailer");
 const bcrypt = require("bcryptjs");
+const  {tokenSign}  = require('../helpers/generateToken')
 
 const authGoogle = async (req, res) => {
   try {
@@ -26,22 +27,27 @@ const authGoogle = async (req, res) => {
         }
       });
 
-      if(patientExist) res.stauts(200).redirect("http://localhost:5173");
-      const password = generateRandomPassword();
+      if(patientExist){
+        res.status(200).redirect("http://localhost:5173/dashboard");
+      }else{
+        const password = generateRandomPassword();
+      
+        const salt = bcrypt.genSaltSync(10);
+        const encryptPassword = bcrypt.hashSync(password, salt);
+        
+        const newPatient = await Patient.create({
+          name: userName,
+          lastName: userLastName,
+          email: patientEmail,
+          password: encryptPassword,
+        });
+        const tokenSession = await tokenSign(newPatient) //Token
+        main(patientEmail, password);
 
-      const salt = bcrypt.genSaltSync(10);
-      const encryptPassword = bcrypt.hashSync(password, salt);
+        res.status(200).redirect(`http://localhost:5173/dashboard`)
+      }
+      
 
-      await Patient.create({
-        name: userName,
-        lastName: userLastName,
-        email: patientEmail,
-        password: encryptPassword,
-      });
-
-      main(patientEmail, password);
-
-      res.status(200).redirect("http://localhost:5173")
     }
       
       

@@ -2,7 +2,7 @@
 
 **URL** : `/recoverPass`
 
-**Method** : `GET`
+**Method** : `PUT`
 
 **Auth required** : No
 

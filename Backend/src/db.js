@@ -7,7 +7,10 @@ const patient = require("./models/Patient")
 const contact = require("./models/Contact")
 const therapist = require("./models/Therapist")
 const category = require("./models/Category")
-
+const rating = require("./models/Rating")
+const hour = require("./models/Hour")
+const availability = require("./models/Availability")
+const reservation = require("./models/Reservation")
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT,DB_NAME  } = process.env;
 
 const sequelize = new Sequelize(
@@ -56,6 +59,10 @@ contact(sequelize);
 patient(sequelize);
 therapist(sequelize);
 category(sequelize);
+rating(sequelize);
+hour(sequelize);
+availability(sequelize);
+reservation(sequelize)
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -64,13 +71,40 @@ const {
   Contact,
   Patient,
   Therapist,
-  Category
+  Category,
+  Rating,
+  Hour,
+  Availability,
+  Reservation
 } = sequelize.models;
 
 //Therapist.belongsToMany(Category, { through: 'TherapistCategory' })
 //Category.belongsToMany(Therapist, { through: 'TherapistCategory' })
 Therapist.belongsTo(Category)
 Category.hasOne(Therapist)
+
+
+Therapist.hasMany(Rating);
+Rating.belongsTo(Therapist);
+
+Patient.hasOne(Rating);
+Rating.belongsTo(Patient);
+
+Therapist.hasMany(Availability)
+Availability.belongsTo(Therapist)
+
+Hour.hasMany(Availability)
+Availability.belongsTo(Hour)
+
+Availability.hasOne(Reservation)
+Reservation.belongsTo(Availability)
+
+Patient.hasOne(Reservation)
+Reservation.belongsTo(Patient)
+
+
+Therapist.hasOne(Reservation)
+Reservation.belongsTo(Therapist)
 
 /*
 User.hasOne(Rating);
