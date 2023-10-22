@@ -11,7 +11,7 @@ const ratingRoutes = require("./rating")
 const categoryRoutes = require("./category")
 const hourRoutes = require("./hour")
 const availabilityRoutes = require("./availability")
-
+const reservationRoutes = require("./reservation")
 router.use("/", userRoutes);
 router.use("/",contactRoutes);
 // Auth0 goggle (Patient)
@@ -32,5 +32,5 @@ router.use("/rating", ratingRoutes)
 router.use("/category", categoryRoutes)
 router.use("/hour", hourRoutes)
 router.use("/availability", availabilityRoutes)
-
+router.use("/reservation", reservationRoutes)
 module.exports = router;

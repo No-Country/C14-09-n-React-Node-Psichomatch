@@ -4,23 +4,14 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "Availability",
+    "Reservation",
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      date: {
-        type: DataTypes.DATEONLY,
-        allowNull: false,
-      },
-
-      status:{
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-      }
+    
       
     },
     {

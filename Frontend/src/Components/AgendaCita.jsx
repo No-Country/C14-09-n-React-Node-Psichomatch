@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const AgendaCita = () => {
   const therapistId = 1;
+  const patientId = 1;
   const [hour, setHour] = useState([]);
   const [availability, setAvailability] = useState(new Array(4).fill([]));
   const [date, setDate] = useState(new Date());
@@ -37,6 +38,32 @@ const AgendaCita = () => {
     }
   };
 
+  const addReservation = async (AvailabilityId, PatientId, TherapistId) => {
+    try {
+      const { data } = await axios.post(`http://localhost:3001/reservation`, {
+        AvailabilityId,
+        PatientId,
+        TherapistId,
+      });
+  
+      if (data) {
+        // Actualiza los datos de availability si data es verdadero
+        setAvailability((prev) => {
+          const updatedAvailability = [...prev];
+          updatedAvailability.forEach((dayAvailability) => {
+            dayAvailability.forEach((availabilityItem) => {
+              if (availabilityItem.id === AvailabilityId) {
+                availabilityItem.status = true;
+              }
+            });
+          });
+          return updatedAvailability;
+        });
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   const WeekDays = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 
   const months = [
@@ -76,7 +103,6 @@ const AgendaCita = () => {
   const nextHandler = (fecha) => {
     const fechaSiguiente = new Date(fecha);
     fechaSiguiente.setDate(fechaSiguiente.getDate() + 4);
-    console.log(fechaSiguiente);
     setDate(new Date(fechaSiguiente));
   };
 
@@ -135,15 +161,25 @@ const AgendaCita = () => {
               <p className="text-black">{getWeekDay(nextDate(x))}</p>
               <p className="text-gray-400">{getDateAndMonth(nextDate(x))}</p>
               {availability[x]?.map((y) => {
-                return (
+                console.log(y.status)
+                if(!y.status){ return(
                   <p
+                    onClick={() => {addReservation(y.id, patientId, y.TherapistId)}}
                     key={uuidv4()}
                     value={y.HourId}
-                    className="bg-indigo-100 border-2  rounded-lg my-1 mx-1 p-2"
+                    className="bg-indigo-100 border-2  rounded-lg my-1 mx-1 p-2 cursor-pointer"
                   >
                     {y.Hour.hour}
                   </p>
-                );
+                )} else { return(
+                  <p
+                    key={uuidv4()}
+                    value={y.HourId}
+                    className="rounded-lg my-1 mx-1 p-2 line-through"
+                  >
+                    {y.Hour.hour}
+                  </p>
+                )}
               })}
             </div>
           );

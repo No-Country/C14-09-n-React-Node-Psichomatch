@@ -79,39 +79,57 @@ const fillAvailability = async (Availability) => {
       {
         TherapistId: 1,
         HourId: 1,
-        date: new Date(2023, 10-1, 19),
+        date: new Date(2023, 10-1, 24),
       },
       {
         TherapistId: 1,
         HourId: 2,
-        date: new Date(2023, 10-1, 19),
+        date: new Date(2023, 10-1, 25),
       },
 
       {
         TherapistId: 1,
         HourId: 4,
-        date: new Date(2023, 10-1, 19),
+        date: new Date(2023, 10-1, 25),
       },
       {
         TherapistId: 1,
         HourId: 1,
-        date: new Date(2023, 10-1, 20),
+        date: new Date(2023, 10-1, 26),
       },
       {
         TherapistId: 1,
         HourId: 1,
-        date: new Date(2023, 10-1, 21),
+        date: new Date(2023, 10-1, 27),
       },
       {
         TherapistId: 1,
         HourId: 1,
-        date: new Date(2023, 10-1, 22),
+        date: new Date(2023, 10-1, 28),
       },
 
       {
         TherapistId: 1,
         HourId: 20,
-        date: new Date(2023, 10-1, 23),
+        date: new Date(2023, 10-1, 29),
+      },{
+        TherapistId: 1,
+        HourId: 18,
+        date: new Date(2023, 10-1, 30),
+      },
+
+
+      {
+        TherapistId: 1,
+        HourId: 17,
+        date: new Date(2023, 10-1, 31),
+      },
+
+
+      {
+        TherapistId: 1,
+        HourId: 12,
+        date: new Date(2023, 11-1, 1),
       },
     ]);
 
