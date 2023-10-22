@@ -8,11 +8,9 @@ import bars3Icon from "../assets/Icons/bars3.svg";
 import logoIcon from "../assets/Images/logoIcon.svg";
 
 const navigation = [
-  { name: "Encuentra psicólogos", to: "/" },
-  { name: "Servicios", to: "/" },
-  { name: "Registrarme", to: "/registro" },
-  { name: "Encuentra psicólogos", to: "/psicologos" },
+  { name: "Psicólogos", to: "/psicologos" },
   { name: "Servicios", to: "/servicios" },
+  { name: "Registrarme", to: "/registro" },
 ];
 
 const Header = function () {
@@ -31,19 +29,19 @@ const Header = function () {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-5"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
             <img src={bars3Icon} alt="" />
           </button>
         </div>
-        <div className="hidden lg:flex justify-center items-center lg:gap-x-6 lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex justify-center items-center lg:gap-6 lg:flex-1 lg:justify-end">
           {navigation.map((item) => (
             <NavLink
               key={item.name}
               to={item.to}
-              className="text-base text-black font-medium"
+              className="text-base text-black font-medium hover:text-[#A9A9A9]"
             >
               {item.name}
             </NavLink>
@@ -87,7 +85,7 @@ const Header = function () {
                   <NavLink
                     key={item.name}
                     to={item.to}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2 hover:font-bold text-base font-semibold leading-7 text-black hover:bg-gray-50"
                   >
                     {item.name}
                   </NavLink>

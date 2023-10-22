@@ -14,16 +14,22 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: "name"
+
       },
 
       lastName: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: "lastName"
+
       },
 
       phone: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: "patient"
+
       },
       email:{
         type: DataTypes.STRING,
@@ -35,13 +41,15 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      session:{
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
 
       role: {
         type: DataTypes.STRING,
         defaultValue: "patient"
       }
-
-
     },
     {
       timestamps: false,

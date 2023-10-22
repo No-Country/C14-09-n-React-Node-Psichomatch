@@ -17,7 +17,6 @@ const Login = () => {
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
     if(response.data.tokenSession) {
-      console.log(response.data.tokenSession) //Token con inicio simple
       navigate('/dashboard')
     }
   };

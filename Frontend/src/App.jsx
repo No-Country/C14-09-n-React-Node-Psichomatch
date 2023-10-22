@@ -1,4 +1,3 @@
-
 import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./Components/Header";
 import Footer from "./Layouts/Footer";
@@ -8,22 +7,22 @@ import Login from "./Components/Login";
 import { FindPsychologists } from "./Routes/FindPsychologists";
 import { Services } from "./Routes/Services";
 import RecoverPassword from "./Components/RecoverPassword";
->>>>>>> ba5e8e829efb6b167ee2c795401ef44701135bfd
+import SheduleAppointment from "./Components/AppointmentPatient";
+import Dashboard from './Pages/Dashboard';
 
 function App() {
   return (
     <>
-
       <Header />
       <Routes>
         <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/" element={<FindPsychologists />}></Route>
+        <Route path="/psicologos" element={<FindPsychologists />}></Route>
         <Route path="/servicios" element={<Services />}></Route>
         <Route path="/registro" element={<RegisterPage></RegisterPage>}></Route>
         <Route path="/recuperarclave" element={<RecoverPassword />}></Route>
         <Route path="/dashboard" element={<Dashboard/>}></Route>
-        <Route path="/psicologos" element={<Therapist/>}></Route>
+        <Route path="/agendarcita/:id" element={<SheduleAppointment/>}></Route>
         <Route path="/*" element={<Navigate to="/" />}></Route>
       </Routes>
       <Footer />

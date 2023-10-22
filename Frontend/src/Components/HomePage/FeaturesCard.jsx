@@ -1,7 +1,7 @@
 import React from "react";
-import IconOne from "../assets/Icons/featureSectionOne.svg";
-import IconTwo from "../assets/Icons/featureSectionTwo.svg";
-import IconThree from "../assets/Icons/featureSectionThree.svg";
+import IconOne from "../../assets/Icons/featureSectionOne.svg";
+import IconTwo from "../../assets/Icons/featureSectionTwo.svg";
+import IconThree from "../../assets/Icons/featureSectionThree.svg";
 
 const features = [
   {
@@ -25,9 +25,9 @@ const features = [
 
 export const FeaturesCard = () => {
   return (
-    <div className="mx-auto my-24 max-w-2xl lg:max-w-none">
-      <h2 className="text-black font-semibold leading-8 text-2xl text-center">Simples pasos para obtener apoyo:  </h2>
-      <div className="mt-16 ml-[129px] grid grid-cols-1 gap-[25px] sm:mt-20 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="mx-auto my-24">
+      <h3 className="text-black font-semibold text-xl md:text-2xl text-center">Simples pasos para obtener apoyo:  </h3>
+      <div className="mt-16 mx-8 sm:mx-12 md:mx-16 lg:mx-24 xl:mx-32 grid grid-cols-1 sm:mt-20 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
         {features.map((feature) => (
           <div key={feature.name} className="flex flex-col gap-6 w-64">
             <div className="ml-10">
