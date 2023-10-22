@@ -1,10 +1,14 @@
 import React from "react";
 import Hero from "../Components/Hero"
+import { FeaturesCard } from "../Components/FeaturesCard";
+import { TeamCard } from "../Components/TeamCard";
 
 export const HomePage = () => {
   return (
-    <div className="xl:ml-32 xl:mr-24">
+    <div>
       <Hero />
+      <FeaturesCard />
+      <TeamCard />
     </div>
   );
 };

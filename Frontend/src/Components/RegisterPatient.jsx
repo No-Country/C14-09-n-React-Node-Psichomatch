@@ -6,7 +6,7 @@ import withReactContent from 'sweetalert2-react-content';
 import {Link} from 'react-router-dom';
 
 const RegisterPatient = () => {
-  const { register, handleSubmit, formState: {errors} } = useForm();
+  const { register, handleSubmit, formState: {errors}, reset } = useForm();
 
   const onSubmit = async (data) => {
     const response = await registerPatient(data);
@@ -15,6 +15,8 @@ const RegisterPatient = () => {
       title: <p>Paciente Agregado Exitosamente</p>,
       icon: 'success'
     })
+
+    reset()
   }
 
   return(

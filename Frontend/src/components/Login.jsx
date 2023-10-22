@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { loginPatient } from "../api/patient_api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import googleIcon from "../assets/Icons/google.svg";
 
 const Login = () => {
@@ -11,9 +11,15 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate(); // Use useNavigate here
+
+
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
-    console.log(response);
+    if(response.data.tokenSession) {
+      console.log(response.data.tokenSession) //Token con inicio simple
+      navigate('/dashboard')
+    }
   };
 
   return (
@@ -90,6 +96,7 @@ const Login = () => {
                 className="flex items-center justify-center shadow appearance-none gap-2 border-4 border-gray-100"
                 href="http://localhost:3001/auth/google"
               >
+                
                 <img src={googleIcon} alt="" />
                 Iniciar Sesión con Google
               </a>
