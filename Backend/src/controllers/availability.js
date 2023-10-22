@@ -73,7 +73,7 @@ const insertAvailability = async (req, res) => {
   }
 };
 
-const fillAvailability = async (Availability, res) => {
+const fillAvailability = async (Availability) => {
   try {
      await Availability.bulkCreate([
       {
