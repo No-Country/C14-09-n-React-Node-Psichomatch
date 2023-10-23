@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import { loginPatient } from "../api/patient_api";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,13 +13,14 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate(); // Use useNavigate here
+  const navigate = useNavigate(); 
 
 
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
+    const patientId = response.data.data.id;
     if(response.data.tokenSession) {
-      navigate('/dashboard')
+      navigate(`/dashboard/${patientId}`)
     }
   };
 
