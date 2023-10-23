@@ -1,11 +1,10 @@
-import DashboardAside from "../Layouts/Dashboard-Aside"
-import DashboardAgenda from "../Layouts/Dashboard-Agenda"
-import DashboardFooter from "../Layouts/Dashboard-Footer"
-import { Link } from 'react-router-dom';
-
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Dashboard = function () {
-  
+
+const navigate = useNavigate();
+const params = useParams();
+
   return (
      <div className="flex w-full h-screen items-center justify-center">
       <div className="w-full flex items-center justify-center lg:w-1/2">
@@ -15,7 +14,10 @@ const Dashboard = function () {
               Agenda tu cita
             </h1>
           </div>
-     <Link to="/psicologos"><button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Elegir a mi psicólogo</button></Link>
+     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+      onClick={() => navigate(`/psicologos/${params.id}`)}
+
+     >Elegir a mi terapueta</button>
      </div>
      </div>
      </div>

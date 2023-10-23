@@ -3,10 +3,12 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useParams } from 'react-router-dom';
 
-const AgendaCita = () => {
+
+const AgendaCita =  () => {
+
   const params = useParams()
   const therapistId = params.id;
-  const patientId = 1;
+  const patientId = params.idpatient;
   const [hour, setHour] = useState([]);
   const [availability, setAvailability] = useState(new Array(4).fill([]));
   const [date, setDate] = useState(new Date());
@@ -26,7 +28,6 @@ const AgendaCita = () => {
         `http://localhost:3001/availability/${id}`,
         { date }
       );
-      console.log(data);
 
       if (data) {
         setAvailability((prev) => {
@@ -163,7 +164,6 @@ const AgendaCita = () => {
               <p className="text-black">{getWeekDay(nextDate(x))}</p>
               <p className="text-gray-400">{getDateAndMonth(nextDate(x))}</p>
               {availability[x]?.map((y) => {
-                console.log(y.status)
                 if(!y.status){ return(
                   <p
                     onClick={() => {addReservation(y.id, patientId, y.TherapistId)}}
