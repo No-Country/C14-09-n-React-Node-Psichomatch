@@ -4,7 +4,7 @@ import axios from 'axios';
 import Agenda2 from "./AgendaCita"
 
 
-const ScheduleAppointment = () => {
+const AppointmentPatient = () => {
   const params = useParams();
   const [data, setData] = useState(null); 
 
@@ -45,4 +45,4 @@ const ScheduleAppointment = () => {
   );
 };
 
-export default ScheduleAppointment;
+export default AppointmentPatient;
