@@ -1,3 +1,9 @@
+
+
+import React from 'react'
+import Agenda from "./Components/Agenda"
+import Agenda2 from "./Components/AgendaCita"
+
 import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./Components/Header";
 import Footer from "./Layouts/Footer";
@@ -24,6 +30,9 @@ function App() {
         <Route path="/dashboard/:id" element={<Dashboard/>}></Route>
         <Route path="/agendarcita/:id/:idpatient" element={<SheduleAppointment/>}></Route>
         <Route path="/*" element={<Navigate to="/" />}></Route>
+        <Route path="/agenda2" element={<Agenda2/>} />
+        <Route path="/agenda" element={<Agenda/>} />
+
       </Routes>
       <Footer />
     </>

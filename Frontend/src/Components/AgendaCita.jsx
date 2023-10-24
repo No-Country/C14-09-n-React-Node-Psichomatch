@@ -4,11 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 import { useParams } from 'react-router-dom';
 
 
+
 const AgendaCita =  () => {
 
   const params = useParams()
   const therapistId = params.id;
   const patientId = params.idpatient;
+
   const [hour, setHour] = useState([]);
   const [availability, setAvailability] = useState(new Array(4).fill([]));
   const [date, setDate] = useState(new Date());
