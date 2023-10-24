@@ -32,6 +32,7 @@
 
 ```json
 {
+<<<<<<< HEAD
   "id": 21,
   "name": "Guillermo",
   "lastName": "Paez",
@@ -40,6 +41,20 @@
   "password": "$2a$10$hojf5rvjvBnkENRmWle.NuyHDfW3IKfBwiSzLuDWxos8UqglZP8.u",
   "session": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNjk3NzYwNzU4LCJleHAiOjE2OTc3Njc5NTh9.f5-k0dIw79vDFrW5zhcYlsjmiUVm8tfZ-TWiyrXiqlE",
   "role": "patient"
+=======
+  {
+    "data": {
+        "id": 21,
+        "name": null,
+        "lastName": null,
+        "phone": null,
+        "email": "zeduard89@gmail.com",
+        "password": "$2a$10$ZMJQVSGeO5BDJjfgD2paie9GwQ5eXU.nnb9M8xSgCkXEBWnIt7K5O",
+        "role": "patient"
+    },
+    "tokenSession": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNjk3NTk5OTM4LCJleHAiOjE2OTc2MDcxMzh9.HqE_Q75JoC7vQqYPYYFdz2lxvkXAABsaHKz3Jvt1Utw"
+}
+>>>>>>> FrontDev
 }
 ```
 

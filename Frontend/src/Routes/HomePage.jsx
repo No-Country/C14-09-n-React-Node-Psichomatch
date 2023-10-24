@@ -1,10 +1,18 @@
 import React from "react";
-import Hero from "../Components/Hero"
+import Hero from "../Components/HomePage/Hero";
+import { FeaturesCard } from "../Components/HomePage/FeaturesCard";
+import { TeamSection } from "../Components/HomePage/TeamSection";
+import { SectionWhyPsichoMatch } from "../Components/HomePage/SectionWhyPsichoMatch";
+import { SectionFAQs } from "../Components/HomePage/SectionFAQs";
 
 export const HomePage = () => {
   return (
-    <div className="xl:ml-32 xl:mr-24">
+    <div>
       <Hero />
+      <FeaturesCard />
+      <TeamSection />
+      <SectionWhyPsichoMatch />
+      <SectionFAQs />
     </div>
   );
 };

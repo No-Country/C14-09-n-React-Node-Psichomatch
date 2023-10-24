@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import { loginPatient } from "../api/patient_api";
-import { Link} from "react-router-dom";
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 import googleIcon from "../assets/Icons/google.svg";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const Login = () => {
   const {
@@ -12,15 +13,14 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate(); // Use useNavigate here
+  const navigate = useNavigate(); 
 
 
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
-    console.log(response)
-    if(response.data.session) {
-      console.log(response.data.session) // TOKEN registro por formulario
-      navigate('/dashboard')
+    const patientId = response.data.data.id;
+    if(response.data.tokenSession) {
+      navigate(`/dashboard/${patientId}`)
     }
   };
 

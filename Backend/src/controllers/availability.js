@@ -4369,3 +4369,8 @@ module.exports = {
   getAvailabilityHourByTherapistIDByDateBy,
   deleteAvailability
 };
+
+  
+    
+    
+      
