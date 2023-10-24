@@ -1,19 +1,16 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Header from "./Components/Header";
-import Footer from "./Layouts/Footer";
 import { RegisterPage } from "./Routes/RegisterPage";
-import { HomePage } from "./Routes/HomePage";
-import Login from "./Components/Login";
+import HomePage from "./Routes/HomePage"
+import Login from "./components/Login";
 import { FindPsychologists } from "./Routes/FindPsychologists";
 import { Services } from "./Routes/Services";
-import RecoverPassword from "./Components/RecoverPassword";
+import RecoverPassword from "./components/RecoverPassword";
 import SheduleAppointment from "./Components/AppointmentPatient";
 import Dashboard from './Pages/Dashboard';
 
 function App() {
   return (
     <>
-      <Header />
       <Routes>
         <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/login" element={<Login />}></Route>
@@ -25,7 +22,6 @@ function App() {
         <Route path="/agendarcita/:id/:idpatient" element={<SheduleAppointment/>}></Route>
         <Route path="/*" element={<Navigate to="/" />}></Route>
       </Routes>
-      <Footer />
     </>
   );
 }

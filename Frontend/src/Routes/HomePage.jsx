@@ -1,18 +1,19 @@
-import React from "react";
-import Hero from "../Components/HomePage/Hero";
-import { FeaturesCard } from "../Components/HomePage/FeaturesCard";
-import { TeamSection } from "../Components/HomePage/TeamSection";
-import { SectionWhyPsichoMatch } from "../Components/HomePage/SectionWhyPsichoMatch";
-import { SectionFAQs } from "../Components/HomePage/SectionFAQs";
+import Header from '../Components/Header'
+import Hero from '../components/Hero' 
+import { FeaturesCard } from '../Components/FeaturesCard'
+import { TeamCard } from '../Components/TeamCard'
+import Footer from '../Layouts/Footer'
 
-export const HomePage = () => {
+const HomePage = function () {
   return (
-    <div>
+    <>
+      <Header />
       <Hero />
       <FeaturesCard />
-      <TeamSection />
-      <SectionWhyPsichoMatch />
-      <SectionFAQs />
-    </div>
-  );
-};
+      <TeamCard />
+      <Footer />
+    </>
+  )
+}
+
+export default HomePage;
