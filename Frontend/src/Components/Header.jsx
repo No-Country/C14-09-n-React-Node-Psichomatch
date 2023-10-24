@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/Images/logo.svg";
 import searchIcon from "../assets/Icons/search.svg";
 import clearIcon from "../assets/Icons/clear.svg";
@@ -15,6 +15,14 @@ const navigation = [
 
 const Header = function () {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navigate = useNavigate(); // Use useNavigate here
+
+  const cerrarSesion = () => {
+    localStorage.removeItem('token');
+    navigate('/')
+  }
+
   return (
     <header className="border-2 border-[#e9e9e9]">
       <nav
@@ -55,6 +63,7 @@ const Header = function () {
           >
             Iniciar sesión
           </NavLink>
+          <button onClick={() => cerrarSesion()}>cerrar Sesion</button>
         </div>
       </nav>
       <Dialog

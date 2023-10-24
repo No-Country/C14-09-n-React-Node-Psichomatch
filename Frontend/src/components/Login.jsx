@@ -17,6 +17,8 @@ const Login = () => {
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
     if(response.data.tokenSession) {
+      const token = response.data.tokenSession;
+      localStorage.setItem("token", token)
       navigate('/dashboard')
     }
   };
