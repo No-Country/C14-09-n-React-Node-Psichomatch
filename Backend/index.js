@@ -9,7 +9,7 @@ const {fillRating} = require("./src/controllers/rating.js")
 const {fillHour} = require("./src/controllers/hour.js")
 const {fillAvailability} = require("./src/controllers/availability.js")
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     fillCategory(Category);
     fillPatient(Patient);
