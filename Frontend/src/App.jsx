@@ -10,6 +10,8 @@ import RecoverPassword from "./Components/RecoverPassword";
 import SheduleAppointment from "./Components/AppointmentPatient";
 import Dashboard from './Pages/Dashboard';
 
+
+
 function App() {
   return (
     <>
