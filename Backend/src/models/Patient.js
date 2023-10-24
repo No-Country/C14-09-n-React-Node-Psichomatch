@@ -41,7 +41,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-
       session:{
         type: DataTypes.STRING,
         allowNull: true,
@@ -51,8 +50,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         defaultValue: "patient"
       }
-
-
     },
     {
       timestamps: false,

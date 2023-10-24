@@ -7,6 +7,7 @@ const {
   get4AvailabilityByTherapistIdAndDate,
   getAvailabilityHourByTherapistIDByDateBy,
   deleteAvailability
+
 } = require("../controllers/availability")
 router.post("/hour", getAvailabilityHourByTherapistIDByDateBy)
 router.post("/dates/:id", get4AvailabilityByTherapistIdAndDate);

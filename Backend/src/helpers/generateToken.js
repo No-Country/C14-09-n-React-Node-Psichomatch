@@ -21,9 +21,12 @@ const verifyToken = async (token) => {
         }
 }
 
+const decodeSing = (token) => {
 
+}
 
 module.exports = {
     tokenSign,
     verifyToken,
+    decodeSing
 }

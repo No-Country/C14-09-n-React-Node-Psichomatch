@@ -46,4 +46,3 @@ module.exports = router;
 router.use('/decoding', decode)
 
 module.exports = router;
-
