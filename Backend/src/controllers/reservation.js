@@ -66,10 +66,37 @@ const getReservationByPatientId = async (req, res) => {
   }
 };
 
+const deleteReservation = async (req, res) => {
+  const { id } = req.params;
 
+  try {
+    const reservation = await Reservation.findOne({
+      where: { id },
+    });
+
+    if (reservation) {
+      const reservation2 = await Reservation.destroy({
+        where: { id },
+      });
+
+      const availability = await Availability.findOne({
+        where: { id: reservation.AvailabilityId },
+      });
+
+      await availability.update({ status: false });
+
+      res.status(200).json(reservation2);
+    } else {
+      res.status(400).json("Not found");
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 module.exports = {
   addReservation,
   getReservationByTherapistId,
   getReservationByPatientId,
+  deleteReservation,
 };

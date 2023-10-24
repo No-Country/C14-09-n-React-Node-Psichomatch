@@ -104,6 +104,7 @@ const deleteAvailability = async (req, res) => {
 };
 
 
+
 const fillAvailability = async (Availability) => {
   try {
     await Availability.bulkCreate([
