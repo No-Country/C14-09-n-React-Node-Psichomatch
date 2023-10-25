@@ -1,8 +1,11 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { loginPatient } from "../api/patient_api";
 import { Link, useNavigate } from "react-router-dom";
 import googleIcon from "../assets/Icons/google.svg";
+import { JwtContext } from "../Context/JwtContext";
+import { useContext } from "react";
+import jwtDecode from "jwt-decode";
+
 
 const Login = () => {
   const {
@@ -11,15 +14,25 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate(); // Use useNavigate here
+  const { jwt, setJwt } = useContext(JwtContext);
 
+  const navigate = useNavigate(); // Use useNavigate here
 
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
-    if(response.data.tokenSession) {
+
+    if (response.data.tokenSession) {
       const token = response.data.tokenSession;
-      localStorage.setItem("token", token)
-      navigate('/dashboard')
+      const decodedToken = await jwtDecode(token);
+
+      setJwt({
+        id: decodedToken.id,
+        token: token,
+        role: decodedToken.role,
+      });
+
+      localStorage.setItem("token", token);
+      navigate("/dashboard");
     }
   };
 
@@ -97,7 +110,6 @@ const Login = () => {
                 className="flex items-center justify-center shadow appearance-none gap-2 border-4 border-gray-100"
                 href="http://localhost:3001/auth/google"
               >
-                
                 <img src={googleIcon} alt="" />
                 Iniciar Sesión con Google
               </a>

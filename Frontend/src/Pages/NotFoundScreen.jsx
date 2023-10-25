@@ -1,7 +1,7 @@
-import React from 'react'
-
 export const NotFoundScreen = () => {
   return (
-    <div>NotFoundScreen</div>
-  )
-}
+    <div>
+      <h1>¡Se produjo un error en el acceso a la Aplicación!</h1>
+    </div>
+  );
+};
