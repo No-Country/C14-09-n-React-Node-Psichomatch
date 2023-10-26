@@ -5,7 +5,7 @@ const { fillTherapistData } = require("../common/filledDates");
 const getTherapists = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const perPage = 6;
+    const perPage = 2;
     const offset = (page - 1) * perPage;
     const limit = perPage;
     const therapists = await Therapist.findAll({
@@ -317,7 +317,7 @@ const searchByNameLastName = async (req, res) => {
 const searchByPrice = async (req, res) => {
   const { price } = req.params;
   const page = parseInt(req.query.page) || 1;
-  const perPage = 6;
+  const perPage = 2;
   const offset = (page - 1) * perPage;
 
   if (!price) return res.status(400).json({ error: "Missing fields" });
@@ -351,7 +351,7 @@ const searchByUbication = async (req, res) => {
   const { ubication } = req.params;
 
   const page = parseInt(req.query.page) || 1;
-  const perPage = 6;
+  const perPage = 2;
   const offset = (page - 1) * perPage;
 
   if (!ubication) return res.status(400).json({ error: "Missing fields" });
