@@ -20,6 +20,7 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
+    const patientId = response.data.data.id;
 
     if (response.data.tokenSession) {
       const token = response.data.tokenSession;
@@ -32,7 +33,7 @@ const Login = () => {
       });
 
       localStorage.setItem("token", token);
-      navigate("/dashboard");
+      navigate(`/dashboard/${patientId}`)
     }
   };
 

@@ -23,7 +23,7 @@ function AppRouter() {
       {jwt.token !== undefined ? (
         <>
           <Route path="/dashboard/:id" element={<Dashboard />} />
-          <Route path="/psicologos/id" element={<FindPsychologists />} />
+          <Route path="/psicologos/:id" element={<FindPsychologists />} />
           <Route
             path="/agendarcita/:id/:idpatient"
             element={<AppointmentPatient />}
