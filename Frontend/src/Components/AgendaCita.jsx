@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useParams } from 'react-router-dom';
+import { getHour, getAvailabilityByTherapistId, createReservation } from '../api/scheduleAppointment_api';
 
 
 
@@ -17,7 +17,7 @@ const AgendaCita =  () => {
 
   const getHours = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/hour`);
+      const { data } = await getHour()
       setHour(data);
     } catch (error) {
       console.error(error.message);
@@ -26,11 +26,7 @@ const AgendaCita =  () => {
 
   const getAvailabilityByTherapistIdAndDate = async (id, date, index) => {
     try {
-      const { data } = await axios.post(
-        `http://localhost:3001/availability/${id}`,
-        { date }
-      );
-
+      const { data } = await getAvailabilityByTherapistId(id, { date })
       if (data) {
         setAvailability((prev) => {
           const updatedAvailability = [...prev];
@@ -45,11 +41,11 @@ const AgendaCita =  () => {
 
   const addReservation = async (AvailabilityId, PatientId, TherapistId) => {
     try {
-      const { data } = await axios.post(`http://localhost:3001/reservation`, {
+     const { data } = await createReservation({
         AvailabilityId,
         PatientId,
         TherapistId,
-      });
+      })
   
       if (data) {
         // Actualiza los datos de availability si data es verdadero

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { getPatientReservation, deleteReservation } from '../api/reservation_api';
 
 const Dashboard = function () {
 
@@ -12,7 +13,7 @@ const [data, setData] = useState(null);
 
 const loadPatientReservation = async (id) => {
 
-const response = await axios.get(`http://localhost:3001/reservation/patient/${params.id}`);
+const response = await getPatientReservation(params.id)
 const patientReservation = response.data;
 setData(patientReservation);
 
@@ -20,7 +21,7 @@ setData(patientReservation);
  
 const deletePatientReservation = async (id) => {
 
-const response = await axios.delete(`http://localhost:3001/reservation/${id}`)
+const response = await deleteReservation(id)
 const deletereservation = response.data;
 setData(data.filter(data => data.id !== id));
 const MySwal = withReactContent(Swal);
@@ -65,7 +66,7 @@ useEffect(() => {
             </tr>
            </thead>
      {data && data.map((reservation, index) => (
-             <tbody>
+             <tbody key={index}>
              <tr>
           <td>
            {new Date(reservation.Availability.date).toLocaleDateString()}
