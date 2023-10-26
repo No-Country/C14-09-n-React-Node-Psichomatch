@@ -15,6 +15,7 @@ import { Services } from "./Routes/Services";
 import RecoverPassword from "./Components/RecoverPassword";
 import SheduleAppointment from "./Components/AppointmentPatient";
 import Dashboard from './Pages/Dashboard';
+import Dashboard2 from './Layouts/Dashboard-Search';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/*" element={<Navigate to="/" />}></Route>
         <Route path="/agenda2" element={<Agenda2/>} />
         <Route path="/agenda" element={<Agenda/>} />
+        <Route path="/thera" element={<Dashboard2/>} />
 
       </Routes>
       <Footer />
