@@ -64,7 +64,6 @@ rating(sequelize);
 hour(sequelize);
 availability(sequelize);
 reservation(sequelize);
-nation(sequelize);
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -108,10 +107,6 @@ Reservation.belongsTo(Patient)
 
 Therapist.hasOne(Reservation)
 Reservation.belongsTo(Therapist)
-
-// Relación de uno a muchos (Therapist - Nation)
-Therapist.belongsTo(Nation);
-Nation.hasMany(Therapist);
 
 
 

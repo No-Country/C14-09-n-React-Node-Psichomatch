@@ -11,6 +11,7 @@ const fillTherapistData = [
       email: "test@gmail.com",
       password: "1234",
       CategoryId: 4,
+      nation: "ar",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -26,6 +27,7 @@ const fillTherapistData = [
       email: "test2@gmail.com",
       password: "12345",
       CategoryId: 3,
+      nation: "ar",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -41,6 +43,7 @@ const fillTherapistData = [
       email: "test3@gmail.com",
       password: "12346",
       CategoryId: 1,
+      nation: "ec",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -56,6 +59,7 @@ const fillTherapistData = [
       email: "test4@gmail.com",
       password: "12347",
       CategoryId: 5,
+      nation: "bo",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -71,6 +75,7 @@ const fillTherapistData = [
       email: "test5@gmail.com",
       password: "12348",
       CategoryId: 7,
+      nation: "cl",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -86,6 +91,7 @@ const fillTherapistData = [
       email: "test6@gmail.com",
       password: "12348",
       CategoryId: 6,
+      nation: "ar",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -101,6 +107,7 @@ const fillTherapistData = [
       email: "test7@gmail.com",
       password: "12349",
       CategoryId: 5,
+      nation: "cl",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -116,6 +123,7 @@ const fillTherapistData = [
       email: "test8@gmail.com",
       password: "12350",
       CategoryId: 3,
+      nation: "sv",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -131,6 +139,7 @@ const fillTherapistData = [
       email: "test9@gmail.com",
       password: "12351",
       CategoryId: 3,
+      nation: "ur",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -146,6 +155,7 @@ const fillTherapistData = [
       email: "test10@gmail.com",
       password: "12352",
       CategoryId: 6,
+      nation: "ar",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -161,6 +171,7 @@ const fillTherapistData = [
       email: "test11@gmail.com",
       password: "12345",
       CategoryId: 5,
+      nation: "cl",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -176,6 +187,7 @@ const fillTherapistData = [
       email: "test12@gmail.com",
       password: "12346",
       CategoryId: 5,
+      nation: "ve",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -191,6 +203,7 @@ const fillTherapistData = [
       email: "test13@gmail.com",
       password: "12347",
       CategoryId: 5,
+      nation: "MX",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -206,6 +219,7 @@ const fillTherapistData = [
       email: "test14@gmail.com",
       password: "123419",
       CategoryId: 2,
+      nation: "cl",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -221,6 +235,7 @@ const fillTherapistData = [
       email: "test15@gmail.com",
       password: "12345",
       CategoryId: 3,
+      nation: "mx",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -236,6 +251,7 @@ const fillTherapistData = [
       email: "test16@gmail.com",
       password: "12346",
       CategoryId: 7,
+      nation: "cl",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -251,6 +267,7 @@ const fillTherapistData = [
       email: "test17@gmail.com",
       password: "12347",
       CategoryId: 5,
+      nation: "ar",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -266,6 +283,7 @@ const fillTherapistData = [
       email: "test18@gmail.com",
       password: "123419",
       CategoryId: 4,
+      nation: "py",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -281,6 +299,7 @@ const fillTherapistData = [
       email: "test19@gmail.com",
       password: "12345",
       CategoryId: 3,
+      nation: "co",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -296,6 +315,7 @@ const fillTherapistData = [
       email: "test20@gmail.com",
       password: "12346",
       CategoryId: 1,
+      nation: "cl",
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
   ];

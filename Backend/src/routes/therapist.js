@@ -14,7 +14,8 @@ const {
     searchByNameLastName,
     searchByPrice,
     searchByUbication,
-    filterTherapistByCategoryId
+    filterTherapistByCategoryId,
+    searchByCountry,
 } = require("../controllers/therapist")
 
 router.get("/", getTherapists);
@@ -35,5 +36,6 @@ router.put("/switchTherapist/:id", switchTherapistState)
 router.get("/search/:name/:lastName", searchByNameLastName)
 router.get("/searchPrice/:price", searchByPrice)
 router.get("/searchUbication/:ubication", searchByUbication)
+router.get("/searchCountry/:country", searchByCountry)
 
 module.exports = router;

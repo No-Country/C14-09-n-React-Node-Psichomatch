@@ -42,8 +42,9 @@ module.exports = (sequelize) => {
       },
 
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(750),
         allowNull: true,
+
       },
 
       rating:{
@@ -64,8 +65,8 @@ module.exports = (sequelize) => {
       },
 
       // Relación con Nacionalidad
-      nationID: {
-        type: DataTypes.INTEGER,
+      nation: {
+        type: DataTypes.STRING,
         allowNull: true,
       },
 
