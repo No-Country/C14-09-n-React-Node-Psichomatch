@@ -14,7 +14,6 @@ const loadPatientReservation = async (id) => {
 
 const response = await axios.get(`http://localhost:3001/reservation/patient/${params.id}`);
 const patientReservation = response.data;
-console.log(patientReservation)
 setData(patientReservation);
 
 }

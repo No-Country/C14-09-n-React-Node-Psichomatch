@@ -25,7 +25,7 @@ return(
   <div className="w-full flex items-center justify-center lg:w-1/2">
     <div className="md:mx-6 md:p-12">
       <div className="text-center">
-        <div className="flex flex-wrap">
+        <div className="grid">
           {therapists.map(therapist => ( 
             <div className="max-w-sm rounded-lg overflow-hidden shadow-xl m-2" key={therapist.id}>
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
