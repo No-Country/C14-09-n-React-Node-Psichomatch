@@ -14,7 +14,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const { jwt, setJwt } = useContext(JwtContext);
+  const { setJwt } = useContext(JwtContext);
 
   const navigate = useNavigate(); // Use useNavigate here
 

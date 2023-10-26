@@ -1,17 +1,16 @@
 /* Importaciones */
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react";
+import jwtDecode from "jwt-decode";
 
 const initalState = {
   id: undefined,
   role: undefined,
-  exp: undefined,
   jwt: undefined,
 };
 
 const Context = createContext({
   id: "",
   role: "",
-  exp: "",
   jwt: "",
   setJwt: () => {},
   destroySession: () => {},
@@ -22,10 +21,26 @@ const Context = createContext({
 const JwtProvider = ({ children }) => {
   const [jwt, setJwt] = useState(initalState);
 
+  const firstRender = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      setJwt({
+        id: decodedToken.id,
+        token: token,
+        role: decodedToken.id,
+      });
+    }
+  };
+
   const destroySession = () => {
     localStorage.removeItem("token");
     setJwt(initalState);
   };
+
+  useEffect(() => {
+    firstRender();
+  }, []);
 
   return (
     <Context.Provider value={{ jwt, setJwt, destroySession }}>
