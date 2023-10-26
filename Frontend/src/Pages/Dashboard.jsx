@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const Dashboard = function () {
 
@@ -12,10 +14,23 @@ const loadPatientReservation = async (id) => {
 
 const response = await axios.get(`http://localhost:3001/reservation/patient/${params.id}`);
 const patientReservation = response.data;
+console.log(patientReservation)
 setData(patientReservation);
 
 }
-//arreglo[0]
+ 
+const deletePatientReservation = async (id) => {
+
+const response = await axios.delete(`http://localhost:3001/reservation/${id}`)
+const deletereservation = response.data;
+setData(data.filter(data => data.id !== id));
+const MySwal = withReactContent(Swal);
+    MySwal.fire({
+      title: <p>Cita Cancelada Exitosamente</p>,
+      icon: 'success'
+    })
+
+}
 
 useEffect(() => {
     if (params.id) {
@@ -24,11 +39,6 @@ useEffect(() => {
   }, [params.id]);
 
 
-const formateadate = (dateString) => {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const date = new Date(dateString);
-  return date.toLocaleDateString('es-ES', options);
-}
 
   return (
      <div className="flex w-full h-screen items-center justify-center">
@@ -45,20 +55,26 @@ const formateadate = (dateString) => {
      >Elegir a mi terapueta</button>
      <div className="p-12">
      <h1 className="mb-12 mt-1 pb-1 text-xl font-semibold text-center">Historial de Citas</h1>
-     {data && data.map((item, index) => (
+     {data && data.map((reservation, index) => (
         <div key={index}>
           <h1 className="mb-12 mt-1 pb-1 text-xl font-semibold text-center">
-            Fecha de la cita: {formateadate(item.Availability.date)}
+            Fecha de la cita: {new Date(reservation.Availability.date).toLocaleDateString()}
           </h1>
           <h1 className="mb-12 mt-1 pb-1 text-xl font-semibold text-center">
-            Hora de asistencia: {item.Availability.Hour.hour}
+            Hora de asistencia: {reservation.Availability.Hour.hour}
           </h1>
           <h1 className="mb-12 mt-1 pb-1 text-xl font-semibold text-center">
-            Estatus: {item.Availability.status == true ? "Orden Agendada" : "No hay orden agendada"}
+            Estatus: {reservation.Availability.status == true ? "Orden Agendada" : "No hay orden agendada"}
           </h1>
           <h1 className="mb-12 mt-1 pb-1 text-xl font-semibold text-center">
-            Terapueta: {item.Therapist.name} {item.Therapist.lastName}
+            Terapueta agendado: {reservation.Therapist.name} {reservation.Therapist.lastName}
           </h1>
+          <button 
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-700 rounded"
+            onClick={() => deletePatientReservation(reservation.id)}
+            >
+       Cancelar Cita
+       </button>
         </div>
       ))}
      </div>
