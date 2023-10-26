@@ -1,11 +1,12 @@
 const { Therapist, Category } = require("../db");
 const { fillTherapistData } = require("../common/filledDates");
+const { Op } = require("sequelize");
 
 // Functions for therapist CRUD
 const getTherapists = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const perPage = 6;
+    const perPage = 2;
     const offset = (page - 1) * perPage;
     const limit = perPage;
     const therapists = await Therapist.findAll({
@@ -35,10 +36,14 @@ const getTherapists = async (req, res) => {
 const filterTherapistByCategoryId = async (req, res) => {
   try {
     const { id } = req.params;
+
+    if(!id) return res.status(400).json({ error: "Missing fields" });
+
     const page = parseInt(req.query.page) || 1;
     const perPage = 6;
     const offset = (page - 1) * perPage;
     const limit = perPage;
+
     const therapists = await Therapist.findAll({
       where:{CategoryId: id},
       include: [
@@ -52,10 +57,16 @@ const filterTherapistByCategoryId = async (req, res) => {
       order: [["id", "ASC"]],
     });
 
+    if (!therapists)
+      return res.status(404).json({ error: "Therapist not found" });
+
 
     const therapists2 = await Therapist.findAll({
       where:{CategoryId: id},
     });
+
+    if (!therapists2)
+      return res.status(404).json({ error: "Therapist not found" });
 
     const actualPage = page || 1;
 
@@ -317,7 +328,7 @@ const searchByNameLastName = async (req, res) => {
 const searchByPrice = async (req, res) => {
   const { price } = req.params;
   const page = parseInt(req.query.page) || 1;
-  const perPage = 6;
+  const perPage = 2;
   const offset = (page - 1) * perPage;
 
   if (!price) return res.status(400).json({ error: "Missing fields" });
@@ -351,7 +362,7 @@ const searchByUbication = async (req, res) => {
   const { ubication } = req.params;
 
   const page = parseInt(req.query.page) || 1;
-  const perPage = 6;
+  const perPage = 2;
   const offset = (page - 1) * perPage;
 
   if (!ubication) return res.status(400).json({ error: "Missing fields" });
@@ -377,6 +388,39 @@ const searchByUbication = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+}
+
+const searchByCountry = async (req, res) => {
+  const { country } = req.params;
+  console.log(country)
+
+  const page = parseInt(req.query.page) || 1;
+  const perPage = 6;
+  const offset = (page - 1) * perPage;
+
+  if (!country) return res.status(400).json({ error: "Missing fields" });
+
+  try {
+    const therapist = await Therapist.findAll({
+      where: {
+        nation: {
+          [Op.iLike]: `%${country}%`,
+        },
+      },
+      limit: perPage,
+      offset,
+    });
+
+    if (!therapist)
+      return res.status(404).json({ error: "Therapist not found" });
+
+      const totalTherapist = therapist.length;
+      const totalPages = Math.ceil(totalTherapist / perPage);
+  
+      res.status(200).json({ therapist, totalPages, totalTherapist });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 // --> FILL <--
@@ -407,4 +451,5 @@ module.exports = {
   searchByPrice,
   searchByUbication,
   filterTherapistByCategoryId,
+  searchByCountry,
 };
