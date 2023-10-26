@@ -8,8 +8,8 @@ import { useParams } from 'react-router-dom';
 const AgendaCita =  () => {
 
   const params = useParams()
-  const therapistId = params.id;
-  const patientId = params.idpatient;
+  const therapistId = 3;
+  const patientId = 1;
 
   const [hour, setHour] = useState([]);
   const [availability, setAvailability] = useState(new Array(4).fill([]));

@@ -9,6 +9,7 @@ import { Services } from "./Routes/Services";
 import RecoverPassword from "./Components/RecoverPassword";
 import AppointmentPatient from "./Components/AppointmentPatient";
 import Dashboard from './Pages/Dashboard';
+import Dashboard2 from './Layouts/Dashboard-Search';
 
 function App() {
   return (
