@@ -13,4 +13,3 @@ export const loginPatient = async (patient) => {
 export const recoverPassword = async (patient) => {
 	return await axios.post('http://localhost:3001/recoverPass', patient);
 }
-
