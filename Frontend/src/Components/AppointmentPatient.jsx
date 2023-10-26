@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { GetTherapistId } from '../api/therapist_api';
 import Agenda2 from "./AgendaCita"
 
 
@@ -9,7 +9,7 @@ const AppointmentPatient = () => {
   const [data, setData] = useState(null); 
 
   const loadTherapists = async (id) => {
-      const response = await axios.get(`http://localhost:3001/therapist/getTherapistByID/${id}`);
+      const response = await GetTherapistId(id);
       const therapistData = response.data;
       setData(therapistData); 
   }
