@@ -8,6 +8,7 @@ const contact = require("./models/Contact")
 const therapist = require("./models/Therapist")
 const category = require("./models/Category")
 const rating = require("./models/Rating")
+const nation = require("./models/Nation")
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT,DB_NAME  } = process.env;
 
@@ -21,6 +22,11 @@ const sequelize = new Sequelize(
     //     rejectUnauthorized: false // Solo si estás utilizando un certificado autofirmado y no uno emitido por una autoridad de certificación reconocida.
     //   }
     // },
+    define: {
+      // Cambiar la longitud máxima de la columna
+      charset: 'utf8',
+      collate: 'utf8_general_ci',
+    },
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   }
@@ -58,6 +64,7 @@ patient(sequelize);
 therapist(sequelize);
 category(sequelize);
 rating(sequelize);
+nation(sequelize);
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -67,7 +74,8 @@ const {
   Patient,
   Therapist,
   Category,
-  Rating
+  Rating,
+  Nation,
 } = sequelize.models;
 
 //Therapist.belongsToMany(Category, { through: 'TherapistCategory' })
@@ -82,7 +90,9 @@ Rating.belongsTo(Therapist);
 Patient.hasOne(Rating);
 Rating.belongsTo(Patient);
 
-
+// Relación de uno a muchos (Therapist - Nation)
+Therapist.belongsTo(Nation);
+Nation.hasMany(Therapist);
 
 
 

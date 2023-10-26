@@ -1,6 +1,5 @@
 const { DataTypes } = require("sequelize");
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
@@ -56,6 +55,17 @@ module.exports = (sequelize) => {
       isActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
+        allowNull: true,
+      },
+
+      linkedIn: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+
+      // Relación con Nacionalidad
+      nationID: {
+        type: DataTypes.INTEGER,
         allowNull: true,
       },
 

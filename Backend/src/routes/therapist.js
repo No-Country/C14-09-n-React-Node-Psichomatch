@@ -19,7 +19,7 @@ const {
 
 router.get("/", getTherapists);
 router.get("/getTherapistByID/:id", getTherapistById)
-router.get("/category/:id",filterTherapistByCategoryId)
+router.get("/category/:id", filterTherapistByCategoryId)
 router.post("/create", createTherapist)
 router.put("/addInfo/:id", addInfoTherapist)
 router.put("/changeDescription/:id", updateDescriptionTherapist)
