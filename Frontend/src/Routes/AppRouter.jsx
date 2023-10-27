@@ -5,10 +5,10 @@ import Login from "../Components/Login";
 import RecoverPassword from "../Components/RecoverPassword";
 import { NotFoundScreen } from "../Pages/NotFoundScreen";
 import Dashboard from "../Pages/Dashboard";
-import { HomePage } from "./HomePage";
-import { Services } from "./Services";
-import { RegisterPage } from "./RegisterPage";
-import { FindPsychologists } from "./FindPsychologists";
+import { HomePage } from "../Pages/HomePage";
+import { Services } from "../Pages/Services";
+import { RegisterPage } from "../Pages/RegisterPage";
+import { FindPsychologists } from "../Pages/FindPsychologists";
 import AppointmentPatient from "../Components/AppointmentPatient";
 
 function AppRouter() {
@@ -30,7 +30,7 @@ function AppRouter() {
           ></Route>
         </>
       ) : (
-        <Route path="/*" element={<NotFoundScreen />} />
+        <Route path="/login" element={<Login />} />
       )}
       <Route path="/*" element={<NotFoundScreen />} />
     </Routes>
