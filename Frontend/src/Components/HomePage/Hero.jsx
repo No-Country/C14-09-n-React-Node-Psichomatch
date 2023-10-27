@@ -15,7 +15,7 @@ const Hero = () => {
         <div className="flex justify-center md:justify-start">
           <ButtonLilacSlim
             additionalClasses="w-[384px]"
-            text={"Encontrar un psicólogo"}
+            text="Encontrar un psicólogo"
           />
         </div>
       </div>
