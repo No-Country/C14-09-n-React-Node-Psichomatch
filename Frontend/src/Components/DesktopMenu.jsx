@@ -1,7 +1,10 @@
-import { NavLink } from "react-router-dom";
-
+import { NavLink, Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 function DesktopMenu({ jwt, handleAccountExit }) {
+  console.log(jwt.id +"  "+ "hola esoty aqui") 
   return (
+
+    
     <>
       <NavLink
         to="/servicios"
@@ -10,9 +13,11 @@ function DesktopMenu({ jwt, handleAccountExit }) {
         Servicios
       </NavLink>
       {jwt.token !== undefined ? (
+        
         <>
+<SearchBar/>
           <NavLink
-            to="/psicologos"
+            to={`/psicologos/${jwt?.id}`}
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
           >
             Psicólogos

@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useParams } from 'react-router-dom';
 import { getHour, getAvailabilityByTherapistId, createReservation } from '../api/scheduleAppointment_api';
+import PropTypes from 'prop-types';
 
 
+const AgendaCita =  ({patientId,therapistId}) => {
 
-const AgendaCita =  () => {
 
-  const params = useParams()
-  const therapistId = params.id;
-  const patientId = params.idpatient;
 
   const [hour, setHour] = useState([]);
   const [availability, setAvailability] = useState(new Array(4).fill([]));
@@ -135,7 +132,7 @@ const AgendaCita =  () => {
   };
 
   return (
-    <div className="w-96 h-96 border-2 border-black px-2 overflow-auto">
+    <div className="w-96 h-96 shadow-md border border-gray-300 rounded px-2 overflow-auto">
       <div className="flex justify-between">
         <button
           onClick={() => prevHandler(date)}
@@ -187,6 +184,11 @@ const AgendaCita =  () => {
       </div>
     </div>
   );
+};
+
+AgendaCita.propTypes = {
+  patientId: PropTypes.number.isRequired,
+  therapistId: PropTypes.number.isRequired,
 };
 
 export default AgendaCita;
