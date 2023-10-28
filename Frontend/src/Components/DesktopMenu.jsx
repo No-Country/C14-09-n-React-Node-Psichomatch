@@ -3,19 +3,20 @@ import { NavLink } from "react-router-dom";
 function DesktopMenu({ jwt, handleAccountExit }) {
   return (
     <>
-      <NavLink
+
+      {jwt.token !== undefined ? (
+        <>
+         <NavLink
         to="/servicios"
         className="text-base text-black font-medium hover:text-[#A9A9A9]"
       >
-        Servicios
+        Panel Principal
       </NavLink>
-      {jwt.token !== undefined ? (
-        <>
           <NavLink
-            to="/psicologos"
+            to={`/psicologos/`}
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
           >
-            Psicólogos
+            Encuentra tú Psicólogos
           </NavLink>
           <button
             className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
@@ -26,6 +27,12 @@ function DesktopMenu({ jwt, handleAccountExit }) {
         </>
       ) : (
         <>
+         <NavLink
+        to="/servicios"
+        className="text-base text-black font-medium hover:text-[#A9A9A9]"
+         >
+        Servicios
+      </NavLink>
           <NavLink
             to="/registro"
             className="text-base text-black font-medium hover:text-[#A9A9A9]"

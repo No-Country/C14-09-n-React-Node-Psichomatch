@@ -15,8 +15,9 @@ const Login = () => {
   } = useForm();
 
   const { setJwt } = useContext(JwtContext);
+  const { setPatient } = usePatient();
 
-  const navigate = useNavigate(); // Use useNavigate here
+  const navigate = useNavigate(); 
 
   const onSubmit = async (data) => {
     const response = await loginPatient(data);
@@ -31,7 +32,8 @@ const Login = () => {
         token: token,
         role: decodedToken.role,
       });
-
+      
+   
       localStorage.setItem("token", token);
       navigate(`/dashboard/${patientId}`)
     }
