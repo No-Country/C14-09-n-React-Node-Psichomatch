@@ -15,7 +15,7 @@ const Login = () => {
   } = useForm();
 
   const { setJwt } = useContext(JwtContext);
-  const { setPatient } = usePatient();
+
 
   const navigate = useNavigate(); 
 

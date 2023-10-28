@@ -10,10 +10,10 @@ function DesktopMenu({ jwt, handleAccountExit }) {
         to="/servicios"
         className="text-base text-black font-medium hover:text-[#A9A9A9]"
       >
-        Panel Principal
+        Mi Calendario
       </NavLink>
           <NavLink
-            to={`/psicologos/`}
+            to={`/psicologos/21`}
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
           >
             Encuentra tú Psicólogos
