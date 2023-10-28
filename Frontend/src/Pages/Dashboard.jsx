@@ -48,7 +48,7 @@ const Dashboard = function () {
             <h1 className="mb-12 mt-1 mb-2 text-xl font-bold">
               Mi Calendario
             </h1>
-            <p className="">En este espacio encontrarás tu historial de citas</p>
+            <p className="">En este espacio encontrarás tu historial de citas.</p>
             </div>
             <div className="bg-violet-50 rounded-full p-8">
             <svg width="134" height="134" viewBox="0 0 134 134" fill="none" xmlns="http://www.w3.org/2000/svg">
