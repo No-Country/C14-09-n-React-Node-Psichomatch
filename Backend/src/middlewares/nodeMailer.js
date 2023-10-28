@@ -16,15 +16,15 @@ const main = async (
   try {
     // send mail with defined transport object
     await transporter.sendMail({
-      from: '"Therapyst United 👨‍💻 " <ccrewdb@gmail.com>',
+      from: '"The PsichoMATCH 👨 " <ccrewdb@gmail.com>',
       to: `${patientEmail}`,
-      subject: `The Biggest center Of Therapys`,
-      text: `Hi User`,
+      subject: `Encuentra apoyo`,
+      text: `Saludos usuario`,
       html: `
     <html>
       <body>
-        <p>Hi,</p>
-        <p>Please save you Password</p>
+        <p>Hola,</p>
+        <p>Porfavor guarda tu Info de logeo</p>
         <p>PASSWORD:${password}</p>
       </body>
     </html>
@@ -41,7 +41,7 @@ const mainRecovery = async (
   try {
     // send mail with defined transport object
     await transporter.sendMail({
-      from: '"Therapyst United 👨‍💻 " <ccrewdb@gmail.com>',
+      from: '"The PsichoMATCH 👨 " <ccrewdb@gmail.com>',
       to: `${patientEmail}`,
       subject: `The Biggest center Of Therapys`,
       text: `Hi User`,
@@ -66,7 +66,7 @@ const mainRecovery2 = async (
   try {
     // send mail with defined transport object
     await transporter.sendMail({
-      from: '"Therapyst United 👨‍💻 " <ccrewdb@gmail.com>',
+      from: '"The PsichoMATCH 👨 " <ccrewdb@gmail.com>',
       to: `${patientEmail}`,
       subject: `The Biggest center Of Therapys`,
       text: `Hi User`,

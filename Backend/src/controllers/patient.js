@@ -131,6 +131,30 @@ const logInPatient = async (req, res) => {
   }
 };
 
+
+const loginPatientGoogle = async (req, res) => {
+  try {
+    const  {id}  = req.body;
+    const patientExist = await Patient.findOne({
+      where: { id },
+    });
+
+    console.log(patientExist)
+    
+      if (patientExist.session){
+        res.status(200).json({
+          data:patientExist,
+          tokenSession:patientExist.session
+        })
+      } else{
+        res.status(400).send("Wrong Password")
+      }
+      
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const recoverPass = async (req, res) => {
   try {
     const { patientEmail } = req.body;
@@ -356,5 +380,6 @@ module.exports = {
   insertPatient,
   getPatientById,
   logInPatient,
-  inserNewPatient
+  inserNewPatient,
+  loginPatientGoogle
 };
