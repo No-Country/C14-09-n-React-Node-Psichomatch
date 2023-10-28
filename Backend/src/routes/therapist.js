@@ -16,8 +16,9 @@ const {
     searchByUbication,
     filterTherapistByCategoryId,
     searchByCountry,
+    filterTherapists,
 } = require("../controllers/therapist")
-
+router.get("/filter/category/country", filterTherapists)
 router.get("/", getTherapists);
 router.get("/getTherapistByID/:id", getTherapistById)
 router.get("/category/:id", filterTherapistByCategoryId)
@@ -33,7 +34,7 @@ router.put("/switchTherapist/:id", switchTherapistState)
 
 /* Routes for searches */ 
 
-router.get("/search/:name/:lastName", searchByNameLastName)
+router.get("/search", searchByNameLastName)
 router.get("/searchPrice/:price", searchByPrice)
 router.get("/searchUbication/:ubication", searchByUbication)
 router.get("/searchCountry/:country", searchByCountry)

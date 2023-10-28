@@ -11,7 +11,7 @@ const fillTherapistData = [
       email: "test@gmail.com",
       password: "1234",
       CategoryId: 4,
-      nation: "ar",
+      CountryId: 1,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -27,7 +27,7 @@ const fillTherapistData = [
       email: "test2@gmail.com",
       password: "12345",
       CategoryId: 3,
-      nation: "ar",
+      CountryId: 1,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -43,7 +43,7 @@ const fillTherapistData = [
       email: "test3@gmail.com",
       password: "12346",
       CategoryId: 1,
-      nation: "ec",
+      CountryId: 8,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -59,7 +59,7 @@ const fillTherapistData = [
       email: "test4@gmail.com",
       password: "12347",
       CategoryId: 5,
-      nation: "bo",
+      CountryId: 2,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -75,7 +75,7 @@ const fillTherapistData = [
       email: "test5@gmail.com",
       password: "12348",
       CategoryId: 7,
-      nation: "cl",
+      CountryId: 4,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -91,7 +91,7 @@ const fillTherapistData = [
       email: "test6@gmail.com",
       password: "12348",
       CategoryId: 6,
-      nation: "ar",
+      CountryId: 1,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -107,7 +107,7 @@ const fillTherapistData = [
       email: "test7@gmail.com",
       password: "12349",
       CategoryId: 5,
-      nation: "cl",
+      CountryId: 4,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -123,7 +123,7 @@ const fillTherapistData = [
       email: "test8@gmail.com",
       password: "12350",
       CategoryId: 3,
-      nation: "sv",
+      CountryId: 9,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -139,7 +139,7 @@ const fillTherapistData = [
       email: "test9@gmail.com",
       password: "12351",
       CategoryId: 3,
-      nation: "ur",
+      CountryId: 19,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -155,7 +155,7 @@ const fillTherapistData = [
       email: "test10@gmail.com",
       password: "12352",
       CategoryId: 6,
-      nation: "ar",
+      CountryId: 1,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -171,7 +171,7 @@ const fillTherapistData = [
       email: "test11@gmail.com",
       password: "12345",
       CategoryId: 5,
-      nation: "cl",
+      CountryId: 4,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -187,7 +187,7 @@ const fillTherapistData = [
       email: "test12@gmail.com",
       password: "12346",
       CategoryId: 5,
-      nation: "ve",
+      CountryId: 20,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -203,7 +203,7 @@ const fillTherapistData = [
       email: "test13@gmail.com",
       password: "12347",
       CategoryId: 5,
-      nation: "MX",
+      CountryId: 13,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -219,7 +219,7 @@ const fillTherapistData = [
       email: "test14@gmail.com",
       password: "123419",
       CategoryId: 2,
-      nation: "cl",
+      CountryId: 4,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -235,7 +235,7 @@ const fillTherapistData = [
       email: "test15@gmail.com",
       password: "12345",
       CategoryId: 3,
-      nation: "mx",
+      CountryId: 13,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -251,7 +251,7 @@ const fillTherapistData = [
       email: "test16@gmail.com",
       password: "12346",
       CategoryId: 7,
-      nation: "cl",
+      CountryId: 4,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -267,9 +267,13 @@ const fillTherapistData = [
       email: "test17@gmail.com",
       password: "12347",
       CategoryId: 5,
-      nation: "ar",
+      CountryId: 1,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
+
+    
+
+
     {
       name: "David",
       lastName: "García",
@@ -283,7 +287,7 @@ const fillTherapistData = [
       email: "test18@gmail.com",
       password: "123419",
       CategoryId: 4,
-      nation: "py",
+      CountryId: 16,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -299,7 +303,7 @@ const fillTherapistData = [
       email: "test19@gmail.com",
       password: "12345",
       CategoryId: 3,
-      nation: "co",
+      CountryId: 4,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
     {
@@ -315,7 +319,57 @@ const fillTherapistData = [
       email: "test20@gmail.com",
       password: "12346",
       CategoryId: 1,
-      nation: "cl",
+      CountryId: 4,
+      linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
+    },
+
+    {
+      name: "Patricia1",
+      lastName: "Martínez1",
+      price: 400,
+      phone: "789012347",
+      adress: "Calle pequeña 103",
+      image: "https://terapify.s3.amazonaws.com/1649368879902__Psic%C3%B3logo%20en%20linea-%20Nohemi%20Villeda%20Terapify-min.png",
+      description:
+        "Psicóloga clínica con experiencia en terapia cognitiva. Estoy entrenada en el enfoque cognitivo, que se centra en ayudar a las personas a identificar y cambiar los pensamientos negativos que contribuyen a sus problemas de salud mental.",
+      isActive: true,
+      email: "test21@gmail.com",
+      password: "12347",
+      CategoryId: 5,
+      CountryId: 1,
+      linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
+    },
+    {
+      name: "Patricia2",
+      lastName: "Martínez1",
+      price: 400,
+      phone: "789012347",
+      adress: "Calle pequeña 103",
+      image: "https://terapify.s3.amazonaws.com/1649368879902__Psic%C3%B3logo%20en%20linea-%20Nohemi%20Villeda%20Terapify-min.png",
+      description:
+        "Psicóloga clínica con experiencia en terapia cognitiva. Estoy entrenada en el enfoque cognitivo, que se centra en ayudar a las personas a identificar y cambiar los pensamientos negativos que contribuyen a sus problemas de salud mental.",
+      isActive: true,
+      email: "test22@gmail.com",
+      password: "12347",
+      CategoryId: 5,
+      CountryId: 1,
+      linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
+    },
+
+    {
+      name: "Patricia3",
+      lastName: "Martínez1",
+      price: 400,
+      phone: "789012347",
+      adress: "Calle pequeña 103",
+      image: "https://terapify.s3.amazonaws.com/1649368879902__Psic%C3%B3logo%20en%20linea-%20Nohemi%20Villeda%20Terapify-min.png",
+      description:
+        "Psicóloga clínica con experiencia en terapia cognitiva. Estoy entrenada en el enfoque cognitivo, que se centra en ayudar a las personas a identificar y cambiar los pensamientos negativos que contribuyen a sus problemas de salud mental.",
+      isActive: true,
+      email: "test23@gmail.com",
+      password: "12347",
+      CategoryId: 5,
+      CountryId: 1,
       linkedIn: "https://www.linkedin.com/in/francisco-perezdev/",
     },
   ];

@@ -38,7 +38,6 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.STRING,
         allowNull: true,
-        unique: true
       },
 
       description: {
@@ -64,11 +63,6 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
 
-      // Relación con Nacionalidad
-      nation: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
 
       // Fundamentales
       email:{
