@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const { getpatients,insertPatient,logInPatient,recoverPass,recoverPass2,updatePatient,deletePatient, getPatientById, inserNewPatient } = require("../controllers/patient")
+const { getpatients,insertPatient,logInPatient,loginPatientGoogle,recoverPass,recoverPass2,updatePatient,deletePatient, getPatientById, inserNewPatient } = require("../controllers/patient")
 const checkAuth = require('../middlewares/authentification')
 const  checkRoleAuth  = require('../middlewares/roleAuth')
 
@@ -19,6 +19,9 @@ router.post("/patient", inserNewPatient)
 
 //Login Generando Un token
 router.post("/patient/login",logInPatient);
+router.post("/patient/loginGoogle",loginPatientGoogle);
+
+
 router.post("/recoverPass",recoverPass)
 router.get("/recoverPass2/:id",recoverPass2)
 router.put("/patient/:id", updatePatient);

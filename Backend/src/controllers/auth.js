@@ -28,7 +28,7 @@ const authGoogle = async (req, res) => {
       });
 
       if(patientExist){
-        res.status(200).redirect("http://localhost:5173/dashboard");
+        res.status(200).redirect(`http://localhost:5173/dashboard/${patientExist.id}`);
       }else{
         const password = generateRandomPassword();
       
@@ -42,9 +42,13 @@ const authGoogle = async (req, res) => {
           password: encryptPassword,
         });
         const tokenSession = await tokenSign(newPatient) //Token
+
+
+        await newPatient.update({ session:tokenSession});  
+
         main(patientEmail, password);
 
-        res.status(200).redirect(`http://localhost:5173/dashboard`)
+        res.status(200).redirect(`http://localhost:5173/dashboard/${newPatient.id}`)
       }
       
 
