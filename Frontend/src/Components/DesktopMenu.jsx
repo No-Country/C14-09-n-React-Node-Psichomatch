@@ -11,7 +11,7 @@ function DesktopMenu({ jwt, handleAccountExit }) {
         <>
 <SearchBar/>
  <NavLink
-        to="/servicios"
+        to={`dashboard/${jwt?.id}`}
         className="text-base text-black font-medium hover:text-[#A9A9A9]"
       >
         Mi Calendario
@@ -48,7 +48,7 @@ function DesktopMenu({ jwt, handleAccountExit }) {
             to="/registerTherapist"
             className="text-base text-black font-medium hover:text-[#A9A9A9] "
           >
-            Registro Terapeuta
+            Registro Psicólogo
           </NavLink>
           <NavLink
             to="/login"

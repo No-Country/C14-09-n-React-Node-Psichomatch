@@ -10,6 +10,7 @@ import { Services } from "../Pages/Services";
 import { RegisterPage } from "../Pages/RegisterPage";
 import { FindPsychologists } from "../Pages/FindPsychologists";
 import AppointmentPatient from "../Components/AppointmentPatient";
+import RegisterTherapist from "../Components/RegisterTherapist";
 import Plans from "../Pages/Plans";
 import Agenda from "../Components/Agenda"
 function AppRouter() {
@@ -20,6 +21,7 @@ function AppRouter() {
       <Route path="/login" element={<Login />} />
       <Route path="/recuperarclave" element={<RecoverPassword />} />
       <Route path="/registro" element={<RegisterPage />} />
+      <Route path="/registerTherapist" element={<RegisterTherapist/>} />
       <Route path="/servicios" element={<Services />} />
       <Route path="/plans" element={<Plans />}/>
       <Route path="/agenda" element={<Agenda/>} />

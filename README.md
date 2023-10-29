@@ -24,7 +24,7 @@
 
 * Diseñador UX/UI: Iris Toledano | [LinkedIn](https://www.linkedin.com/in/iris-toledano-ayala-362150133/)
 
-* Tester: Victoria Castro | [LinkedIn](www.linkedin.com/in/victoria-castro-bc)
+* Tester QA: Victoria Castro | [LinkedIn](www.linkedin.com/in/victoria-castro-bc)
 
 ##  📝 Team Leader
 
