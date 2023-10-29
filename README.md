@@ -10,7 +10,7 @@
 
 ## 👷 Miembros del equipo
 
-* Product Manager: Roger Parra | [LinkedIn](www.linkedin.com/in/roger-parra)
+* Project Manager: Roger Parra | [LinkedIn](www.linkedin.com/in/roger-parra)
 
 * Desarrollador Frontend: José Puente | [LinkedIn](https://www.linkedin.com/in/jos%C3%A9-puente-96214619b)
 
