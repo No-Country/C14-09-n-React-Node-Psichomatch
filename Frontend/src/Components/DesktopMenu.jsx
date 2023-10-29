@@ -13,7 +13,7 @@ function DesktopMenu({ jwt, handleAccountExit }) {
         Mi Calendario
       </NavLink>
           <NavLink
-            to={`/psicologos/21`}
+            to={`/psicologos/`}
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
           >
             Encuentra tú Psicólogos
