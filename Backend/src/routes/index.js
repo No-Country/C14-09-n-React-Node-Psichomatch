@@ -9,7 +9,7 @@ const passport = require("passport");
 const router = Router();
 const ratingRoutes = require("./rating")
 const categoryRoutes = require("./category")
-
+const countryRoutes = require("./country")
 const hourRoutes = require("./hour")
 const availabilityRoutes = require("./availability")
 const reservationRoutes = require("./reservation")
@@ -39,6 +39,7 @@ router.use("/category", categoryRoutes)
 router.use("/hour", hourRoutes)
 router.use("/availability", availabilityRoutes)
 router.use("/reservation", reservationRoutes)
+router.use("/country", countryRoutes)
 module.exports = router;
 
 

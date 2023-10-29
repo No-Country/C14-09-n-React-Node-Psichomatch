@@ -11,6 +11,7 @@ const rating = require("./models/Rating")
 const hour = require("./models/Hour")
 const availability = require("./models/Availability")
 const reservation = require("./models/Reservation")
+const country = require("./models/Country")
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT,DB_NAME  } = process.env;
 
@@ -64,6 +65,7 @@ rating(sequelize);
 hour(sequelize);
 availability(sequelize);
 reservation(sequelize);
+country(sequelize);
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -77,14 +79,15 @@ const {
   Hour,
   Availability,
   Reservation,
-  Nation,
+  Country
 } = sequelize.models;
 
-//Therapist.belongsToMany(Category, { through: 'TherapistCategory' })
-//Category.belongsToMany(Therapist, { through: 'TherapistCategory' })
+
 Therapist.belongsTo(Category)
 Category.hasOne(Therapist)
 
+Therapist.belongsTo(Country)
+Country.hasOne(Therapist)
 
 Therapist.hasMany(Rating);
 Rating.belongsTo(Therapist);

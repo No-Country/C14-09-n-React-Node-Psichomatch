@@ -10,7 +10,6 @@ function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { jwt, destroySession } = useContext(JwtContext);
   const navigate = useNavigate(); // Use useNavigate here
-
   const handleAccountExit = () => {
     destroySession();
     navigate("/");
@@ -27,6 +26,8 @@ function Header() {
             <img src={logo} alt="" />
           </Link>
         </div>
+
+       
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -40,6 +41,7 @@ function Header() {
         <div className="hidden lg:flex justify-center items-center lg:gap-6 lg:flex-1 lg:justify-end">
           <DesktopMenu jwt={jwt} handleAccountExit={handleAccountExit} />
         </div>
+       
       </nav>
       <MobileMenu
         jwt={jwt}
@@ -47,6 +49,8 @@ function Header() {
         setMobileMenuOpen={setMobileMenuOpen}
         handleAccountExit={handleAccountExit}
       />
+
+      
     </header>
   );
 }

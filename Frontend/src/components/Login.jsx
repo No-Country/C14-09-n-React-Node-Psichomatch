@@ -5,9 +5,18 @@ import googleIcon from "../assets/Icons/google.svg";
 import { JwtContext } from "../Context/JwtContext";
 import { useContext } from "react";
 import jwtDecode from "jwt-decode";
-
+import {validatePatient} from "../redux/actions/patient"
+import { useSelector, useDispatch } from "react-redux";
+import React,{useState, useEffect} from "react";
 
 const Login = () => {
+
+  const [isTherapist, setIsTherapist] = useState(false);
+  const handleTherapistChange = () => {
+    setIsTherapist(!isTherapist);
+  };
+
+
   const {
     register,
     handleSubmit,
@@ -20,6 +29,7 @@ const Login = () => {
   const navigate = useNavigate(); 
 
   const onSubmit = async (data) => {
+
     const response = await loginPatient(data);
     const patientId = response.data.data.id;
 
@@ -101,6 +111,10 @@ const Login = () => {
             <div className="mt-4">
               <input type="checkbox" />
               <label className="ml-3">Recordar contraseña</label>
+            </div>
+            <div className="mt-4">
+              <input type="checkbox" checked={isTherapist} onChange={handleTherapistChange}/>
+              <label className="ml-3" >Soy Terapeuta</label>
             </div>
             <div className="mt-8 flex flex-col gap-y-4 text-center">
               <button
