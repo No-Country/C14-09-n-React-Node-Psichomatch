@@ -22,7 +22,7 @@
 
 * Desarrollador Backend: Guillermo Paez | [LinkedIn](https://www.linkedin.com/in/nahuelgarrido/)
 
-* Diseñadora UX/UI: Iris Toledano | [LinkedIn](https://www.linkedin.com/in/iris-toledano-ayala-362150133/)
+* Diseñador UX/UI: Iris Toledano | [LinkedIn](https://www.linkedin.com/in/iris-toledano-ayala-362150133/)
 
 * Tester: Victoria Castro | [LinkedIn](www.linkedin.com/in/victoria-castro-bc)
 
