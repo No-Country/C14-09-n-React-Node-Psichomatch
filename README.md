@@ -26,6 +26,12 @@
 
 * Tester: Victoria Castro | [LinkedIn](www.linkedin.com/in/victoria-castro-bc)
 
+##  📝 Team Leader
+
+Hernan Esquivel | [LinkedIn](www.linkedin.com/in/hernan-esquivel)
+
+
+
 ## 🚀 ¿Cómo usar PsichoMATCH?
 
 
