@@ -64,6 +64,13 @@ module.exports = (sequelize) => {
       },
 
 
+      PlanId:{
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: 1
+      },
+
+
       // Fundamentales
       email:{
         type: DataTypes.STRING,

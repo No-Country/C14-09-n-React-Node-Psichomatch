@@ -217,21 +217,29 @@ const createTherapist = async (req, res) => {
       description,
       email,
       password,
+      CategoryId,
+      CountryId,
+      PlanId,
+      linkedIn,
     } = req.body;
-    if (!name || !lastName || !adress)
-      return res.status(400).json({ error: "Missing fields" });
-    await Therapist.create({
-      name: name,
-      lastName: lastName,
-      adress: adress,
-      price: price || "",
-      phone: phone || "",
-      image: image || "",
-      description: description || "",
-      email: email || "",
-      password: password || "",
+   
+    const therapist = await Therapist.create({
+      name,
+      lastName,
+      adress,
+      price,
+      phone,
+      image,
+      description,
+      email,
+      password,
+      CategoryId,
+      CountryId,
+      PlanId,
+      linkedIn
+
     });
-    res.status(201).json({ message: "Therapist created" });
+    res.status(200).json(therapist);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -1,7 +1,7 @@
 import { NavLink, Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 function DesktopMenu({ jwt, handleAccountExit }) {
-  console.log(jwt.id +"  "+ "hola esoty aqui") 
+
   return (
 
     
@@ -31,11 +31,20 @@ function DesktopMenu({ jwt, handleAccountExit }) {
         </>
       ) : (
         <>
+
+        
           <NavLink
             to="/registro"
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
           >
-            Registarme
+            Registro Paciente
+          </NavLink>
+
+          <NavLink
+            to="/registerTherapist"
+            className="text-base text-black font-medium hover:text-[#A9A9A9] "
+          >
+            Registro Terapeuta
           </NavLink>
           <NavLink
             to="/login"
