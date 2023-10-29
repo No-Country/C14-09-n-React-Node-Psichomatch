@@ -6,16 +6,16 @@ function DesktopMenu({ jwt, handleAccountExit }) {
 
     
     <>
-      <NavLink
+      {jwt.token !== undefined ? (
+        
+        <>
+<SearchBar/>
+ <NavLink
         to="/servicios"
         className="text-base text-black font-medium hover:text-[#A9A9A9]"
       >
         Mi Calendario
       </NavLink>
-      {jwt.token !== undefined ? (
-        
-        <>
-<SearchBar/>
           <NavLink
             to={`/psicologos/${jwt?.id}`}
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
