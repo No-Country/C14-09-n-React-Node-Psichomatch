@@ -1,7 +1,10 @@
-const { Therapist, Category } = require("../db");
+const { Therapist, Category, Country } = require("../db");
 const { fillTherapistData } = require("../common/filledDates");
+const { Op , fn, where,col} = require("sequelize");
 
 // Functions for therapist CRUD
+
+
 const getTherapists = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -14,7 +17,11 @@ const getTherapists = async (req, res) => {
           model: Category,
           attributes: ["name"],
   
-        },],
+        },
+      {
+        model:Country
+      }
+      ],
       offset,
       limit,
       order: [["id", "ASC"]],
@@ -35,10 +42,14 @@ const getTherapists = async (req, res) => {
 const filterTherapistByCategoryId = async (req, res) => {
   try {
     const { id } = req.params;
+
+    if(!id) return res.status(400).json({ error: "Missing fields" });
+
     const page = parseInt(req.query.page) || 1;
     const perPage = 6;
     const offset = (page - 1) * perPage;
     const limit = perPage;
+
     const therapists = await Therapist.findAll({
       where:{CategoryId: id},
       include: [
@@ -52,21 +63,147 @@ const filterTherapistByCategoryId = async (req, res) => {
       order: [["id", "ASC"]],
     });
 
+    if (!therapists)
+      return res.status(404).json({ error: "Therapist not found" });
 
-    const therapists2 = await Therapist.findAll({
-      where:{CategoryId: id},
-    });
+else{
+ 
 
     const actualPage = page || 1;
 
-    const totalCount =  therapists2.length;
+    const totalCount =  therapists.length;
 
     const totalPages = Math.ceil(totalCount / perPage);
     res.status(200).json({ therapists, totalPages, actualPage });
+}
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
+
+const filterTherapists = async(req, res)=>{
+  const{CountryId, CategoryId} = req.query;
+
+  const page = parseInt(req.query.page) || 1;
+  const perPage = 6;
+  const offset = (page - 1) * perPage;
+  const limit = perPage;
+
+  if(CountryId && CategoryId){
+  try {
+
+    const therapists = await Therapist.findAll({
+      where:{CategoryId: Number(CategoryId), CountryId: Number(CountryId)},
+
+      include: [
+        {
+          model: Category,
+          attributes: ["name"],
+  
+        },
+        {
+          model: Country
+        }
+      ],
+      offset,
+      limit,
+      order: [["id", "ASC"]],
+    });
+    const actualPage = page || 1;
+    const therapists2 = await Therapist.findAll({
+      where:{CategoryId: Number(CategoryId), CountryId: Number(CountryId)}})
+
+
+    const totalCount =  therapists2.length;
+
+    const totalPages = Math.ceil(totalCount / perPage);
+
+    res.status(200).json({ therapists, totalPages, actualPage });
+    
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+  }else if(CategoryId){
+    try {
+
+      const therapists = await Therapist.findAll({
+        where:{CategoryId: Number(CategoryId)},
+  
+        include: [
+          {
+            model: Category,
+            attributes: ["name"],
+    
+          },
+          {
+            model: Country
+          }
+        ],
+        offset,
+        limit,
+        order: [["id", "ASC"]],
+      });
+     const actualPage = page || 1;
+
+     const therapists2 = await Therapist.findAll({
+      where:{CategoryId: Number(CategoryId)}})
+
+
+    const totalCount =  therapists2.length;
+      
+    const totalPages = Math.ceil(totalCount / perPage);
+    console.log(totalCount +" " + perPage+ " " + totalPages)
+      res.status(200).json({ therapists, totalPages, actualPage });
+      
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+
+
+  }else if(CountryId){
+    try {
+
+      const therapists = await Therapist.findAll({
+        where:{CountryId: Number(CountryId)},
+  
+        include: [
+          {
+            model: Category,
+            attributes: ["name"],
+    
+          },
+          {
+            model: Country
+          }
+        ],
+        offset,
+        limit,
+        order: [["id", "ASC"]],
+      });
+      const actualPage = page || 1;
+  
+      const therapists2 = await Therapist.findAll({
+        where:{CountryId: Number(CountryId)}})
+  
+  
+      const totalCount =  therapists2.length;
+  
+      const totalPages = Math.ceil(totalCount / perPage);
+  
+      res.status(200).json({ therapists, totalPages, actualPage });
+      
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+  
+
+   
+
+  
+
+}
 
 const createTherapist = async (req, res) => {
   try {
@@ -282,33 +419,56 @@ const getTherapistById = async (req, res) => {
 
 const searchByNameLastName = async (req, res) => {
   try {
-    const { name, lastName } = req.params;
+    const { search } = req.query;
     const page = parseInt(req.query.page) || 1;
     const perPage = 6;
     const offset = (page - 1) * perPage;
 
-    if(name === "null" || lastName === "null") return res.status(400).json({ error: "Missing fields" });
+  
 
-    const therapist = await Therapist.findAll({
+    const therapists = await Therapist.findAll({
+      include: [
+        {
+          model: Category,
+          attributes: ["name"],
+  
+        },
+      {
+        model:Country
+      }],
       where: {
-        name: {
-          [Op.like]: `%${name}%`,
-        },
-        lastName: {
-          [Op.like]: `%${lastName}%`,
-        },
+        [Op.or]: [
+          where(fn('LOWER', col('Therapist.name')), {
+            [Op.iLike]: `%${search.toLowerCase()}%`,
+          }),
+          where(fn('LOWER', col('Therapist.lastName')), {
+            [Op.iLike]: `%${search.toLowerCase()}%`,
+          }),
+        ],
       },
       offset,
       limit: perPage,
     });
 
-    if (!therapist)
-      return res.status(404).json({ error: "Therapist not found" });
+    const therapists2 = await Therapist.findAll({
+      where: {
+        [Op.or]: [
+          where(fn('LOWER', col('Therapist.name')), {
+            [Op.iLike]: `%${search.toLowerCase()}%`,
+          }),
+          where(fn('LOWER', col('Therapist.lastName')), {
+            [Op.iLike]: `%${search.toLowerCase()}%`,
+          }),
+        ],
+      },
+    });
 
-    const totalTherapist = therapist.length;
-    const totalPages = Math.ceil(totalTherapist / perPage);
 
-    res.status(200).json({ therapist, totalPages, totalTherapist });
+    const actualPage = page || 1;
+    const totalCount = therapists2.length;
+    const totalPages = Math.ceil(totalCount / perPage);
+
+    res.status(200).json({ therapists, totalPages, actualPage });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -317,7 +477,7 @@ const searchByNameLastName = async (req, res) => {
 const searchByPrice = async (req, res) => {
   const { price } = req.params;
   const page = parseInt(req.query.page) || 1;
-  const perPage = 6;
+  const perPage = 2;
   const offset = (page - 1) * perPage;
 
   if (!price) return res.status(400).json({ error: "Missing fields" });
@@ -351,7 +511,7 @@ const searchByUbication = async (req, res) => {
   const { ubication } = req.params;
 
   const page = parseInt(req.query.page) || 1;
-  const perPage = 6;
+  const perPage = 2;
   const offset = (page - 1) * perPage;
 
   if (!ubication) return res.status(400).json({ error: "Missing fields" });
@@ -377,6 +537,39 @@ const searchByUbication = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+}
+
+const searchByCountry = async (req, res) => {
+  const { country } = req.params;
+  console.log(country)
+
+  const page = parseInt(req.query.page) || 1;
+  const perPage = 6;
+  const offset = (page - 1) * perPage;
+
+  if (!country) return res.status(400).json({ error: "Missing fields" });
+
+  try {
+    const therapist = await Therapist.findAll({
+      where: {
+        nation: {
+          [Op.iLike]: `%${country}%`,
+        },
+      },
+      limit: perPage,
+      offset,
+    });
+
+    if (!therapist)
+      return res.status(404).json({ error: "Therapist not found" });
+
+      const totalTherapist = therapist.length;
+      const totalPages = Math.ceil(totalTherapist / perPage);
+  
+      res.status(200).json({ therapist, totalPages, totalTherapist });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 // --> FILL <--
@@ -407,4 +600,6 @@ module.exports = {
   searchByPrice,
   searchByUbication,
   filterTherapistByCategoryId,
+  searchByCountry,
+  filterTherapists
 };

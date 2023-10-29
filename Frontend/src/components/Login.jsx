@@ -1,25 +1,49 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { loginPatient } from "../api/patient_api";
 import { Link, useNavigate } from "react-router-dom";
 import googleIcon from "../assets/Icons/google.svg";
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { JwtContext } from "../Context/JwtContext";
+import { useContext } from "react";
+import jwtDecode from "jwt-decode";
+import {validatePatient} from "../redux/actions/patient"
+import { useSelector, useDispatch } from "react-redux";
+import React,{useState, useEffect} from "react";
 
 const Login = () => {
+
+  const [isTherapist, setIsTherapist] = useState(false);
+  const handleTherapistChange = () => {
+    setIsTherapist(!isTherapist);
+  };
+
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const { setJwt } = useContext(JwtContext);
+
   const navigate = useNavigate(); // Use useNavigate here
 
-
   const onSubmit = async (data) => {
+
     const response = await loginPatient(data);
-    if(response.data.tokenSession) {
-      navigate('/dashboard')
+    const patientId = response.data.data.id;
+
+    if (response.data.tokenSession) {
+      const token = response.data.tokenSession;
+      const decodedToken = await jwtDecode(token);
+
+      setJwt({
+        id: decodedToken.id,
+        token: token,
+        role: decodedToken.role,
+      });
+
+      localStorage.setItem("token", token);
+      navigate(`/dashboard/${patientId}`)
     }
   };
 
@@ -86,6 +110,10 @@ const Login = () => {
               <input type="checkbox" />
               <label className="ml-3">Recordar contraseña</label>
             </div>
+            <div className="mt-4">
+              <input type="checkbox" checked={isTherapist} onChange={handleTherapistChange}/>
+              <label className="ml-3" >Soy Terapeuta</label>
+            </div>
             <div className="mt-8 flex flex-col gap-y-4 text-center">
               <button
                 type="submit"
@@ -97,7 +125,6 @@ const Login = () => {
                 className="flex items-center justify-center shadow appearance-none gap-2 border-4 border-gray-100"
                 href="http://localhost:3001/auth/google"
               >
-                
                 <img src={googleIcon} alt="" />
                 Iniciar Sesión con Google
               </a>
