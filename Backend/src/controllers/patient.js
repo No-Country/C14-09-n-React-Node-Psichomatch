@@ -101,9 +101,9 @@ const insertPatient = async (req, res) => {
 
 const logInPatient = async (req, res) => {
   try {
-    const { patientEmail, password } = req.body;
+    const { email, password } = req.body;
     const patientExist = await Patient.findOne({
-      where: { email: patientEmail },
+      where: { email },
     });
 
     if (patientExist) {
@@ -119,7 +119,16 @@ const logInPatient = async (req, res) => {
           data:patientExist,
           tokenSession
         })
-      } else{
+      } else if(!ValidatePassword){
+        if(password === patientExist.password){
+          res.status(200).json({
+            data:patientExist,
+            tokenSession
+          })
+        }
+      }
+      
+      else{
         res.status(400).send("Wrong Password")
       }
       

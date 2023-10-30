@@ -1,11 +1,14 @@
-import { GET_THERAPIST_BY_ID, GET_THERAPIST_PER_PAGE, FILTER_STATUS, SEARCH_STATUS, FILTER_THERAPIST, SEARCH_THERAPIST, SEARCH_VALUE, INSERT_THERAPIST } from "../actions/action-type";
+import { GET_THERAPIST_BY_ID, GET_THERAPIST_PER_PAGE, FILTER_STATUS, SEARCH_STATUS, FILTER_THERAPIST, SEARCH_THERAPIST, SEARCH_VALUE, INSERT_THERAPIST, LOGIN_THERAPIST, UPDATE_THERAPIST } from "../actions/action-type";
 const initialState = {
   therapists: [],
   therapist: {},
   filterTherapists: [],
   filterStatus: false,
   searchStatus: false,
-  search: ""
+  search: "",
+  login: "",
+  created:{},
+  updated:{}
 };
 
 const therapist = (state = initialState, { type, payload }) => {
@@ -54,8 +57,19 @@ const therapist = (state = initialState, { type, payload }) => {
             case INSERT_THERAPIST:
               return{
                 ...state,
-                therapist: payload
+                created: payload
               }
+
+              case LOGIN_THERAPIST:
+                return{
+                  ...state,
+                  login: payload
+                }
+                case UPDATE_THERAPIST:
+                  return{
+                    ...state,
+                    updated: payload
+                  }
     default:
       return state;
   }
