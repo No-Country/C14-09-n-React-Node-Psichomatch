@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { loginPatient } from "../api/patient_api";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,12 +5,19 @@ import googleIcon from "../assets/Icons/google.svg";
 import { JwtContext } from "../Context/JwtContext";
 import { useContext } from "react";
 import jwtDecode from "jwt-decode";
+import {validatePatient} from "../redux/actions/patient"
+import { useSelector, useDispatch } from "react-redux";
+import React,{useState, useEffect} from "react";
+import { loginTherapist } from "../redux/actions/therapist";
 
 const Login = () => {
   const [isTherapist, setIsTherapist] = useState(false);
   const handleTherapistChange = () => {
     setIsTherapist(!isTherapist);
   };
+
+  const dispatch = useDispatch()
+  const loginInfo = useSelector(state => state.therapist.login)
 
   const {
     register,
@@ -39,7 +45,30 @@ const Login = () => {
 
       localStorage.setItem("token", token);
       navigate(`/dashboard/${patientId}`);
+    }else {
+      try {
+        const resultTherapist = await dispatch(loginTherapist(data));
+        const therapistInfo = resultTherapist.payload;
+  
+        if (therapistInfo.tokenSession) {
+          const token = therapistInfo.tokenSession;
+          const decodedToken = await jwtDecode(token);
+  
+          setJwt({
+            id: decodedToken.id,
+            token: token,
+            role: decodedToken.role,
+          });
+  
+          localStorage.setItem("token", token);
+          const therapistId = therapistInfo.data.id;
+          navigate(`/dashboard/therapist/${therapistId}`);
+        }
+      } catch (error) {
+        console.error("Error en el inicio de sesión del terapeuta:", error);
+      }
     }
+
   };
 
   return (
