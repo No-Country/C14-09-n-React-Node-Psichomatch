@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useFetcher, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import {
   getPatientReservation,
   deleteReservation,
 } from "../api/reservation_api";
-import TherapistPerfil from "../Components/Therapist/TherapistPerfil";
-import TherapistAgenda from "../Components/Therapist/TherapistAgenda";
-import TherapistPrecios from "../Components/Therapist/TherapistPrecios";
 
 const Dashboard = function () {
   const navigate = useNavigate();
@@ -38,49 +36,11 @@ const Dashboard = function () {
     }
   }, [params.id]);
 
-  // Navegación del therapist
-  const [opcion, setOpcion] = useState('Perfil');
 
-  const handleOpcion = (opc) => {
-    setOpcion(opc);
-  }
 
-  // Esto es para la visibilidad pero no lo pude hacer.
-  // const [visibility, setVisibility] = useState(true)
-
-  // const switchVisibility = () => {
-  //   setVisibility(!visibility)
-  // }
-
-  const [therapist, setTherapist] = useState({});
-
-  const getTherapistDates = async (data) => {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
   
-    try {
-      const response = await fetch("http://localhost:3001/therapist/getTherapistByID/21", requestOptions);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-  
-      const result = await response.text();
-      setTherapist(JSON.parse(result));
-    } catch (error) {
-      console.error('Error:', error);
-    }
-
-  }
-
-  useEffect(() => {
-    getTherapistDates(data);
-  }, []);
-
   return (
-    <>
-     <div className="flex w-full h-screen items-center justify-center">
+    <div className="flex w-full h-screen items-center justify-center">
       <div className="w-full flex items-center justify-center lg:w-1/2">
         <div className="md:mx-6 md:p-12">
           <div className="flex items-center m-20">
@@ -129,8 +89,6 @@ const Dashboard = function () {
         </div>
       </div>
     </div>
-  );
-    </>
   );
 };
 

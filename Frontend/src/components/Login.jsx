@@ -11,6 +11,7 @@ import React,{useState, useEffect} from "react";
 import { loginTherapist } from "../redux/actions/therapist";
 
 const Login = () => {
+
   const [isTherapist, setIsTherapist] = useState(false);
   const handleTherapistChange = () => {
     setIsTherapist(!isTherapist);
@@ -18,6 +19,8 @@ const Login = () => {
 
   const dispatch = useDispatch()
   const loginInfo = useSelector(state => state.therapist.login)
+  
+
 
   const {
     register,
@@ -27,25 +30,27 @@ const Login = () => {
 
   const { setJwt } = useContext(JwtContext);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Use useNavigate here
 
   const onSubmit = async (data) => {
-    const response = await loginPatient(data);
-    const patientId = response.data.data.id;
-
-    if (response.data.tokenSession) {
-      const token = response.data.tokenSession;
-      const decodedToken = await jwtDecode(token);
-
-      setJwt({
-        id: decodedToken.id,
-        token: token,
-        role: decodedToken.role,
-      });
-
-      localStorage.setItem("token", token);
-      navigate(`/dashboard/${patientId}`);
-    }else {
+    if (!isTherapist) {
+      const response = await loginPatient(data);
+      const patientId = response.data.data.id;
+  
+      if (response.data.tokenSession) {
+        const token = response.data.tokenSession;
+        const decodedToken = await jwtDecode(token);
+  
+        setJwt({
+          id: decodedToken.id,
+          token: token,
+          role: decodedToken.role,
+        });
+  
+        localStorage.setItem("token", token);
+        navigate(`/dashboard/${patientId}`);
+      }
+    } else {
       try {
         const resultTherapist = await dispatch(loginTherapist(data));
         const therapistInfo = resultTherapist.payload;
@@ -68,7 +73,6 @@ const Login = () => {
         console.error("Error en el inicio de sesión del terapeuta:", error);
       }
     }
-
   };
 
   return (
@@ -135,12 +139,8 @@ const Login = () => {
               <label className="ml-3">Recordar contraseña</label>
             </div>
             <div className="mt-4">
-              <input
-                type="checkbox"
-                checked={isTherapist}
-                onChange={handleTherapistChange}
-              />
-              <label className="ml-3">Soy Terapeuta</label>
+              <input  type="checkbox" checked={isTherapist} onChange={handleTherapistChange}/>
+              <label  className="ml-3" >Soy Terapeuta</label>
             </div>
             <div className="mt-8 flex flex-col gap-y-4 text-center">
               <button
