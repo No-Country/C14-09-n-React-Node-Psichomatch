@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom";
 import SearchBar from "./SearchBar";
+
 function DesktopMenu({ jwt, handleAccountExit }) {
   return (
     <>
       {jwt.token !== undefined ? (
         <>
-          <NavLink
+        {jwt.role == 'patient' && (
+          <>
+            <NavLink
             to={`dashboard/${jwt?.id}`}
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
           >
@@ -17,12 +20,30 @@ function DesktopMenu({ jwt, handleAccountExit }) {
           >
             Psicólogos
           </NavLink>
+         </>
+        )}
+          {jwt.role === 'therapist' && (
+            <>
+             <NavLink
+            to={`dashboard/${jwt?.id}`}
+            className="text-base text-black font-medium hover:text-[#A9A9A9]"
+          >
+            Mi Agenda
+          </NavLink>
+            <NavLink
+              to={`/dashboard/therapist/${jwt?.id}`}
+              className="text-base text-black font-medium hover:text-[#A9A9A9]"
+            >
+              Mi Perfil
+            </NavLink>
+            </>
+          )}
           <SearchBar />
           <button
             className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
             onClick={handleAccountExit}
           >
-            Cerrar Sesion
+            Cerrar Sesión
           </button>
         </>
       ) : (
