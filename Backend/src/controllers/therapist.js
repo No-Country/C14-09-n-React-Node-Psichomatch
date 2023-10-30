@@ -1,7 +1,8 @@
 const { Therapist, Category, Country } = require("../db");
 const { fillTherapistData } = require("../common/filledDates");
 const { Op , fn, where,col} = require("sequelize");
-
+const bcrypt = require("bcryptjs");
+const  {tokenSign}  = require('../helpers/generateToken')
 // Functions for therapist CRUD
 
 
@@ -197,13 +198,50 @@ const filterTherapists = async(req, res)=>{
       res.status(500).json({ error: error.message });
     }
   }
-  
-
-   
-
-  
 
 }
+
+const logInTherapist = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const therapistExist = await Therapist.findOne({
+      where: { email },
+    });
+
+    if (therapistExist) {
+      const ValidatePassword = await bcrypt.compareSync(
+        password,
+        therapistExist.password
+      );
+
+      const tokenSession = await tokenSign(therapistExist) //Token
+
+      if (ValidatePassword){
+        res.status(200).json({
+          data:therapistExist,
+          tokenSession
+        })
+      }else if(!ValidatePassword){
+        if(password === therapistExist.password){
+          res.status(200).json({
+            data:therapistExist,
+            tokenSession
+          })
+        }
+      }
+      
+      else{
+        res.status(400).send("Wrong Password")
+      }
+      
+    } else {
+      res.status(400).json(false);
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 const createTherapist = async (req, res) => {
   try {
@@ -217,21 +255,76 @@ const createTherapist = async (req, res) => {
       description,
       email,
       password,
+      CategoryId,
+      CountryId,
+      PlanId,
+      linkedIn,
     } = req.body;
-    if (!name || !lastName || !adress)
-      return res.status(400).json({ error: "Missing fields" });
-    await Therapist.create({
-      name: name,
-      lastName: lastName,
-      adress: adress,
-      price: price || "",
-      phone: phone || "",
-      image: image || "",
-      description: description || "",
-      email: email || "",
-      password: password || "",
+
+
+    const salt = bcrypt.genSaltSync(10);
+    const encryptPassword = bcrypt.hashSync(password, salt);
+   
+    const therapist = await Therapist.create({
+      name,
+      lastName,
+      adress,
+      price,
+      phone,
+      image,
+      description,
+      email,
+      password: encryptPassword,
+      CategoryId,
+      CountryId,
+      PlanId,
+      linkedIn
+
     });
-    res.status(201).json({ message: "Therapist created" });
+    res.status(200).json(therapist);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+const updateTherapist = async (req, res) => {
+  try {
+    const {
+      id,
+      name,
+      lastName,
+      adress,
+      price,
+      phone,
+      image,
+      description,
+      email,
+      CategoryId,
+      CountryId,
+      PlanId,
+      linkedIn,
+    } = req.body;
+
+    const therapist = await Therapist.findByPk(id)
+   
+    const therapist2 = await therapist.update({
+      name,
+      lastName,
+      adress,
+      price,
+      phone,
+      image,
+      description,
+      email,
+      CategoryId,
+      CountryId,
+      PlanId,
+      linkedIn
+
+    });
+    res.status(200).json(therapist2);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -404,14 +497,35 @@ const switchTherapistState = async (req, res) => {
 const getTherapistById = async (req, res) => {
   try {
     const { id } = req.params;
-    if(!id) return res.status(400).json({ error: "Missing fields" });
 
-    const therapist = await Therapist.findByPk(id);
-    if(!therapist) return res.status(404).json({ error: "Therapist not found" });
+    // Validar que se proporciona un ID válido
+    if (!id) {
+      return res.status(400).json({ error: "Missing therapist ID" });
+    }
 
+    // Buscar al terapeuta por su ID
+    const therapist = await Therapist.findByPk(id, {
+      include: [
+        {
+          model: Category,
+          attributes: ["name"],
+        },
+        {
+          model: Country,
+        },
+      ],
+    });
+
+    // Verificar si se encontró al terapeuta
+    if (!therapist) {
+      return res.status(404).json({ error: "Therapist not found" });
+    }
+
+    // Si todo está bien, enviar el terapeuta como respuesta
     res.status(200).json(therapist);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    // Manejar errores internos del servidor de manera adecuada
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -601,5 +715,7 @@ module.exports = {
   searchByUbication,
   filterTherapistByCategoryId,
   searchByCountry,
-  filterTherapists
+  filterTherapists,
+  logInTherapist,
+  updateTherapist
 };

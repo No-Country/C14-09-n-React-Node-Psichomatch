@@ -4,27 +4,34 @@ import { v4 as uuidv4 } from "uuid";
 import { getCategories } from "../redux/actions/category";
 import { getCountries } from "../redux/actions/country";
 import axios from "axios";
-import { insertTherapist } from "../redux/actions/therapist";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-const RegisterTherapist = () => {
-  const therapist = useSelector((state) => state.therapist.created);
+import { getTherapistById, insertTherapist, updateTherapist } from "../redux/actions/therapist";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { useParams } from "react-router-dom";
+import Agenda from "../Components/Agenda";
+const DashboardTherapist = () => {
+
+    const {id} = useParams();
+    
+    const therapist = useSelector((state)=> state.therapist.therapist)
+    const updated = useSelector((state)=>state.therapist.updated)
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.country.countries);
   const categories = useSelector((state) => state.category.categories);
   const [name, setName] = useState("");
   const [lastName, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [CategoryId, setCategoryId] = useState("");
   const [CountryId, setCountryId] = useState("");
   const [image, setImage] = useState("");
   const [PlanId, setPlanId] = useState("");
-  const [price, setPrice] = useState("");
-  const [phone, setPhone] = useState("");
-  const [adress, setAdress] = useState("");
-  const [description, setDescription] = useState("");
-  const [linkedIn, setLinkedIn] = useState("");
+  const [price, setPrice] = useState("")
+  const [phone, setPhone] = useState("")
+  const [adress, setAdress] = useState("")
+  const [description, setDescription] = useState("")
+  const [linkedIn, setLinkedIn] = useState("")
+
+ 
 
   const handleCountryChange = (country) => {
     setCountryId(country);
@@ -37,7 +44,29 @@ const RegisterTherapist = () => {
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getCountries());
-  }, [dispatch]);
+    dispatch(getTherapistById(id))
+  }, [dispatch, id]);
+
+
+  useEffect(()=>{
+
+    if(therapist){
+
+        const {name,lastName,image, price, description, adress, CategoryId, CountryId, phone, linkedIn, email, PlanId} = therapist
+        setName(name)
+        setLastname(lastName)
+        setAdress(adress)
+        setPhone(phone)
+        setCategoryId(CategoryId)
+        setCountryId(CountryId)
+        setDescription(description)
+        setImage(image)
+        setPrice(price)
+        setPlanId(PlanId)
+        setLinkedIn(linkedIn)
+        setEmail(email)
+    }
+  },[therapist])
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -52,10 +81,13 @@ const RegisterTherapist = () => {
     }
   };
 
+
+  
+
   const uploadImage = async (image) => {
     const preset_key = "compumundo";
-    const cloud_name = "dpqjfpdt0";
-    const file = image;
+  const cloud_name = "dpqjfpdt0";
+    const file = image
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", preset_key);
@@ -83,15 +115,17 @@ const RegisterTherapist = () => {
       phone &&
       linkedIn &&
       email &&
-      PlanId &&
-      password
+      PlanId
     ) {
       try {
-        await uploadImage(image);
+        if (image !== therapist.image) {
+          await uploadImage(image);
+        }
   
-        // Luego de que la imagen se haya cargado con éxito, procede a insertar el terapeuta
-        const result = await dispatch(
-          insertTherapist({
+        // Capturamos el resultado del dispatch en una variable
+        const updatedResult = await dispatch(
+          updateTherapist({
+            id,
             name,
             lastName,
             image,
@@ -104,54 +138,42 @@ const RegisterTherapist = () => {
             linkedIn,
             email,
             PlanId,
-            password,
           })
         );
-  
-        if (result) {
-          if (result.payload.id) {
-            const MySwal = withReactContent(Swal);
-            MySwal.fire({
-              title: <p>Psicologo Agregado Exitosamente</p>,
-              icon: "success",
-            });
-  
-        
-            setName("");
-            setLastname("");
-            setAdress("");
-            setPhone("");
-            setPassword("");
-            setCategoryId("");
-            setCountryId("");
-            setDescription("");
-            setImage("");
-            setPrice("");
-            setPlanId("");
-            setLinkedIn("");
-            setEmail("");
-          }
+          
+        if (updatedResult) {
+          // Puedes usar updatedResult en este punto
+          console.log(updatedResult);
+          
+          const MySwal = withReactContent(Swal);
+          MySwal.fire({
+            title: <p>Psicólogo actualizado Exitosamente</p>,
+            icon: "success",
+          });
+        } else {
+          const MySwal = withReactContent(Swal);
+          MySwal.fire({
+            title: <p>Llena todos los campos</p>,
+            icon: "error",
+          });
         }
       } catch (error) {
-       
+        console.error(error.message);
+      }
+    }else{
         const MySwal = withReactContent(Swal);
         MySwal.fire({
-          title: <p>Error al cargar la imagen o crear el perfil</p>,
+          title: <p>Llena todos los campos</p>,
           icon: "error",
         });
-      }
-    } else {
-      const MySwal = withReactContent(Swal);
-      MySwal.fire({
-        title: <p>Llena todos los campos</p>,
-        icon: "error",
-      });
+
     }
   };
+
   return (
     <div className="w-full">
       <form onSubmit={handleSubmit} className="flex flex-col ">
-        <h1 className="text-center font-bold text-3xl">Registro - Psicologo</h1>
+        <h1 className="text-center font-bold text-3xl">Perfil - Psicologo</h1>
         <div className="flex items-center ml-56">
           <p className="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center">
             1
@@ -173,13 +195,7 @@ const RegisterTherapist = () => {
             </ul>
 
             <div className="mt-5" key={uuidv4()}>
-              <input
-                className="mr-2"
-                type="radio"
-                value={1}
-                checked={PlanId === 1}
-                onChange={() => setPlanId(1)}
-              />
+              <input className="mr-2" type="radio" value={1} checked={PlanId === 1} onChange={()=>setPlanId(1)}/>
               <label>{"Selecciona este plan"}</label>
             </div>
           </div>
@@ -206,12 +222,7 @@ const RegisterTherapist = () => {
               </ul>
 
               <div className="mt-5" key={uuidv4()}>
-                <input
-                  type="radio"
-                  value={2}
-                  checked={PlanId === 2}
-                  onChange={() => setPlanId(2)}
-                />
+                <input type="radio" value={2} checked={PlanId === 2} onChange={()=>setPlanId(2)}/>
                 <label>{"Selecciona este plan"}</label>
               </div>
             </div>
@@ -244,12 +255,7 @@ const RegisterTherapist = () => {
               </ul>
 
               <div key={uuidv4()}>
-                <input
-                  type="radio"
-                  value={3}
-                  checked={PlanId === 3}
-                  onChange={() => setPlanId(3)}
-                />
+                <input type="radio" value={3} checked={PlanId === 3} onChange={()=>setPlanId(3)}/>
                 <label>{"Selecciona este plan"}</label>
               </div>
             </div>
@@ -295,7 +301,7 @@ const RegisterTherapist = () => {
               type="text"
               id="name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e)=> setName(e.target.value)}
               name="name"
               placeholder="Ingrese su nombre"
             />
@@ -309,7 +315,7 @@ const RegisterTherapist = () => {
               type="text"
               id="lastName"
               value={lastName}
-              onChange={(e) => setLastname(e.target.value)}
+              onChange={(e)=> setLastname(e.target.value)}
               name="lastName"
               placeholder="Ingrese su apellido"
             />
@@ -324,24 +330,11 @@ const RegisterTherapist = () => {
               id="email"
               name="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e)=> setEmail(e.target.value)}
               placeholder="Igrese su email"
             />
           </div>
-          <div className="flex flex-col">
-            <label className="mt-10" htmlFor="password">
-              Contraseña
-            </label>
-            <input
-              className="rounded border border-gray-700 p-2 w-96"
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Ingrese su contrasena"
-            />
-          </div>
+      
 
           <div className="flex flex-col">
             <label className="mt-10" htmlFor="phone">
@@ -353,7 +346,7 @@ const RegisterTherapist = () => {
               id="phone"
               name="phone"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e)=> setPhone(e.target.value)}
               placeholder="Ingrese su telefono"
             />
           </div>
@@ -368,7 +361,7 @@ const RegisterTherapist = () => {
               id="linkedIn"
               name="linkedIn"
               value={linkedIn}
-              onChange={(e) => setLinkedIn(e.target.value)}
+              onChange={(e)=> setLinkedIn(e.target.value)}
               placeholder="Ingrese su linkedIn"
             />
           </div>
@@ -383,7 +376,7 @@ const RegisterTherapist = () => {
               id="price"
               name="price"
               value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              onChange={(e)=> setPrice(e.target.value)}
               placeholder="Ingrese su precio"
             />
           </div>
@@ -392,40 +385,34 @@ const RegisterTherapist = () => {
             <label className="mt-10" htmlFor="adress">
               Direccion
             </label>
-            <textarea
+            <textarea 
               className="rounded border border-gray-700 p-2 w-96"
               id="adress"
               name="adress"
               value={adress}
-              onChange={(e) => setAdress(e.target.value)}
+              onChange={(e)=> setAdress(e.target.value)}
               placeholder="Ingrese su direccion"
             />
           </div>
 
           <div className="flex flex-col">
             <label className="mt-10" htmlFor="description">
-              Descripción
+            Descripción
             </label>
-            <textarea
+            <textarea 
               className="rounded border border-gray-700 p-2 w-96"
               id="description"
               name="description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e)=> setDescription(e.target.value)}
               placeholder="Ingrese su descripcion"
             />
           </div>
+
         </div>
-        <div className="flex items-center ml-56">
-          <p className="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center">
-            3
-          </p>
-          <p className="ml-2 font-bold">Enfoque y Pais </p>
-        </div>
+        
         <div className="grid grid-cols-2 mt-10 mx-auto gap-1">
-          <p className="col-span-2 mb-5 font-bold">
-            Elige la metodologia con la que trabajas
-          </p>
+          <p className="col-span-2 mb-5 font-bold">Elige la metodologia con la que trabajas</p>
 
           {categories?.map((category) => {
             return (
@@ -442,9 +429,7 @@ const RegisterTherapist = () => {
           })}
         </div>
         <div className="grid grid-cols-2 mt-10 mx-auto gap-1">
-          <p className="col-span-2 mb-5 font-bold">
-            Elige tu pais de residencia
-          </p>
+          <p className="col-span-2 mb-5 font-bold">Elige tu pais de residencia</p>
 
           {countries?.map((country) => {
             return (
@@ -460,15 +445,29 @@ const RegisterTherapist = () => {
             );
           })}
         </div>
-        <button
-          className="bg-violet-100 rounded-full w-48 py-2 mx-auto my-10"
-          type="submit"
-        >
-          Crear perfil
-        </button>
+          
+        
+
+
+          <button className="bg-violet-100 rounded-full w-48 py-2 mx-auto my-10" type="submit">Actualizar perfil</button>
+        
       </form>
+          <div className="flex flex-col mb-10">
+
+      <div className="flex items-center ml-56">
+          <p className="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center">
+            4
+          </p>
+          <p className="ml-2 font-bold">Horario</p>
+        </div>
+        <div className="flex flex-col mx-auto mt-10">
+          <p className="font-bold mb-5">Elige el horario en el que deseas atender pacientes</p>
+     
+          <Agenda therapistId={Number(id)}/>
+          </div>
+          </div>
     </div>
   );
 };
 
-export default RegisterTherapist;
+export default DashboardTherapist;

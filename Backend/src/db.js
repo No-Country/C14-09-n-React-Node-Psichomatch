@@ -12,7 +12,7 @@ const hour = require("./models/Hour")
 const availability = require("./models/Availability")
 const reservation = require("./models/Reservation")
 const country = require("./models/Country")
-
+const plan = require("./models/Plan")
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT,DB_NAME  } = process.env;
 
 const sequelize = new Sequelize(
@@ -66,6 +66,7 @@ hour(sequelize);
 availability(sequelize);
 reservation(sequelize);
 country(sequelize);
+plan(sequelize)
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -79,12 +80,16 @@ const {
   Hour,
   Availability,
   Reservation,
-  Country
+  Country,
+  Plan
 } = sequelize.models;
 
 
 Therapist.belongsTo(Category)
 Category.hasOne(Therapist)
+
+Therapist.belongsTo(Plan)
+Plan.hasOne(Therapist)
 
 Therapist.belongsTo(Country)
 Country.hasOne(Therapist)
