@@ -1,4 +1,4 @@
-import { GET_THERAPIST_PER_PAGE, GET_THERAPIST_BY_ID, FILTER_THERAPIST, FILTER_STATUS, SEARCH_STATUS, SEARCH_THERAPIST, SEARCH_VALUE } from "./action-type";
+import { GET_THERAPIST_PER_PAGE, GET_THERAPIST_BY_ID, FILTER_THERAPIST, FILTER_STATUS, SEARCH_STATUS, SEARCH_THERAPIST, SEARCH_VALUE, INSERT_THERAPIST } from "./action-type";
 import axios from "../../axios";
 
 export const getTherapistPerPage = (page) => {
@@ -32,6 +32,25 @@ export const getTherapistById = (id) => {
     }
   };
 };
+
+
+export const insertTherapist = (therapist) => {
+  return async (dispatch) => {
+    try {
+
+      const { data } = await axios.post(
+        `/therapist/create`, therapist
+      );
+      return dispatch({
+        type: INSERT_THERAPIST,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
 
 
 export const filterTherapist = (CategoryId, CountryId, page=1) => {

@@ -27,21 +27,18 @@ function Header() {
           </Link>
         </div>
 
-       
         <div className="flex lg:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-5"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <span className="sr-only">Open main menu</span>
             <img src={bars3Icon} alt="" />
           </button>
         </div>
-        <div className="hidden lg:flex justify-center items-center lg:gap-6 lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex justify-center items-center lg:gap-4 lg:flex-1 lg:justify-end">
           <DesktopMenu jwt={jwt} handleAccountExit={handleAccountExit} />
         </div>
-       
       </nav>
       <MobileMenu
         jwt={jwt}
@@ -49,8 +46,6 @@ function Header() {
         setMobileMenuOpen={setMobileMenuOpen}
         handleAccountExit={handleAccountExit}
       />
-
-      
     </header>
   );
 }

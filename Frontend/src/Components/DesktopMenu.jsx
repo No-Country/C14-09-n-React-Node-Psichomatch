@@ -1,16 +1,16 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import SearchBar from "./SearchBar";
 function DesktopMenu({ jwt, handleAccountExit }) {
   return (
     <>
-      <NavLink
-        to="/servicios"
-        className="text-base text-black font-medium hover:text-[#A9A9A9]"
-      >
-        Servicios
-      </NavLink>
       {jwt.token !== undefined ? (
         <>
+          <NavLink
+            to={`dashboard/${jwt?.id}`}
+            className="text-base text-black font-medium hover:text-[#A9A9A9]"
+          >
+            Mi Calendario
+          </NavLink>
           <NavLink
             to={`/psicologos/${jwt?.id}`}
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
@@ -28,10 +28,23 @@ function DesktopMenu({ jwt, handleAccountExit }) {
       ) : (
         <>
           <NavLink
+            to="/servicios"
+            className="text-base text-black font-medium hover:text-[#A9A9A9]"
+          >
+            Servicios
+          </NavLink>
+          <NavLink
             to="/registro"
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
           >
-            Registarme
+            Registro Paciente
+          </NavLink>
+
+          <NavLink
+            to="/registerTherapist"
+            className="text-base text-black font-medium hover:text-[#A9A9A9]"
+          >
+            Registro Psicólogo
           </NavLink>
           <NavLink
             to="/login"

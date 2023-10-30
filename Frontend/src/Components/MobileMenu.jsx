@@ -25,27 +25,20 @@ function MobileMenu({
           </Link>
           <button
             type="button"
-            className="-m-2.5 rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 rounded-md p-2.5"
             onClick={() => setMobileMenuOpen(false)}
           >
-            <span className="sr-only">Close menu</span>
             <img src={clearIcon} alt="" />
           </button>
         </div>
         <div className="mt-6 flow-root">
           <div className="-my-6 divide-y divide-gray-500/10">
             <div className="space-y-2 py-6">
-              <NavLink
-                to="/servicios"
-                className="-mx-3 block rounded-lg px-3 py-2 hover:font-bold text-base font-semibold leading-7 text-black hover:bg-gray-50"
-              >
-                Servicios
-              </NavLink>
               {jwt.token !== undefined ? (
                 <>
                   <NavLink
-                    to="/psicologos"
-                    className="-mx-3 block rounded-lg px-3 py-2 hover:font-bold text-base font-semibold leading-7 text-black hover:bg-gray-50"
+                    to={`/psicologos/${jwt?.id}`}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-black hover:text-[#A9A9A9]"
                   >
                     Psicólogos
                   </NavLink>
@@ -53,10 +46,22 @@ function MobileMenu({
               ) : (
                 <>
                   <NavLink
-                    to="/registro"
-                    className="-mx-3 block rounded-lg px-3 py-2 hover:font-bold text-base font-semibold leading-7 text-black hover:bg-gray-50"
+                    to="/servicios"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-black hover:text-[#A9A9A9]"
                   >
-                    Registarme
+                    Servicios
+                  </NavLink>
+                  <NavLink
+                    to="/registro"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-black hover:text-[#A9A9A9]"
+                  >
+                    Registro Paciente
+                  </NavLink>
+                  <NavLink
+                    to="/registerTherapist"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-black hover:text-[#A9A9A9]"
+                  >
+                    Registro Psicólogo
                   </NavLink>
                 </>
               )}
@@ -64,6 +69,7 @@ function MobileMenu({
             <div className="py-6 gap-4 flex flex-col items-start">
               {jwt.token !== undefined ? (
                 <>
+                  <SearchBar />
                   <button
                     onClick={handleAccountExit}
                     className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
@@ -73,7 +79,6 @@ function MobileMenu({
                 </>
               ) : (
                 <>
-                  <SearchBar />
                   <NavLink
                     to="/login"
                     className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
