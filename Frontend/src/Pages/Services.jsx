@@ -49,10 +49,10 @@ const services = [
 export const Services = () => {
   return (
     <div className="mx-auto px-2 sm:px-6 pt-16 lg:pt-24 xl:pt-[136px]">
-      <div className="flex justify-center flex-wrap gap-x-20 gap-y-12">
+      <div className="grid  md:grid-cols-2 xl:grid-cols-3 gap-4 grid-center ">
         {services.map((service) => (
-          <div key={service.name} className="group relative block">
-            <div className="relative transform transition-transform flex items-center justify-center w-[266px] h-[328px] overflow-hidden rounded-2xl bg-[#F9F6FF]">
+          <div key={service.name} className="group relative block flex flex-col items-center">
+            <div className="relative transform transition-transform flex items-center justify-center w-[310px] h-[400px] overflow-hidden rounded-2xl bg-[#F9F6FF]">
               <div className="transition-opacity group-hover:absolute group-hover:opacity-0">
                 <img src={service.imageSrc} alt={service.name} />
               </div>
@@ -62,7 +62,7 @@ export const Services = () => {
                 </p>
               </div>
             </div>
-            <h3 className="text-2xl text-black font-semibold w-[160px] px-[66px] mt-5">
+            <h3 className="text-2xl text-black font-semibold w-[160px] px-[66px] mt-5 flex justify-center">
               {service.name}
             </h3>
           </div>
