@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import searchIcon from "../assets/Icons/search.svg";
 import { useDispatch, useSelector } from 'react-redux';
 import { filterStatus, searchStatus, searchTherapist, setSearch } from '../redux/actions/therapist';
 import { selectedCountry } from '../redux/actions/country';
@@ -35,7 +34,7 @@ const SearchBar = () => {
   return (
     <div className="relative">
       <div className="cursor-pointer" onClick={toggleSearch}>
-        <FontAwesomeIcon icon={faSearch} size="lg" />
+        <img src={searchIcon} alt="" />
       </div>
       {isSearchVisible && (
         <div className="absolute top-0 right-0 mt-12">

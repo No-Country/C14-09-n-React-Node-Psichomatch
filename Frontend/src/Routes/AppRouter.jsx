@@ -11,7 +11,6 @@ import { RegisterPage } from "../Pages/RegisterPage";
 import { FindPsychologists } from "../Pages/FindPsychologists";
 import AppointmentPatient from "../Components/AppointmentPatient";
 import Plans from "../Pages/Plans";
-import Agenda from "../Components/Agenda"
 function AppRouter() {
   const { jwt } = useContext(JwtContext);
   return (
@@ -21,8 +20,7 @@ function AppRouter() {
       <Route path="/recuperarclave" element={<RecoverPassword />} />
       <Route path="/registro" element={<RegisterPage />} />
       <Route path="/servicios" element={<Services />} />
-      <Route path="/plans" element={<Plans />}/>
-      <Route path="/agenda" element={<Agenda/>} />
+      <Route path="/plans" element={<Plans />} />
       {jwt.token !== undefined ? (
         <>
           <Route path="/dashboard/:id" element={<Dashboard />} />

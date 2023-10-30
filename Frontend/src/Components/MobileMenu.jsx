@@ -1,5 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
+import SearchBar from "../Components/SearchBar";
 import logoIcon from "../assets/Images/logoIcon.svg";
 import clearIcon from "../assets/Icons/clear.svg";
 
@@ -72,6 +73,7 @@ function MobileMenu({
                 </>
               ) : (
                 <>
+                  <SearchBar />
                   <NavLink
                     to="/login"
                     className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
