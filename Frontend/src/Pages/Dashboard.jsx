@@ -66,9 +66,9 @@ const Dashboard = function () {
               {data &&
                 data.map((reservation, index) => (
                   <div className="bg-violet-50 p-10">
-                      <h1><span className="font-bold">Fecha: </span>{new Date(
-                          reservation.Availability.date
-                        ).toLocaleDateString()}</h1> 
+                      <h1><span className="font-bold">Fecha: </span>{
+                          reservation.Availability.date}
+                      </h1> 
                         <h1><span className="font-bold">Psicólogo: </span>{reservation.Therapist.name} {reservation.Therapist.lastName}</h1>   
                          <h1><span className="font-bold">Estatus: </span>{reservation.Availability.status == true
                           ? "Orden Agendada"
