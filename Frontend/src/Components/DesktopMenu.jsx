@@ -37,6 +37,8 @@ function DesktopMenu({ jwt, handleAccountExit }) {
          >
         Servicios
       </NavLink>       
+
+        
           <NavLink
             to="/registro"
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
@@ -49,6 +51,7 @@ function DesktopMenu({ jwt, handleAccountExit }) {
             className="text-base text-black font-medium hover:text-[#A9A9A9] "
           >
             Registro Psicólogo
+            Registro Terapeuta
           </NavLink>
           <NavLink
             to="/login"

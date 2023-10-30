@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
       },
 
       price: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.STRING,
         allowNull: true,
       },
 
@@ -31,17 +31,17 @@ module.exports = (sequelize) => {
       },
 
       adress: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
 
       image: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
 
       description: {
-        type: DataTypes.STRING(750),
+        type: DataTypes.TEXT,
         allowNull: true,
 
       },
@@ -59,8 +59,15 @@ module.exports = (sequelize) => {
       },
 
       linkedIn: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
+      },
+
+
+      PlanId:{
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: 1
       },
 
 
@@ -74,6 +81,11 @@ module.exports = (sequelize) => {
       password:{
         type: DataTypes.STRING,
         allowNull: true,
+      },
+
+      role: {
+        type: DataTypes.STRING,
+        defaultValue: "therapist"
       }
       
     },

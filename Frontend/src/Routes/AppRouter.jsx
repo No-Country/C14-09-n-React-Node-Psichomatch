@@ -13,6 +13,7 @@ import AppointmentPatient from "../Components/AppointmentPatient";
 import RegisterTherapist from "../Components/RegisterTherapist";
 import Plans from "../Pages/Plans";
 import Agenda from "../Components/Agenda"
+import DashboardTherapist from "../Pages/DashboardTherapist";
 function AppRouter() {
   const { jwt } = useContext(JwtContext);
   return (
@@ -21,10 +22,11 @@ function AppRouter() {
       <Route path="/login" element={<Login />} />
       <Route path="/recuperarclave" element={<RecoverPassword />} />
       <Route path="/registro" element={<RegisterPage />} />
-      <Route path="/registerTherapist" element={<RegisterTherapist/>} />
+      <Route path="/registerTherapist" element={<RegisterTherapist/>}/>
       <Route path="/servicios" element={<Services />} />
       <Route path="/plans" element={<Plans />}/>
       <Route path="/agenda" element={<Agenda/>} />
+      <Route path="/dashboard/therapist/:id" element={<DashboardTherapist/>}/>
       {jwt.token !== undefined ? (
         <>
           <Route path="/dashboard/:id" element={<Dashboard />} />
