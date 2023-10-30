@@ -49,7 +49,7 @@ const Login = () => {
         });
   
         localStorage.setItem("token", token);
-        navigate(`/dashboard/${patientId}`);
+        navigate(`/psicologos/${patientId}`);
       }
     } else {
       try {
