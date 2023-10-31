@@ -39,13 +39,19 @@ const addReservation = async (req, res) => {
         },
       });
 
+      const SelectedHour = await Hour.findOne({
+        where: {
+          id: availability.HourId,
+        },
+      });
+
       const patientEmail = patientExist.email
       const patientName = patientExist.name
       const therapistEmail = therapistExist.email
       const therapistName = therapistExist.name
       //Emails
-      addReservationTerapist(patientEmail,patientName,therapistEmail,therapistName)
-      addReservationPatient(patientEmail,patientName,therapistEmail,therapistName)
+      addReservationTerapist(SelectedHour,availability, patientEmail,patientName,therapistEmail,therapistName)
+      addReservationPatient(SelectedHour,availability, patientEmail,patientName,therapistEmail,therapistName)
 
       res.status(200).json(reservation);
     } else {

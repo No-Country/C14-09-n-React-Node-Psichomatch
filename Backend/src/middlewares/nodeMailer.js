@@ -86,7 +86,7 @@ const mainRecovery2 = async (
 }
 
 const addReservationPatient = async (
-  patientEmail,patientName,therapistEmail,therapistName
+  SelectedHour,availability,patientEmail,patientName,therapistEmail,therapistName
 ) => {
   try {
     // send mail with defined transport object
@@ -101,6 +101,11 @@ const addReservationPatient = async (
         <p>Hi,</p>
         <p>Please send your bill to your therapist, ${therapistName}, at their email, ${therapistEmail}.</p>
         <p>They will be in touch as soon as possible.</p>
+        
+        <p>Date:${availability.date}</p>
+        <p>Hour:${SelectedHour.hour}</p>
+        <p>Therapyst:${therapistName}</p>
+        
       </body>
     </html>
     `
@@ -111,7 +116,7 @@ const addReservationPatient = async (
 }
 
 const addReservationTerapist = async (
-  patientEmail,patientName,therapistEmail,therapistName
+  SelectedHour,availability,patientEmail,patientName,therapistEmail,therapistName
 ) => {
   try {
     // send mail with defined transport object
@@ -126,6 +131,9 @@ const addReservationTerapist = async (
         <p>Hi,</p>
         <p>We are pleased to confirm that your patient, ${patientName},</p>
         <p>has reserved a slot. They will send their payment invoice from their email, ${patientEmail}.</p>
+        <p>Date:${availability.date}</p>
+        <p>Hour:${SelectedHour.hour}</p>
+        <p>Patient:${patientName}</p>
       </body>
     </html>
     `
