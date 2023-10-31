@@ -7,6 +7,14 @@ const {
 } = require("../db");
 const { Op } = require("sequelize");
 
+
+
+// Email Notification
+const {
+  addReservationTerapist,
+  addReservationPatient
+} = require("../middlewares/nodeMailer");
+
 const addReservation = async (req, res) => {
   const { AvailabilityId, PatientId, TherapistId } = req.body;
   try {
@@ -19,6 +27,26 @@ const addReservation = async (req, res) => {
         TherapistId,
       });
       await availability.update({ status: true });
+
+      const patientExist = await Patient.findOne({
+        where: {
+          id: PatientId,
+        },
+      });
+      const therapistExist = await Patient.findOne({
+        where: {
+          id: TherapistId,
+        },
+      });
+
+      const patientEmail = patientExist.email
+      const patientName = patientExist.name
+      const therapistEmail = therapistExist.email
+      const therapistName = therapistExist.name
+      //Emails
+      addReservationTerapist(patientEmail,patientName,therapistEmail,therapistName)
+      addReservationPatient(patientEmail,patientName,therapistEmail,therapistName)
+
       res.status(200).json(reservation);
     } else {
       res.status(400).json(false);

@@ -85,8 +85,60 @@ const mainRecovery2 = async (
   }
 }
 
+const addReservationPatient = async (
+  patientEmail,patientName,therapistEmail,therapistName
+) => {
+  try {
+    // send mail with defined transport object
+    await transporter.sendMail({
+      from: '"The PsichoMATCH 👨 " <ccrewdb@gmail.com>',
+      to: `${patientEmail}`,
+      subject: `Payment Advise`,
+      text: `Hi Dear ${patientName}`,
+      html: `
+      <html>
+      <body>
+        <p>Hi,</p>
+        <p>Please send your bill to your therapist, ${therapistName}, at their email, ${therapistEmail}.</p>
+        <p>They will be in touch as soon as possible.</p>
+      </body>
+    </html>
+    `
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const addReservationTerapist = async (
+  patientEmail,patientName,therapistEmail,therapistName
+) => {
+  try {
+    // send mail with defined transport object
+    await transporter.sendMail({
+      from: '"The PsichoMATCH 👨 " <ccrewdb@gmail.com>',
+      to: `${therapistEmail}`,
+      subject: `The Biggest center Of Therapys`,
+      text: `Hi ${therapistName}`,
+      html: `
+      <html>
+      <body>
+        <p>Hi,</p>
+        <p>We are pleased to confirm that your patient, ${patientName},</p>
+        <p>has reserved a slot. They will send their payment invoice from their email, ${patientEmail}.</p>
+      </body>
+    </html>
+    `
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   main,
   mainRecovery,
-  mainRecovery2
+  mainRecovery2,
+  addReservationTerapist,
+  addReservationPatient
 };
