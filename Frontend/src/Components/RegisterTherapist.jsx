@@ -155,13 +155,13 @@ const RegisterTherapist = () => {
         <h1 className="text-center font-bold text-3xl">
           Registro de Psicólogo
         </h1>
-        <div className="flex items-center ml-56 p-6">
+        <div className="xd:flex items-center ml-56 p-6 md:flex items-center ml-40 mt-2 sm:flex items-center ml-40">
           <p className="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center">
             1
           </p>
-          <p className="ml-2 font-bold">Paso 1 - Elige un plan</p>
+          <p className="ml-2 font-bold">Elige un plan</p>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="xl:flex justify-center items-center md:grid gap-8 mt-2 sm:grid gap-8 mt-2">
           <div className="bg-violet-100 rounded mr-5 w-80 p-10">
             <div className="grid justify-items-center">
               <img src={iconBasic} alt="" />
@@ -278,7 +278,7 @@ const RegisterTherapist = () => {
           </div>
         </div>
 
-        <div className="flex items-center ml-56">
+        <div className="xl:flex items-center ml-56 md: flex items-center mt-10 sm:flex items-center ml-40">
           <p className="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center">
             2
           </p>
@@ -286,7 +286,7 @@ const RegisterTherapist = () => {
         </div>
 
         <div className="flex flex-col justify-center items-center">
-          <div className="text-center">
+          <div className="xl:text-center md:mt-2 sm:mt-2">
             <label htmlFor="image" className="cursor-pointer">
               <div className="w-40 h-40 mx-auto bg-violet-100 rounded-full flex items-center justify-center">
                 {image ? (
@@ -438,7 +438,7 @@ const RegisterTherapist = () => {
             />
           </div>
         </div>
-        <div className="flex items-center ml-56">
+        <div className="xl:flex items-center ml-56 md:flex items-center ml-56 m-10 sm:flex items-center ml-40 ">
           <p className="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center">
             3
           </p>
