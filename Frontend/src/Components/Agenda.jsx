@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 const Agenda = ({ therapistId }) => {
   const [hour, setHour] = useState([]);
   const [availabilityData, setAvailabilityData] = useState([]);
@@ -189,12 +192,19 @@ const Agenda = ({ therapistId }) => {
                       key={uuidv4()}
                       value={y.id}
                       className={`${"bg-indigo-100"} border-2  rounded-lg my-1 mx-1 p-2 cursor-pointer`}
-                      onClick={() =>
-                        deleteAvailabilityByTherapistId(
-                          therapistId,
-                          y.id,
-                          nextDate(x)
-                        )
+                      onClick={() =>{
+                          deleteAvailabilityByTherapistId(
+                            therapistId,
+                            y.id,
+                            nextDate(x)
+                          )
+                          const MySwal = withReactContent(Swal);
+                          MySwal.fire({
+                            title: 'Eliminaste un horario de tu agenda.',
+                            icon: "info",
+                          });
+
+                        }
                       }
                     >
                       {y.hour}
@@ -206,12 +216,19 @@ const Agenda = ({ therapistId }) => {
                       key={uuidv4()}
                       value={y.id}
                       className={`border-2  rounded-lg my-1 mx-1 p-2 cursor-pointer`}
-                      onClick={() =>
+                      onClick={() => {
                         insertAvailabilityByTherapistId(
                           therapistId,
                           y.id,
                           nextDate(x)
                         )
+
+                        const MySwal = withReactContent(Swal);
+                        MySwal.fire({
+                          title: 'Agregaste un horario a tu agenda',
+                          icon: "info",
+                        });
+                      }
                       }
                     >
                       {y.hour}

@@ -438,8 +438,8 @@ const updateTherapistPriceByPorcent = async (req, res) => {
     if (!therapist)
       return res.status(404).json({ error: "Therapist not found" });
 
-    const price = therapist.price;
-    const newPrice = price + (price * porcent) / 100;
+    const price = Number(therapist.price);
+    const newPrice = Number(price) + (Number(price) * Number(porcent) / 100);
 
     await therapist.update({
       price: newPrice.toFixed(2),

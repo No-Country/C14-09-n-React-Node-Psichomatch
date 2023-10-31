@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
-function TherapistPrecios() {
+function TherapistPrecios({ therapist }) {
 
   const [porcentaje, setPorcentaje] = useState(0.0)
   const [precio, setPrecio] = useState(0.0)
@@ -13,6 +15,74 @@ function TherapistPrecios() {
     setPrecio(e.target.value);
   }
 
+  const changePrice = async (e) => {
+    e.preventDefault()
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+    
+      const raw = JSON.stringify({
+        "price": precio
+      });
+    
+      const requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+      alert(therapist.id)
+      const response = await fetch(`http://localhost:3001/therapist/updatePrice/${therapist.id}`, requestOptions);
+      const MySwal = withReactContent(Swal);
+      MySwal.fire({
+        title: 'Se actualizó el precio correctamente.',
+        icon: "success",
+      });
+    } catch (error) {
+      const MySwal = withReactContent(Swal);
+      MySwal.fire({
+        title: 'Hubo un error al actualizar el precio',
+        icon: "error",
+      });
+    } 
+  }
+
+  const changePricePercent = async (e) => {
+    e.preventDefault()
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+  
+    const raw = JSON.stringify({
+      "porcent": porcentaje
+    });
+  
+    const requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+  
+    try {
+      const response = await fetch(`http://localhost:3001/therapist/updatePricePercent/${therapist.id}`, requestOptions);
+      const MySwal = withReactContent(Swal);
+
+      const result = await response.text();
+
+      MySwal.fire({
+        title: 'Se actualizó el precio correctamente.',
+        icon: "success",
+      });
+    } catch (error) {
+      const MySwal = withReactContent(Swal);
+      MySwal.fire({
+        title: 'Hubo un error al actualizar el precio',
+        icon: "error",
+      });
+    }
+  }
+
   return (
     <section className="flex justify-center items-center flex-col">
 
@@ -23,7 +93,7 @@ function TherapistPrecios() {
       </article>
 
 
-      <form className="flex my-2">
+      <form className="flex my-2" onSubmit={(e) => changePrice(e)}>
         <input
           className="rounded mx-2 border border-gray-700 p-2 w-30"
           type="number"
@@ -40,7 +110,7 @@ function TherapistPrecios() {
         </button>
       </form>
 
-      <form className="flex my-2">
+      <form className="flex my-2" onSubmit={(e) => { changePricePercent(e) }}>
         <input
           className="rounded mx-2 border border-gray-700 p-2 w-30"
           type="number"

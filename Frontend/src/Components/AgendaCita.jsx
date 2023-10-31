@@ -8,6 +8,8 @@ import {
 import PropTypes from "prop-types";
 import IconArrowRight from "../assets/Icons/arrowRight.svg";
 import IconArrowLeft from "../assets/Icons/arrowLeft.svg";
+import Swal from 'sweetalert2'
+import withReactContent from "sweetalert2-react-content";
 
 const AgendaCita = ({ patientId, therapistId }) => {
   const [hour, setHour] = useState([]);
@@ -157,6 +159,12 @@ const AgendaCita = ({ patientId, therapistId }) => {
                       <p
                         onClick={() => {
                           addReservation(y.id, patientId, y.TherapistId);
+                          const MySwal = withReactContent(Swal);
+                          MySwal.fire({
+                            title: 'Se registro correctamente la cita.',
+                            text: 'Toda la información fue enviada a tu mail',
+                            icon: "success",
+                          });
                         }}
                         key={uuidv4()}
                         value={y.HourId}

@@ -9,6 +9,8 @@ import {validatePatient} from "../redux/actions/patient"
 import { useSelector, useDispatch } from "react-redux";
 import React,{useState, useEffect} from "react";
 import { loginTherapist } from "../redux/actions/therapist";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
@@ -70,7 +72,12 @@ const Login = () => {
           navigate(`/dashboard/therapist/${therapistId}`);
         }
       } catch (error) {
-        console.error("Error en el inicio de sesión del terapeuta:", error);
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+          title: 'Datos Incorrectos',
+          text: 'Por favor, verifique sus datos',
+          icon: "error",
+        });
       }
     }
   };
