@@ -6,7 +6,8 @@ function DesktopMenu({ jwt, handleAccountExit }) {
     <>
       {jwt.token !== undefined ? (
         <>
-        {jwt.role == 'patient' && (
+        {console.log(jwt.role)}
+        {jwt.role === 'patient' && (
           <>
             <NavLink
             to={`dashboard/${jwt?.id}`}
