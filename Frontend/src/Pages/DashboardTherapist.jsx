@@ -16,6 +16,8 @@ import Agenda from "../Components/Agenda";
 import TherapistAgenda from "../Components/Therapist/TherapistAgenda";
 import TherapistPerfil from "../Components/Therapist/TherapistPerfil";
 import TherapistPrecios from "../Components/Therapist/TherapistPrecios";
+import IconArrowRight from "../assets/Icons/arrowRight.svg";
+
 
 const DashboardTherapist = () => {
   const { id } = useParams();
@@ -127,20 +129,7 @@ const DashboardTherapist = () => {
       <main className="flex flex-col overflow-auto">
         <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-600 py-4 px-6">
           <div className="text-xl font-semibold">Terapeuta / {opcion} </div>
-          <svg
-            className=" text-gray-500 dark:text-gray-400"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="m9 18 6-6-6-6" />
-          </svg>
+          <img src={IconArrowRight} alt="Icon arrow right" />
         </div>
         <div className="flex-1 flex justify-center rounded-lg border p-4 md:p-6">
           {opcion === "Perfil" ? (
