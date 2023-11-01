@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { getCategories } from "../redux/actions/category";
@@ -161,7 +161,7 @@ const RegisterTherapist = () => {
           </p>
           <p className="ml-2 font-bold">Elige un plan</p>
         </div>
-        <div className="xl:flex justify-center items-center md:grid gap-8 mt-2 sm:grid gap-4 md:gap-8 lg:gap-12 xl:gap-16">
+        <div className="xl:flex justify-center items-center md:grid mt-2 sm:grid gap-4 md:gap-8 lg:gap-12 xl:gap-16">
           <div className="bg-violet-100 rounded mr-5 w-80 p-10 md:p-10 mb-4">
             <div className="grid justify-items-center">
               <img src={iconBasic} alt="" />

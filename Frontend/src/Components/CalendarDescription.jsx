@@ -1,9 +1,8 @@
-import React from "react";
+import PropTypes from "prop-types";
 import iconCalendar from "../assets/Icons/iconCalendar.svg";
 
 function CalendarDescription({ descriptionCalendar }) {
   return (
-    // <div className="flex w-auto items-center justify-center">
       <section className="flex flex-col-reverse lg:flex-row justify-center items-center gap-8 md:gap-16 lg:gap-28 my-12">
         <div className="lg:max-w-md">
           <h1 className="mt-2 mb-2 text-black text-3xl md:text-4xl font-semibold">Mi Calendario</h1>
@@ -17,5 +16,9 @@ function CalendarDescription({ descriptionCalendar }) {
       </section>
   );
 }
+
+CalendarDescription.propTypes = {
+  descriptionCalendar: PropTypes.string.isRequired, // Esto indica que descriptionCalendar es una cadena (string) requerida.
+};
 
 export default CalendarDescription;

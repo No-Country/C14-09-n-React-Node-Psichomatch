@@ -1,24 +1,27 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { recoverPassword } from "../api/patient_api";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const RecoverPassword = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
-const { register, handleSubmit, formState: {errors}, reset } = useForm();
-
-const onSubmit = async (data) => {
-  const response = await recoverPassword(data);
-  console.log(response)
-  const MySwal = withReactContent(Swal);
+  const onSubmit = async (data) => {
+    const response = await recoverPassword(data);
+    console.log(response);
+    const MySwal = withReactContent(Swal);
     MySwal.fire({
       title: <p>Por favor verifica tu correo electrónico</p>,
-      icon: 'success'
-   })
+      icon: "success",
+    });
 
-  reset()
-}
+    reset();
+  };
 
   return (
     <div className="flex w-full h-screen items-center justify-center">

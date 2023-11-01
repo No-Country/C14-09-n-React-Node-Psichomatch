@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { MinusIcon, PlusIcon } from "./CustomIcons";
 
 export const ComponentFAQs = ({ question, answer }) => {
@@ -16,4 +16,9 @@ export const ComponentFAQs = ({ question, answer }) => {
       </details>
     </div>
   );
+};
+
+ComponentFAQs.propTypes = {
+  question: PropTypes.string.isRequired, // Propiedad 'question' como cadena requerida.
+  answer: PropTypes.string.isRequired,   // Propiedad 'answer' como cadena requerida.
 };
