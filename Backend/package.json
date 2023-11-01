@@ -4,12 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts",
-    "lint": "ts-standard",
+    "dev": "node index.js",
+    "lint": "eslint src",
     "start": "node build/index.js",
-    "build": "tsc",
-    "tsc": "tsc"
-  },
+    "build": "node index.js"
+  },  
   "author": "",
   "license": "ISC",
   "dependencies": {
