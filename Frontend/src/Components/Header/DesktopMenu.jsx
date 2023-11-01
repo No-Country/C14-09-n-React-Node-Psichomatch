@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 import SearchBar from "../SearchBar";
 
 function DesktopMenu({ jwt, handleAccountExit }) {
@@ -6,34 +7,33 @@ function DesktopMenu({ jwt, handleAccountExit }) {
     <>
       {jwt.token !== undefined ? (
         <>
-        {console.log(jwt.role)}
-        {jwt.role === 'patient' && (
-          <>
-            <NavLink
-            to={`dashboard/${jwt?.id}`}
-            className="text-base text-black font-medium hover:text-[#A9A9A9]"
-          >
-            Mi Calendario
-          </NavLink>
-          <NavLink
-            to={`/psicologos/${jwt?.id}`}
-            className="text-base text-black font-medium hover:text-[#A9A9A9]"
-          >
-            Psicólogos
-          </NavLink>
-         </>
-        )}
-          {jwt.role === 'therapist' && (
+          {jwt.role === "patient" && (
             <>
-            <NavLink
-              to={`/dashboard/therapist/${jwt?.id}`}
-              className="text-base text-black font-medium hover:text-[#A9A9A9]"
-            >
-              Dashboard
-            </NavLink>
+              <NavLink
+                to={`dashboard/${jwt?.id}`}
+                className="text-base text-black font-medium hover:text-[#A9A9A9]"
+              >
+                Mi Calendario
+              </NavLink>
+              <NavLink
+                to={`/psicologos/${jwt?.id}`}
+                className="text-base text-black font-medium hover:text-[#A9A9A9]"
+              >
+                Psicólogos
+              </NavLink>
+              {location.pathname === `/psicologos/${jwt?.id}` && <SearchBar />}
             </>
           )}
-          <SearchBar />
+          {jwt.role === "therapist" && (
+            <>
+              <NavLink
+                to={`/dashboard/therapist/${jwt?.id}`}
+                className="text-base text-black font-medium hover:text-[#A9A9A9]"
+              >
+                Dashboard
+              </NavLink>
+            </>
+          )}
           <button
             className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
             onClick={handleAccountExit}
@@ -55,7 +55,6 @@ function DesktopMenu({ jwt, handleAccountExit }) {
           >
             Registro Paciente
           </NavLink>
-
           <NavLink
             to="/registerTherapist"
             className="text-base text-black font-medium hover:text-[#A9A9A9]"
@@ -73,5 +72,10 @@ function DesktopMenu({ jwt, handleAccountExit }) {
     </>
   );
 }
+
+DesktopMenu.propTypes = {
+  jwt: PropTypes.object.isRequired, // Propiedad 'jwt' como objeto requerido.
+  handleAccountExit: PropTypes.func.isRequired, // Propiedad 'handleAccountExit' como función requerida.
+};
 
 export default DesktopMenu;
