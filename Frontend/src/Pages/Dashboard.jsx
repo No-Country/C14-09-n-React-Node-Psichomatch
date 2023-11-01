@@ -37,7 +37,7 @@ const Dashboard = function () {
   }, [params.id]);
 
   return (
-    <div className="flex items-center justify-center flex-col">
+    <div className="flex w-full h-screen items-center justify-center flex-col">
       <div className="mx-12 md:mx-20">
         <CalendarDescription descriptionCalendar="En este espacio encontrarás tu historial de citas." />
       </div>
