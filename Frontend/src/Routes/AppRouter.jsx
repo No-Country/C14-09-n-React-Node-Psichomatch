@@ -7,13 +7,13 @@ import { NotFoundScreen } from "../Pages/NotFoundScreen";
 import Dashboard from "../Pages/Dashboard";
 import { HomePage } from "../Pages/HomePage";
 import { Services } from "../Pages/Services";
-import { RegisterPage } from "../Pages/RegisterPage";
 import { FindPsychologists } from "../Pages/FindPsychologists";
 import AppointmentPatient from "../Components/AppointmentPatient";
-import RegisterTherapist from "../Components/RegisterTherapist";
 import Plans from "../Pages/Plans";
 import DashboardTherapist from "../Pages/DashboardTherapist";
 import TherapistAgenda from "../Components/Therapist/TherapistAgenda";
+import RegisterPatient from "../Pages/RegisterPatient";
+import RegisterTherapist from "../Pages/RegisterTherapist";
 
 function AppRouter() {
   const { jwt } = useContext(JwtContext);
@@ -22,7 +22,7 @@ function AppRouter() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/recuperarclave" element={<RecoverPassword />} />
-      <Route path="/registro" element={<RegisterPage />} />
+      <Route path="/registro" element={<RegisterPatient />} />
       <Route path="/registerTherapist" element={<RegisterTherapist />} />
       <Route path="/servicios" element={<Services />} />
       <Route path="/plans" element={<Plans />} />
