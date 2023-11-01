@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { getCategories } from "../redux/actions/category";
@@ -16,7 +16,7 @@ import TherapistAgenda from "../Components/Therapist/TherapistAgenda";
 import TherapistPerfil from "../Components/Therapist/TherapistPerfil";
 import TherapistPrecios from "../Components/Therapist/TherapistPrecios";
 import iconHome from "../assets/Icons/iconHome.svg";
-import Aside from "../Components/Aside";
+import Aside from "../Components/Aside/Aside";
 import TherapistPatientCita from "../Components/Therapist/TherapistPatientCita";
 
 const DashboardTherapist = () => {

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import iconCardpos from "../assets/Icons/iconCardpos.svg";
-import iconAgendar from "../assets/Icons/iconAgendar.svg";
-import iconUser from "../assets/Icons/iconUser.svg";
-import iconCitas from "../assets/Icons/iconCitas.svg";
+import iconCardpos from "../../assets/Icons/iconCardpos.svg";
+import iconAgendar from "../../assets/Icons/iconAgendar.svg";
+import iconUser from "../../assets/Icons/iconUser.svg";
+import iconCitas from "../../assets/Icons/iconCitas.svg";
 import ButtonAside from "./ButtonAside";
 
 function Aside({ handleOpcion, therapist }) {
