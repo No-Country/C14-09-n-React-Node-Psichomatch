@@ -4,7 +4,7 @@ import Therapist from "../Components/Therapist-Info";
 const DashboardSearchTherapist = function () {
   async function getTherapist (page) {
     try {
-      const {data} = await axios.get(`http://localhost:3001/therapist?page=${page}`);
+      const {data} = await axios.get(`https://psicomatchapi.onrender.com/therapist?page=${page}`);
       return data;
     } catch (error) {
       console.error(error.message);

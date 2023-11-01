@@ -487,7 +487,7 @@ function TherapistPerfil() {
         </div>
 
         <button
-          className="bg-violet-100 rounded-full w-48 py-2 mx-auto my-10"
+          className="bg-violet-300 font-bold rounded-full w-48 py-2 mx-auto my-10"
           type="submit"
         >
           Actualizar perfil
