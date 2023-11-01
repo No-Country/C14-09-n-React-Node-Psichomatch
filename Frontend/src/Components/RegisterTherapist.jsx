@@ -155,14 +155,14 @@ const RegisterTherapist = () => {
         <h1 className="text-center font-bold text-3xl">
           Registro de Psicólogo
         </h1>
-        <div className="xd:flex items-center ml-56 p-6 md:flex items-center ml-40 mt-2 sm:flex items-center ml-40">
+        <div className="flex items-center mt-4 sm:mt-6 md:mt-8 lg:mt-10 xl:mt-12">
           <p className="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center">
             1
           </p>
           <p className="ml-2 font-bold">Elige un plan</p>
         </div>
-        <div className="xl:flex justify-center items-center md:grid gap-8 mt-2 sm:grid gap-8 mt-2">
-          <div className="bg-violet-100 rounded mr-5 w-80 p-10">
+        <div className="xl:flex justify-center items-center md:grid gap-8 mt-2 sm:grid gap-4 md:gap-8 lg:gap-12 xl:gap-16">
+          <div className="bg-violet-100 rounded mr-5 w-80 p-10 md:p-10 mb-4">
             <div className="grid justify-items-center">
               <img src={iconBasic} alt="" />
               <div className="p-6">
@@ -195,7 +195,7 @@ const RegisterTherapist = () => {
           </div>
 
           <div>
-            <div className="bg-lime-100 rounded mr-5 w-80 p-10">
+            <div className="bg-lime-100 rounded mr-5 w-80 p-10 md:p-10 mb-4">
               <div className="grid justify-items-center">
                 <img src={iconPremium} alt="" />
                 <div className="p-6">
@@ -234,7 +234,7 @@ const RegisterTherapist = () => {
           </div>
 
           <div>
-            <div className="bg-blue-100 rounded w-80 p-10">
+            <div className="bg-blue-100 rounded w-80 p-10 md:p-10 mb-4">
               <div className="grid justify-items-center">
                 <img src={iconProfesional} alt="" />
                 <div className="p-6">
@@ -278,167 +278,154 @@ const RegisterTherapist = () => {
           </div>
         </div>
 
-        <div className="xl:flex items-center ml-56 md: flex items-center mt-10 sm:flex items-center ml-40">
+        <div className="flex items-center mt-4 sm:mt-6 md:mt-8 lg:mt-10 xl:mt-12">
           <p className="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center">
             2
           </p>
           <p className="ml-2 font-bold">Llena tus datos</p>
         </div>
 
-        <div className="flex flex-col justify-center items-center">
-          <div className="xl:text-center md:mt-2 sm:mt-2">
-            <label htmlFor="image" className="cursor-pointer">
-              <div className="w-40 h-40 mx-auto bg-violet-100 rounded-full flex items-center justify-center">
-                {image ? (
-                  <img
-                    src={image}
-                    alt="Tu Foto"
-                    className="w-full h-full rounded-full"
-                  />
-                ) : (
-                  <span className="text-lg font-bold">Tu Foto</span>
-                )}
-              </div>
-            </label>
-            <input
-              type="file"
-              id="image"
-              name="image"
-              className="hidden"
-              onChange={handleImageChange}
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="mt-10" htmlFor="firstName">
-              Nombre
-            </label>
-            <input
-              className="rounded border border-gray-700 p-2 w-96"
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              name="name"
-              placeholder="Ingrese su nombre"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="mt-10" htmlFor="lastName">
-              Apellido
-            </label>
-            <input
-              className="rounded border border-gray-700 p-2 w-96"
-              type="text"
-              id="lastName"
-              value={lastName}
-              onChange={(e) => setLastname(e.target.value)}
-              name="lastName"
-              placeholder="Ingrese su apellido"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="mt-10" htmlFor="email">
-              E-mail
-            </label>
-            <input
-              className="rounded border border-gray-700 p-2 w-96"
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Igrese su email"
-            />
-          </div>
-          <div className="flex flex-col">
-            <label className="mt-10" htmlFor="password">
-              Contraseña
-            </label>
-            <input
-              className="rounded border border-gray-700 p-2 w-96"
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Ingrese su contrasena"
-            />
-          </div>
+      <div className="flex flex-col justify-center items-center">
+  <div className="xl:text-center md:mt-2 sm:mt-2">
+    <label htmlFor="image" className="cursor-pointer">
+      <div className="w-40 h-40 mx-auto bg-violet-100 rounded-full flex items-center justify-center">
+        {image ? (
+          <img
+            src={image}
+            alt="Tu Foto"
+            className="w-full h-full rounded-full"
+          />
+        ) : (
+          <span className="text-lg font-bold">Tu Foto</span>
+        )}
+      </div>
+    </label>
+    <input
+      type="file"
+      id="image"
+      name="image"
+      className="hidden"
+      onChange={handleImageChange}
+    />
+  </div>
 
-          <div className="flex flex-col">
-            <label className="mt-10" htmlFor="phone">
-              Phone
-            </label>
-            <input
-              className="rounded border border-gray-700 p-2 w-96"
-              type="text"
-              id="phone"
-              name="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="Ingrese su telefono"
-            />
-          </div>
+  <div className="flex flex-col mt-5 sm:mt-3">
+    <label htmlFor="name">Nombre</label>
+    <input
+      className="rounded border border-gray-700 p-2 w-full sm:w-96"
+      type="text"
+      id="name"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      name="name"
+      placeholder="Ingrese su nombre"
+    />
+  </div>
 
-          <div className="flex flex-col">
-            <label className="mt-10" htmlFor="linkedIn">
-              LinkedIn
-            </label>
-            <input
-              className="rounded border border-gray-700 p-2 w-96"
-              type="text"
-              id="linkedIn"
-              name="linkedIn"
-              value={linkedIn}
-              onChange={(e) => setLinkedIn(e.target.value)}
-              placeholder="Ingrese su linkedIn"
-            />
-          </div>
+  <div className="flex flex-col mt-3 sm:mt-3">
+    <label htmlFor="lastName">Apellido</label>
+    <input
+      className="rounded border border-gray-700 p-2 w-full sm:w-96"
+      type="text"
+      id="lastName"
+      value={lastName}
+      onChange={(e) => setLastname(e.target.value)}
+      name="lastName"
+      placeholder="Ingrese su apellido"
+    />
+  </div>
 
-          <div className="flex flex-col">
-            <label className="mt-10" htmlFor="price">
-              Precio
-            </label>
-            <input
-              className="rounded border border-gray-700 p-2 w-96"
-              type="number"
-              id="price"
-              name="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              placeholder="Ingrese su precio"
-            />
-          </div>
+  <div className="flex flex-col mt-3 sm:mt-3">
+    <label htmlFor="email">E-mail</label>
+    <input
+      className="rounded border border-gray-700 p-2 w-full sm:w-96"
+      type="email"
+      id="email"
+      name="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      placeholder="Ingrese su email"
+    />
+  </div>
 
-          <div className="flex flex-col">
-            <label className="mt-10" htmlFor="adress">
-              Direccion
-            </label>
-            <textarea
-              className="rounded border border-gray-700 p-2 w-96"
-              id="adress"
-              name="adress"
-              value={adress}
-              onChange={(e) => setAdress(e.target.value)}
-              placeholder="Ingrese su direccion"
-            />
-          </div>
+  <div className="flex flex-col mt-3 sm:mt-3">
+    <label htmlFor="password">Contraseña</label>
+    <input
+      className="rounded border border-gray-700 p-2 w-full sm:w-96"
+      type="password"
+      id="password"
+      name="password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      placeholder="Ingrese su contrasena"
+    />
+  </div>
 
-          <div className="flex flex-col">
-            <label className="mt-10" htmlFor="description">
-              Descripción
-            </label>
-            <textarea
-              className="rounded border border-gray-700 p-2 w-96"
-              id="description"
-              name="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Ingrese su descripcion"
-            />
-          </div>
-        </div>
-        <div className="xl:flex items-center ml-56 md:flex items-center ml-56 m-10 sm:flex items-center ml-40 ">
+  <div className="flex flex-col mt-3 sm:mt-3">
+    <label htmlFor="phone">Phone</label>
+    <input
+      className="rounded border border-gray-700 p-2 w-full sm:w-96"
+      type="text"
+      id="phone"
+      name="phone"
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+      placeholder="Ingrese su telefono"
+    />
+  </div>
+
+  <div className="flex flex-col mt-3 sm:mt-3">
+    <label htmlFor="linkedIn">LinkedIn</label>
+    <input
+      className="rounded border border-gray-700 p-2 w-full sm:w-96"
+      type="text"
+      id="linkedIn"
+      name="linkedIn"
+      value={linkedIn}
+      onChange={(e) => setLinkedIn(e.target.value)}
+      placeholder="Ingrese su LinkedIn"
+    />
+  </div>
+
+  <div className="flex flex-col mt-3 sm:mt-3">
+    <label htmlFor="price">Precio</label>
+    <input
+      className="rounded border border-gray-700 p-2 w-full sm:w-96"
+      type="number"
+      id="price"
+      name="price"
+      value={price}
+      onChange={(e) => setPrice(e.target.value)}
+      placeholder="Ingrese su precio"
+    />
+  </div>
+
+  <div className="flex flex-col mt-3 sm:mt-3">
+    <label htmlFor="adress">Direccion</label>
+    <textarea
+      className="rounded border border-gray-700 p-2 w-full sm:w-96"
+      id="adress"
+      name="adress"
+      value={adress}
+      onChange={(e) => setAdress(e.target.value)}
+      placeholder="Ingrese su direccion"
+    />
+  </div>
+
+  <div className="flex flex-col mt-3 sm:mt-3">
+    <label htmlFor="description">Descripción</label>
+    <textarea
+      className="rounded border border-gray-700 p-2 w-full sm:w-96"
+      id="description"
+      name="description"
+      value={description}
+      onChange={(e) => setDescription(e.target.value)}
+      placeholder="Ingrese su descripcion"
+    />
+  </div>
+</div>
+
+        <div className="flex items-center mt-4 sm:mt-6 md:mt-8 lg:mt-10 xl:mt-12">
           <p className="bg-violet-100 rounded-full w-20 h-20 flex items-center justify-center">
             3
           </p>

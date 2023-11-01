@@ -50,8 +50,7 @@ function TherapistAgenda() {
                     Mi Calendario
                   </h1>
                   <p className="">
-                    En este espacio encontrarás tú historial de citas con los
-                    pacientes que han agendado contigo.
+                    En este espacio podrás agendar la hora que deseas atender a tus pacientes.
                   </p>
                 </div>
                 <div className="bg-violet-50 rounded-full p-8">

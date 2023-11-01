@@ -7,7 +7,7 @@ import ButtonAside from "./ButtonAside";
 
 function Aside({ handleOpcion, therapist }) {
   return (
-    <aside className="h-screen w-16 md:w-[300px] md:flex-none  border-r bg-violet-50">
+    <aside className="h-screen w-16 md:w-[330px] md:flex-none  border-r bg-violet-50">
       <div className="flex items-center md:items-start h-full max-h-screen flex-col gap-2 py-4 px-2 md:px-6">
         <p className="hidden md:block text-xl text-black font-semibold">
           Bienvenido:
