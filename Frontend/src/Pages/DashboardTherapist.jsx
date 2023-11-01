@@ -16,6 +16,7 @@ import Agenda from "../Components/Agenda";
 import TherapistAgenda from "../Components/Therapist/TherapistAgenda";
 import TherapistPerfil from "../Components/Therapist/TherapistPerfil";
 import TherapistPrecios from "../Components/Therapist/TherapistPrecios";
+import TherapistPatientCita from "../Components/Therapist/TherapistPatientCita";
 import IconArrowRight from "../assets/Icons/arrowRight.svg";
 
 
@@ -123,6 +124,15 @@ const DashboardTherapist = () => {
               >
                 Precios
               </button>
+               <button
+                className="text-start text-zinc-500 dark:text-zinc-800"
+                name="Paciente con cita"
+                onClick={(e) => {
+                  handleOpcion(e.target.name);
+                }}
+              >
+                Paciente con cita
+              </button>
             </nav>
           </div>
         </aside>
@@ -149,6 +159,10 @@ const DashboardTherapist = () => {
             <div className="flex items-start justify-center">
               <TherapistPrecios therapist={therapist} />
             </div>
+          ) : opcion === "Paciente con cita" ? (
+              <div className="flex items-start justify-center">
+                <TherapistPatientCita />
+              </div>
           ) : null}
         </div>
       </main>
