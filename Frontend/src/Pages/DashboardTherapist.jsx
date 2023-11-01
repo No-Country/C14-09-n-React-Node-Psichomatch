@@ -12,17 +12,15 @@ import {
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useParams } from "react-router-dom";
-import Agenda from "../Components/Agenda";
 import TherapistAgenda from "../Components/Therapist/TherapistAgenda";
 import TherapistPerfil from "../Components/Therapist/TherapistPerfil";
 import TherapistPrecios from "../Components/Therapist/TherapistPrecios";
-import TherapistPatientCita from "../Components/Therapist/TherapistPatientCita";
-import IconArrowRight from "../assets/Icons/arrowRight.svg";
-
+import iconHome from "../assets/Icons/iconHome.svg";
+import Aside from "../Components/Aside";
+import TherapistPatientCita from "../Components/HomePage/TherapistPatientCita";
 
 const DashboardTherapist = () => {
   const { id } = useParams();
-
 
   const params = useParams();
   const [data, setData] = useState(null);
@@ -50,8 +48,6 @@ const DashboardTherapist = () => {
     }
   }, [params.id]);
 
-
-
   // Navegación del therapist
   const [opcion, setOpcion] = useState("Agenda");
 
@@ -59,28 +55,29 @@ const DashboardTherapist = () => {
     setOpcion(opc);
   };
 
-
   const [therapist, setTherapist] = useState({});
 
   const getTherapistDates = async (data) => {
     const requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
+      method: "GET",
+      redirect: "follow",
     };
-  
+
     try {
-      const response = await fetch("http://localhost:3001/therapist/getTherapistByID/21", requestOptions);
+      const response = await fetch(
+        `http://localhost:3001/therapist/getTherapistByID/${id}`,
+        requestOptions
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       const result = await response.text();
       setTherapist(JSON.parse(result));
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
-
-  }
+  };
 
   useEffect(() => {
     getTherapistDates(data);
@@ -88,86 +85,41 @@ const DashboardTherapist = () => {
 
   return (
     <>
-      <div className="grid h-screen min-h-screen w-full overflow-hidden lg:grid-cols-[280px_1fr]">
-        <aside className="hidden border-r lg:block switchVisibility">
-          <div className="flex h-full max-h-screen flex-col gap-2 py-4 px-6">
-            <div className="text-xl font-semibold">{therapist.name}</div>
-            <div className="text-xl font-semibold">{therapist.lastName}</div>
-            <div className="text-xl font-semibold">{therapist.email}</div>
-            <div className="text-xl font-semibold">{therapist.adress}</div>
-            <hr className="my-4 border-zinc-200 dark:border-zinc-600" />
-            <nav className="flex flex-col gap-4 text-md font-medium">
-              <button
-                className="text-start text-zinc-500 dark:text-zinc-800"
-                name="Perfil"
-                onClick={(e) => {
-                  handleOpcion(e.target.name);
-                }}
-              >
-                Perfil
-              </button>
-              <button
-                className="text-start text-zinc-500 dark:text-zinc-800"
-                name="Agenda"
-                onClick={(e) => {
-                  handleOpcion(e.target.name);
-                }}
-              >
-                Agenda
-              </button>
-              <button
-                className="text-start text-zinc-500 dark:text-zinc-800"
-                name="Precios"
-                onClick={(e) => {
-                  handleOpcion(e.target.name);
-                }}
-              >
-                Precios
-              </button>
-               <button
-                className="text-start text-zinc-500 dark:text-zinc-800"
-                name="Paciente con cita"
-                onClick={(e) => {
-                  handleOpcion(e.target.name);
-                }}
-              >
-                Paciente con cita
-              </button>
-            </nav>
+      <div className="flex h-screen flex-row justify-start">
+        <Aside handleOpcion={handleOpcion} therapist={therapist} />
+        <main className="flex flex-col overflow-auto flex-1 ">
+          <div className="flex justify-start gap-4 items-start py-6 px-6">
+            <img src={iconHome} alt="Home Psicologos" />
+            <div className="text-lg text-black font-medium">
+              Terapeuta / {opcion}
+            </div>
           </div>
-        </aside>
-      <main className="flex flex-col overflow-auto">
-        <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-600 py-4 px-6">
-          <div className="text-xl font-semibold">Terapeuta / {opcion} </div>
-          <img src={IconArrowRight} alt="Icon arrow right" />
-        </div>
-        <div className="flex-1 flex justify-center rounded-lg border p-4 md:p-6">
-          {opcion === "Perfil" ? (
-            <div className="flex flex-col gap-4">
-              <TherapistPerfil therapist={therapist} />
-            </div>
-          ) : opcion === "Agenda" ? (
-            <div className="flex items-start justify-center">
-              <TherapistAgenda
-                therapist={therapist}
-                data={data}
-                deletePatientReservation={deletePatientReservation}
-                loadPatientReservation={loadPatientReservation}
-              />
-            </div>
-          ) : opcion === "Precios" ? (
-            <div className="flex items-start justify-center">
-              <TherapistPrecios therapist={therapist} />
-            </div>
-          ) : opcion === "Paciente con cita" ? (
+          <div className="flex-1 flex justify-center p-4 md:p-6">
+            {opcion === "Perfil" ? (
+              <div className="flex flex-col gap-4">
+                <TherapistPerfil therapist={therapist} />
+              </div>
+            ) : opcion === "Mi Agenda" ? (
+              <div className="flex items-start justify-center">
+                <TherapistAgenda
+                  therapist={therapist}
+                  data={data}
+                  deletePatientReservation={deletePatientReservation}
+                  loadPatientReservation={loadPatientReservation}
+                />
+              </div>
+            ) : opcion === "Precios" ? (
+              <div className="flex items-start justify-center">
+                <TherapistPrecios therapist={therapist} />
+              </div>
+            ) : opcion === "Citas Pendientes" ? (
               <div className="flex items-start justify-center">
                 <TherapistPatientCita />
               </div>
-          ) : null}
-        </div>
-      </main>
+            ) : null}
+          </div>
+        </main>
       </div>
-
     </>
   );
 };
