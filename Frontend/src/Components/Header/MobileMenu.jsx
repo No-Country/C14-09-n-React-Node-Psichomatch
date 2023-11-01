@@ -1,15 +1,16 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
-import SearchBar from "../Components/SearchBar";
-import logoIcon from "../assets/Images/logoIcon.svg";
-import clearIcon from "../assets/Icons/clear.svg";
+import SearchBar from "../SearchBar";
+import logoIcon from "../../assets/Images/logoIcon.svg";
+import clearIcon from "../../assets/Icons/clear.svg";
+import NavLinksPatientMobile from "./NavLinksPatientMobile";
+import NavLinksTherapistMobile from "./NavLinksTherapistMobile";
+import NavLinksWithoutAccess from "./NavLinksWithoutAccess";
+import PropTypes from "prop-types";
 
-function MobileMenu({
-  jwt,
-  mobileMenuOpen,
-  setMobileMenuOpen,
-  handleAccountExit,
-}) {
+function MobileMenu({ jwt, mobileMenuOpen, setMobileMenuOpen, handleAccountExit }) {
+  const location = useLocation();
+
   return (
     <Dialog
       as="div"
@@ -36,40 +37,31 @@ function MobileMenu({
             <div className="space-y-2 py-6">
               {jwt.token !== undefined ? (
                 <>
-                  <NavLink
-                    to={`/psicologos/${jwt?.id}`}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-black hover:text-[#A9A9A9]"
-                  >
-                    Psicólogos
-                  </NavLink>
+                  {jwt.role === "patient" && (
+                    <>
+                      <NavLinksPatientMobile jwt={jwt} />
+                    </>
+                  )}
+                  {jwt.role === "therapist" && (
+                    <>
+                      <NavLinksTherapistMobile jwt={jwt} />
+                    </>
+                  )}
                 </>
               ) : (
-                <>
-                  <NavLink
-                    to="/servicios"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-black hover:text-[#A9A9A9]"
-                  >
-                    Servicios
-                  </NavLink>
-                  <NavLink
-                    to="/registro"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-black hover:text-[#A9A9A9]"
-                  >
-                    Registro Paciente
-                  </NavLink>
-                  <NavLink
-                    to="/registerTherapist"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-black hover:text-[#A9A9A9]"
-                  >
-                    Registro Psicólogo
-                  </NavLink>
-                </>
+                <NavLinksWithoutAccess />
               )}
             </div>
             <div className="py-6 gap-4 flex flex-col items-start">
               {jwt.token !== undefined ? (
                 <>
-                  <SearchBar />
+                  {jwt.role === "patient" && (
+                    <>
+                      {location.pathname === `/psicologos/${jwt?.id}` && (
+                        <SearchBar />
+                      )}
+                    </>
+                  )}
                   <button
                     onClick={handleAccountExit}
                     className="text-white text-base font-medium text-center bg-Gray-dark py-4 px-6 rounded-[32px] w-[214px] hover:bg-[#4f4f4f]"
@@ -94,5 +86,12 @@ function MobileMenu({
     </Dialog>
   );
 }
+
+MobileMenu.propTypes = {
+  jwt: PropTypes.object.isRequired,
+  mobileMenuOpen: PropTypes.bool.isRequired,
+  setMobileMenuOpen: PropTypes.func.isRequired,
+  handleAccountExit: PropTypes.func.isRequired,
+};
 
 export default MobileMenu;

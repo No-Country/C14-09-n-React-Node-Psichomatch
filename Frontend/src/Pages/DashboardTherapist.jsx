@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { getCategories } from "../redux/actions/category";
@@ -16,8 +16,8 @@ import TherapistAgenda from "../Components/Therapist/TherapistAgenda";
 import TherapistPerfil from "../Components/Therapist/TherapistPerfil";
 import TherapistPrecios from "../Components/Therapist/TherapistPrecios";
 import iconHome from "../assets/Icons/iconHome.svg";
-import Aside from "../Components/Aside";
-import TherapistPatientCita from "../Components/HomePage/TherapistPatientCita";
+import Aside from "../Components/Aside/Aside";
+import TherapistPatientCita from "../Components/Therapist/TherapistPatientCita";
 
 const DashboardTherapist = () => {
   const { id } = useParams();
@@ -49,7 +49,7 @@ const DashboardTherapist = () => {
   }, [params.id]);
 
   // Navegación del therapist
-  const [opcion, setOpcion] = useState("Agenda");
+  const [opcion, setOpcion] = useState("Perfil");
 
   const handleOpcion = (opc) => {
     setOpcion(opc);
@@ -84,7 +84,6 @@ const DashboardTherapist = () => {
   }, []);
 
   return (
-    <>
       <div className="flex h-screen flex-row justify-start">
         <Aside handleOpcion={handleOpcion} therapist={therapist} />
         <main className="flex flex-col overflow-auto flex-1 ">
@@ -94,9 +93,9 @@ const DashboardTherapist = () => {
               Terapeuta / {opcion}
             </div>
           </div>
-          <div className="flex-1 flex justify-center p-4 md:p-6">
+          <div className="flex-1 flex justify-center px-4 md:px-6">
             {opcion === "Perfil" ? (
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col">
                 <TherapistPerfil therapist={therapist} />
               </div>
             ) : opcion === "Mi Agenda" ? (
@@ -120,7 +119,6 @@ const DashboardTherapist = () => {
           </div>
         </main>
       </div>
-    </>
   );
 };
 

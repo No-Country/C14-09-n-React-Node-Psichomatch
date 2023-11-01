@@ -5,24 +5,21 @@ import googleIcon from "../assets/Icons/google.svg";
 import { JwtContext } from "../Context/JwtContext";
 import { useContext } from "react";
 import jwtDecode from "jwt-decode";
-import {validatePatient} from "../redux/actions/patient"
+import { validatePatient } from "../redux/actions/patient";
 import { useSelector, useDispatch } from "react-redux";
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { loginTherapist } from "../redux/actions/therapist";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 
 const Login = () => {
-
   const [isTherapist, setIsTherapist] = useState(false);
   const handleTherapistChange = () => {
     setIsTherapist(!isTherapist);
   };
 
-  const dispatch = useDispatch()
-  const loginInfo = useSelector(state => state.therapist.login)
-  
-
+  const dispatch = useDispatch();
+  const loginInfo = useSelector((state) => state.therapist.login);
 
   const {
     register,
@@ -38,17 +35,17 @@ const Login = () => {
     if (!isTherapist) {
       const response = await loginPatient(data);
       const patientId = response.data.data.id;
-  
+
       if (response.data.tokenSession) {
         const token = response.data.tokenSession;
         const decodedToken = await jwtDecode(token);
-  
+
         setJwt({
           id: decodedToken.id,
           token: token,
           role: decodedToken.role,
         });
-  
+
         localStorage.setItem("token", token);
         navigate(`/dashboard/${patientId}`);
       }
@@ -56,17 +53,17 @@ const Login = () => {
       try {
         const resultTherapist = await dispatch(loginTherapist(data));
         const therapistInfo = resultTherapist.payload;
-  
+
         if (therapistInfo.tokenSession) {
           const token = therapistInfo.tokenSession;
           const decodedToken = await jwtDecode(token);
-  
+
           setJwt({
             id: decodedToken.id,
             token: token,
             role: decodedToken.role,
           });
-  
+
           localStorage.setItem("token", token);
           const therapistId = therapistInfo.data.id;
           navigate(`/dashboard/therapist/${therapistId}`);
@@ -74,8 +71,8 @@ const Login = () => {
       } catch (error) {
         const MySwal = withReactContent(Swal);
         MySwal.fire({
-          title: 'Datos Incorrectos',
-          text: 'Por favor, verifique sus datos',
+          title: "Datos Incorrectos",
+          text: "Por favor, verifique sus datos",
           icon: "error",
         });
       }
@@ -146,8 +143,12 @@ const Login = () => {
               <label className="ml-3">Recordar contraseña</label>
             </div>
             <div className="mt-4">
-              <input  type="checkbox" checked={isTherapist} onChange={handleTherapistChange}/>
-              <label  className="ml-3" >Soy Terapeuta</label>
+              <input
+                type="checkbox"
+                checked={isTherapist}
+                onChange={handleTherapistChange}
+              />
+              <label className="ml-3">Soy Terapeuta</label>
             </div>
             <div className="mt-8 flex flex-col gap-y-4 text-center">
               <button

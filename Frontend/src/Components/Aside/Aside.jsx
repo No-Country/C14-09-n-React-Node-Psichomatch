@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
-import iconCardpos from "../assets/Icons/iconCardpos.svg";
-import iconCalendar from "../assets/Icons/calendar.svg";
-import iconUser from "../assets/Icons/iconUser.svg";
-import iconCitas from "../assets/Icons/iconCitas.svg";
+import iconCardpos from "../../assets/Icons/iconCardpos.svg";
+import iconAgendar from "../../assets/Icons/iconAgendar.svg";
+import iconUser from "../../assets/Icons/iconUser.svg";
+import iconCitas from "../../assets/Icons/iconCitas.svg";
 import ButtonAside from "./ButtonAside";
 
 function Aside({ handleOpcion, therapist }) {
   return (
-    <aside className="h-screen w-16 md:w-[300px] md:flex-none  border-r bg-violet-50">
+    <aside className="h-screen w-16 md:w-[310px] md:flex-none  border-r bg-violet-50">
       <div className="flex items-center md:items-start h-full max-h-screen flex-col gap-2 py-4 px-2 md:px-6">
         <p className="hidden md:block text-xl text-black font-semibold">
           Bienvenido:
@@ -19,12 +19,12 @@ function Aside({ handleOpcion, therapist }) {
             className="h-10 w-10 rounded-full object-cover"
           />
           <div>
-            <div className="hidden md:block">
-              <p className="text-lg text-black font-medium">
+            <div className="hidden md:block w-[210px]">
+              <p className="text-lg text-black font-medium truncate">
                 {therapist.name} {therapist.lastName}
               </p>
 
-              <p className="text-sm text-Gray-dark font-medium">
+              <p className="text-sm text-Gray-dark font-medium truncate">
                 {therapist.email}
               </p>
             </div>
@@ -45,8 +45,8 @@ function Aside({ handleOpcion, therapist }) {
             onClick={() => {
               handleOpcion("Mi Agenda");
             }}
-            icon={iconCalendar}
-            nameIcon="Calendar"
+            icon={iconAgendar}
+            nameIcon="Agendar"
           />
           <ButtonAside
             name="Citas Pendientes"

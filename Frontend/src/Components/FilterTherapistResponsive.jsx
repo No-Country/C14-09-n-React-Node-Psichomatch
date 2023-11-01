@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import FilterTherapist from "./FilterTherapist";
 import clearIcon from "../assets/Icons/clear.svg";
 import IconFilter from "../assets/Icons/iconFilter.svg";

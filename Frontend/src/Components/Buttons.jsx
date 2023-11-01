@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 export const ButtonBlack = ({ text, additionalClasses }) => {
   return (
@@ -6,6 +6,11 @@ export const ButtonBlack = ({ text, additionalClasses }) => {
       {text}
     </button>
   );
+};
+
+ButtonBlack.propTypes = {
+  text: PropTypes.string.isRequired,          // Propiedad 'text' como cadena requerida.
+  additionalClasses: PropTypes.string,       // Propiedad 'additionalClasses' como cadena opcional.
 };
 
 export const ButtonLilacSlim = ({ text, additionalClasses }) => {
@@ -16,4 +21,9 @@ export const ButtonLilacSlim = ({ text, additionalClasses }) => {
       {text}
     </button>
   );
+};
+
+ButtonLilacSlim.propTypes = {
+  text: PropTypes.string.isRequired,          // Propiedad 'text' como cadena requerida.
+  additionalClasses: PropTypes.string,       // Propiedad 'additionalClasses' como cadena opcional.
 };

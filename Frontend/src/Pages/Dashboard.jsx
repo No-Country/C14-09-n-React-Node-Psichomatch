@@ -7,7 +7,7 @@ import {
   getPatientReservation,
   deleteReservation,
 } from "../api/reservation_api";
-import CalendarioPrincipal from "../Components/CalendarioPrincipal";
+import CalendarDescription from "../Components/CalendarDescription";
 
 const Dashboard = function () {
   const params = useParams();
@@ -37,8 +37,10 @@ const Dashboard = function () {
   }, [params.id]);
 
   return (
-    <>
-      <CalendarioPrincipal />
+    <div className="flex w-full h-screen items-center justify-center flex-col">
+      <div className="mx-12 md:mx-20">
+        <CalendarDescription descriptionCalendar="En este espacio encontrarás tu historial de citas." />
+      </div>
       <main>
         <section className="my-5">
           <h2 className="mb-12 mt-1 pb-1 text-xl font-semibold text-center">
@@ -87,7 +89,7 @@ const Dashboard = function () {
             ))}
         </section>
       </main>
-    </>
+    </div>
   );
 };
 

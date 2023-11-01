@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import searchIcon from "../assets/Icons/search.svg";
 import { useDispatch, useSelector } from 'react-redux';
 import { filterStatus, searchStatus, searchTherapist, setSearch } from '../redux/actions/therapist';
