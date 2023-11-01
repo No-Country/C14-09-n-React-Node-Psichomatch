@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/Images/logo.svg";
-import bars3Icon from "../assets/Icons/bars3.svg";
-import { JwtContext } from "../Context/JwtContext";
+import logo from "../../assets/Images/logo.svg";
+import bars3Icon from "../../assets/Icons/bars3.svg";
+import { JwtContext } from "../../Context/JwtContext";
 import DesktopMenu from "./DesktopMenu";
 import MobileMenu from "./MobileMenu";
 

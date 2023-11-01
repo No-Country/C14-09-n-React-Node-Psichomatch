@@ -1,8 +1,8 @@
 import { NavLink, Link } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
-import SearchBar from "../Components/SearchBar";
-import logoIcon from "../assets/Images/logoIcon.svg";
-import clearIcon from "../assets/Icons/clear.svg";
+import SearchBar from "../SearchBar";
+import logoIcon from "../../assets/Images/logoIcon.svg";
+import clearIcon from "../../assets/Icons/clear.svg";
 
 function MobileMenu({
   jwt,

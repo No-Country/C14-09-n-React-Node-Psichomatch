@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import Header from "./Components/Header";
+import Header from "./Components/Header/Header";
 import Footer from "./Layouts/Footer";
 import { JwtProvider } from "./Context/JwtContext";
 import AppRouter from "./Routes/AppRouter";

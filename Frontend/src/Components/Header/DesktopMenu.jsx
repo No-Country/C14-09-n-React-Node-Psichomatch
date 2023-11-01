@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar";
 
 function DesktopMenu({ jwt, handleAccountExit }) {
   return (
