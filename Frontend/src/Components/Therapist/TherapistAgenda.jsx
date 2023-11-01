@@ -4,7 +4,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import Agenda from "../Agenda";
-import iconCalendar from "../../assets/Icons/iconCalendar.svg";
 import CalendarDescription from "../CalendarDescription";
 
 function TherapistAgenda() {
@@ -43,7 +42,7 @@ function TherapistAgenda() {
     <main className="flex items-center justify-center">
       <div className="flex justify-center items-center flex-col gap-4">
         <div className="md:mx-6">
-          <CalendarDescription descriptionCalendar="En este espacio encontrarás tú historial de citas con los pacientes que han agendado contigo." />
+          <CalendarDescription descriptionCalendar="En este espacio podrás agendar la hora que deseas atender a tus pacientes." />
           <div className="p-12">
             <p className="font-semibold text-2xl text-black mb-5">
               Elige el horario en el que deseas atender pacientes

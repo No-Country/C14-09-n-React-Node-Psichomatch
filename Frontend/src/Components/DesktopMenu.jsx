@@ -25,17 +25,11 @@ function DesktopMenu({ jwt, handleAccountExit }) {
         )}
           {jwt.role === 'therapist' && (
             <>
-             <NavLink
-            to={`/agenda/therapist/${jwt?.id}`}
-            className="text-base text-black font-medium hover:text-[#A9A9A9]"
-          >
-            Mi Agenda
-          </NavLink>
             <NavLink
               to={`/dashboard/therapist/${jwt?.id}`}
               className="text-base text-black font-medium hover:text-[#A9A9A9]"
             >
-              Mi Perfil
+              Dashboard
             </NavLink>
             </>
           )}
