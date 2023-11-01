@@ -11,18 +11,20 @@ const rating = require("./models/Rating")
 const hour = require("./models/Hour")
 const availability = require("./models/Availability")
 const reservation = require("./models/Reservation")
+const country = require("./models/Country")
+const plan = require("./models/Plan")
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT,DB_NAME  } = process.env;
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER ?? ""}:${DB_PASSWORD ?? ""}@${DB_HOST ?? ""}:${DB_PORT ?? ""}/${DB_NAME ?? ""}`,
   {
-    // dialect: "postgres",
-    // dialectOptions: {
-    //   ssl: {
-    //     require: true,
-    //     rejectUnauthorized: false // Solo si estás utilizando un certificado autofirmado y no uno emitido por una autoridad de certificación reconocida.
-    //   }
-    // },
+    dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false // Solo si estás utilizando un certificado autofirmado y no uno emitido por una autoridad de certificación reconocida.
+      }
+    },
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
   }
@@ -62,7 +64,9 @@ category(sequelize);
 rating(sequelize);
 hour(sequelize);
 availability(sequelize);
-reservation(sequelize)
+reservation(sequelize);
+country(sequelize);
+plan(sequelize)
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -75,14 +79,20 @@ const {
   Rating,
   Hour,
   Availability,
-  Reservation
+  Reservation,
+  Country,
+  Plan
 } = sequelize.models;
 
-//Therapist.belongsToMany(Category, { through: 'TherapistCategory' })
-//Category.belongsToMany(Therapist, { through: 'TherapistCategory' })
+
 Therapist.belongsTo(Category)
 Category.hasOne(Therapist)
 
+Therapist.belongsTo(Plan)
+Plan.hasOne(Therapist)
+
+Therapist.belongsTo(Country)
+Country.hasOne(Therapist)
 
 Therapist.hasMany(Rating);
 Rating.belongsTo(Therapist);
@@ -105,6 +115,8 @@ Reservation.belongsTo(Patient)
 
 Therapist.hasOne(Reservation)
 Reservation.belongsTo(Therapist)
+
+
 
 /*
 User.hasOne(Rating);

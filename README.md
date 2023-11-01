@@ -10,6 +10,25 @@
 
 ## 👷 Miembros del equipo
 
+* Project Manager: Roger Parra | [LinkedIn](www.linkedin.com/in/roger-parra)
+
+* Desarrollador Frontend: José Puente | [LinkedIn](https://www.linkedin.com/in/jos%C3%A9-puente-96214619b)
+
+* Desarrollador Frontend: Scarlet Vargas | [LinkedIn](https://www.linkedin.com/in/scarletvargas-systems-engineer?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+
+* Desarrollador Backend: Francisco Perez | [LinkedIn](https://www.linkedin.com/in/francisco-perezdev/)
+
+* Desarrollador Backend: Kevin Reyes | [LinkedIn](https://www.linkedin.com/in/kevin-reyes-2a1470125/)
+
+* Desarrollador Backend: Guillermo Paez | [LinkedIn](https://www.linkedin.com/in/nahuelgarrido/)
+
+* Diseñador UX/UI: Iris Toledano | [LinkedIn](https://www.linkedin.com/in/iris-toledano-ayala-362150133/)
+
+* Tester QA: Victoria Castro | [LinkedIn](www.linkedin.com/in/victoria-castro-bc)
+
+##  📝 Team Leader
+
+Hernan Esquivel | [LinkedIn](www.linkedin.com/in/hernan-esquivel)
 
 
 

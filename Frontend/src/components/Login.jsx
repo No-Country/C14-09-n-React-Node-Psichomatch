@@ -1,26 +1,84 @@
-import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import { loginPatient } from "../api/patient_api";
 import { Link, useNavigate } from "react-router-dom";
 import googleIcon from "../assets/Icons/google.svg";
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { JwtContext } from "../Context/JwtContext";
+import { useContext } from "react";
+import jwtDecode from "jwt-decode";
+import {validatePatient} from "../redux/actions/patient"
+import { useSelector, useDispatch } from "react-redux";
+import React,{useState, useEffect} from "react";
+import { loginTherapist } from "../redux/actions/therapist";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 const Login = () => {
+
+  const [isTherapist, setIsTherapist] = useState(false);
+  const handleTherapistChange = () => {
+    setIsTherapist(!isTherapist);
+  };
+
+  const dispatch = useDispatch()
+  const loginInfo = useSelector(state => state.therapist.login)
+  
+
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate(); 
+  const { setJwt } = useContext(JwtContext);
 
+  const navigate = useNavigate(); // Use useNavigate here
 
   const onSubmit = async (data) => {
-    const response = await loginPatient(data);
-    const patientId = response.data.data.id;
-    if(response.data.tokenSession) {
-      navigate(`/dashboard/${patientId}`)
+    if (!isTherapist) {
+      const response = await loginPatient(data);
+      const patientId = response.data.data.id;
+  
+      if (response.data.tokenSession) {
+        const token = response.data.tokenSession;
+        const decodedToken = await jwtDecode(token);
+  
+        setJwt({
+          id: decodedToken.id,
+          token: token,
+          role: decodedToken.role,
+        });
+  
+        localStorage.setItem("token", token);
+        navigate(`/dashboard/${patientId}`);
+      }
+    } else {
+      try {
+        const resultTherapist = await dispatch(loginTherapist(data));
+        const therapistInfo = resultTherapist.payload;
+  
+        if (therapistInfo.tokenSession) {
+          const token = therapistInfo.tokenSession;
+          const decodedToken = await jwtDecode(token);
+  
+          setJwt({
+            id: decodedToken.id,
+            token: token,
+            role: decodedToken.role,
+          });
+  
+          localStorage.setItem("token", token);
+          const therapistId = therapistInfo.data.id;
+          navigate(`/dashboard/therapist/${therapistId}`);
+        }
+      } catch (error) {
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+          title: 'Datos Incorrectos',
+          text: 'Por favor, verifique sus datos',
+          icon: "error",
+        });
+      }
     }
   };
 
@@ -42,7 +100,7 @@ const Login = () => {
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 type="email"
-                {...register("patientEmail", {
+                {...register("email", {
                   required: {
                     value: true,
                     message: "El email es requerido",
@@ -87,6 +145,10 @@ const Login = () => {
               <input type="checkbox" />
               <label className="ml-3">Recordar contraseña</label>
             </div>
+            <div className="mt-4">
+              <input  type="checkbox" checked={isTherapist} onChange={handleTherapistChange}/>
+              <label  className="ml-3" >Soy Terapeuta</label>
+            </div>
             <div className="mt-8 flex flex-col gap-y-4 text-center">
               <button
                 type="submit"
@@ -98,7 +160,6 @@ const Login = () => {
                 className="flex items-center justify-center shadow appearance-none gap-2 border-4 border-gray-100"
                 href="http://localhost:3001/auth/google"
               >
-                
                 <img src={googleIcon} alt="" />
                 Iniciar Sesión con Google
               </a>

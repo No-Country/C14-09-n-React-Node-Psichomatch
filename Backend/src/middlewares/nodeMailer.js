@@ -16,15 +16,15 @@ const main = async (
   try {
     // send mail with defined transport object
     await transporter.sendMail({
-      from: '"Therapyst United 👨‍💻 " <ccrewdb@gmail.com>',
+      from: '"The PsichoMATCH 👨 " <ccrewdb@gmail.com>',
       to: `${patientEmail}`,
-      subject: `The Biggest center Of Therapys`,
-      text: `Hi User`,
+      subject: `Encuentra apoyo`,
+      text: `Saludos usuario`,
       html: `
     <html>
       <body>
-        <p>Hi,</p>
-        <p>Please save you Password</p>
+        <p>Hola,</p>
+        <p>Porfavor guarda tu Info de logeo</p>
         <p>PASSWORD:${password}</p>
       </body>
     </html>
@@ -41,7 +41,7 @@ const mainRecovery = async (
   try {
     // send mail with defined transport object
     await transporter.sendMail({
-      from: '"Therapyst United 👨‍💻 " <ccrewdb@gmail.com>',
+      from: '"The PsichoMATCH 👨 " <ccrewdb@gmail.com>',
       to: `${patientEmail}`,
       subject: `The Biggest center Of Therapys`,
       text: `Hi User`,
@@ -66,7 +66,7 @@ const mainRecovery2 = async (
   try {
     // send mail with defined transport object
     await transporter.sendMail({
-      from: '"Therapyst United 👨‍💻 " <ccrewdb@gmail.com>',
+      from: '"The PsichoMATCH 👨 " <ccrewdb@gmail.com>',
       to: `${patientEmail}`,
       subject: `The Biggest center Of Therapys`,
       text: `Hi User`,
@@ -85,8 +85,68 @@ const mainRecovery2 = async (
   }
 }
 
+const addReservationPatient = async (
+  SelectedHour,availability,patientEmail,patientName,therapistEmail,therapistName
+) => {
+  try {
+    // send mail with defined transport object
+    await transporter.sendMail({
+      from: '"The PsichoMATCH 👨 " <ccrewdb@gmail.com>',
+      to: `${patientEmail}`,
+      subject: `Payment Advise`,
+      text: `Hi Dear ${patientName}`,
+      html: `
+      <html>
+      <body>
+        <p>Hi,</p>
+        <p>Please send your bill to your therapist, ${therapistName}, at their email, ${therapistEmail}.</p>
+        <p>They will be in touch as soon as possible.</p>
+        
+        <p>Date:${availability.date}</p>
+        <p>Hour:${SelectedHour.hour}</p>
+        <p>Therapyst:${therapistName}</p>
+        
+      </body>
+    </html>
+    `
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const addReservationTerapist = async (
+  SelectedHour,availability,patientEmail,patientName,therapistEmail,therapistName
+) => {
+  try {
+    // send mail with defined transport object
+    await transporter.sendMail({
+      from: '"The PsichoMATCH 👨 " <ccrewdb@gmail.com>',
+      to: `${therapistEmail}`,
+      subject: `The Biggest center Of Therapys`,
+      text: `Hi ${therapistName}`,
+      html: `
+      <html>
+      <body>
+        <p>Hi,</p>
+        <p>We are pleased to confirm that your patient, ${patientName},</p>
+        <p>has reserved a slot. They will send their payment invoice from their email, ${patientEmail}.</p>
+        <p>Date:${availability.date}</p>
+        <p>Hour:${SelectedHour.hour}</p>
+        <p>Patient:${patientName}</p>
+      </body>
+    </html>
+    `
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   main,
   mainRecovery,
-  mainRecovery2
+  mainRecovery2,
+  addReservationTerapist,
+  addReservationPatient
 };

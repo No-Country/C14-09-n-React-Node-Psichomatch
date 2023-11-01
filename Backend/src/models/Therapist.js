@@ -1,6 +1,5 @@
 const { DataTypes } = require("sequelize");
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
@@ -22,7 +21,7 @@ module.exports = (sequelize) => {
       },
 
       price: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.STRING,
         allowNull: true,
       },
 
@@ -32,19 +31,19 @@ module.exports = (sequelize) => {
       },
 
       adress: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
 
       image: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
-        unique: true
       },
 
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
+
       },
 
       rating:{
@@ -59,6 +58,19 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
 
+      linkedIn: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+
+
+      PlanId:{
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: 1
+      },
+
+
       // Fundamentales
       email:{
         type: DataTypes.STRING,
@@ -69,6 +81,11 @@ module.exports = (sequelize) => {
       password:{
         type: DataTypes.STRING,
         allowNull: true,
+      },
+
+      role: {
+        type: DataTypes.STRING,
+        defaultValue: "therapist"
       }
       
     },

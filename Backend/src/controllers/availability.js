@@ -88,6 +88,23 @@ const insertAvailability = async (req, res) => {
   }
 };
 
+
+const deleteAvailability = async (req, res) => {
+  try {
+    const { date, TherapistId, HourId } = req.query;
+    const availability = await Availability.destroy({
+
+      where:{date, TherapistId, HourId}
+      
+    });
+    res.status(200).json(availability);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
 const fillAvailability = async (Availability) => {
   try {
     await Availability.bulkCreate([
@@ -147,18 +164,18 @@ const fillAvailability = async (Availability) => {
       },
       {
         TherapistId: 1,
-        HourId: 1,
+        HourId: 8,
         date: new Date(2023, 10 - 1, 24),
       },
       {
         TherapistId: 1,
-        HourId: 2,
+        HourId: 8,
         date: new Date(2023, 10 - 1, 25),
       },
 
       {
         TherapistId: 1,
-        HourId: 4,
+        HourId: 5,
         date: new Date(2023, 10 - 1, 25),
       },
       {
@@ -4350,4 +4367,10 @@ module.exports = {
   fillAvailability,
   get4AvailabilityByTherapistIdAndDate,
   getAvailabilityHourByTherapistIDByDateBy,
+  deleteAvailability
 };
+
+  
+    
+    
+      
