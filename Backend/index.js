@@ -29,12 +29,15 @@ const fillDataSequentially = async () => {
     console.error("Error:", error);
   }
 };
+
+const port = process.env.PORT || 3001;
+
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(port, () => {
     fillDataSequentially();
 
     
-    console.log("%s listening at 3001"); // eslint-disable-line no-console
+    console.log("%s listening at ", port); // eslint-disable-line no-console
     //fillTemperaments(Temperament);
   });
 });
