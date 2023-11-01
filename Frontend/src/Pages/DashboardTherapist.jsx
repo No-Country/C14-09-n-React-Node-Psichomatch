@@ -49,7 +49,7 @@ const DashboardTherapist = () => {
   }, [params.id]);
 
   // Navegación del therapist
-  const [opcion, setOpcion] = useState("Agenda");
+  const [opcion, setOpcion] = useState("Perfil");
 
   const handleOpcion = (opc) => {
     setOpcion(opc);

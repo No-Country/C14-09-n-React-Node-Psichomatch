@@ -35,7 +35,7 @@ function DesktopMenu({ jwt, handleAccountExit }) {
               to={`/dashboard/therapist/${jwt?.id}`}
               className="text-base text-black font-medium hover:text-[#A9A9A9]"
             >
-              Mi Perfil
+              Dashboard
             </NavLink>
             </>
           )}
