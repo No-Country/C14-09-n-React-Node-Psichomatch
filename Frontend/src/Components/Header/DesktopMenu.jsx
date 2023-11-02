@@ -1,13 +1,20 @@
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import SearchBar from "../SearchBar";
+import { useContext, useEffect, useState } from "react";
+import { JwtContext } from "../../Context/JwtContext";
 
 function DesktopMenu({ jwt, handleAccountExit }) {
+
+  // const [nuevoJwt, setNuevoJwt] = useState('')
+  const nuevoJwt = useContext(JwtContext);
+  console.log(nuevoJwt)
+
   return (
     <>
-      {jwt.token !== undefined ? (
+      {nuevoJwt.jwt.token !== undefined ? (
         <>
-          {jwt.role === "patient" && (
+          {nuevoJwt.jwt.role === "patient" && (
             <>
               <NavLink
                 to={`dashboard/${jwt?.id}`}
@@ -24,7 +31,7 @@ function DesktopMenu({ jwt, handleAccountExit }) {
               {location.pathname === `/psicologos/${jwt?.id}` && <SearchBar />}
             </>
           )}
-          {jwt.role === "therapist" && (
+          {nuevoJwt.jwt.role === "therapist" && (
             <>
               <NavLink
                 to={`/dashboard/therapist/${jwt?.id}`}

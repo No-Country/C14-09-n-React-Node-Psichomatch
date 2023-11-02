@@ -32,7 +32,7 @@ function TherapistPrecios({ therapist }) {
       };
       alert(therapist.id);
       const response = await fetch(
-        `http://localhost:3001/therapist/updatePrice/${therapist.id}`,
+        `https://psicomatchapi.onrender.com/therapist/updatePrice/${therapist.id}`,
         requestOptions
       );
       const MySwal = withReactContent(Swal);
@@ -68,7 +68,7 @@ function TherapistPrecios({ therapist }) {
 
     try {
       const response = await fetch(
-        `http://localhost:3001/therapist/updatePricePercent/${therapist.id}`,
+        `https://psicomatchapi.onrender.com/therapist/updatePricePercent/${therapist.id}`,
         requestOptions
       );
       const MySwal = withReactContent(Swal);
