@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {  useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import AgendaCita from "./AgendaCita";
@@ -139,7 +139,6 @@ const Therapist = () => {
                   </button>
                 </div>
               </div>
-
               <AgendaCita
                 patientId={Number(patientId)}
                 therapistId={Number(therapist.id)}

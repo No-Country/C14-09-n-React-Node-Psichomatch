@@ -18,7 +18,7 @@ const Agenda = ({ therapistId }) => {
   ) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/availability/hour`,
+        `https://psicomatchapi.onrender.com/availability/hour`,
         { date, TherapistId, HourId }
       );
       return data;
@@ -30,7 +30,7 @@ const Agenda = ({ therapistId }) => {
   const getAvailabilityByTherapistId = async (TherapistId) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/availability/${TherapistId}`
+        `https://psicomatchapi.onrender.com/availability/${TherapistId}`
       );
       setAvailabilityData(data);
     } catch (error) {
@@ -41,7 +41,7 @@ const Agenda = ({ therapistId }) => {
   const insertAvailabilityByTherapistId = async (TherapistId, HourId, date) => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/availability/create/disp`,
+        `https://psicomatchapi.onrender.com/availability/create/disp`,
         { HourId, date, TherapistId }
       );
       console.log(data);
@@ -56,7 +56,7 @@ const Agenda = ({ therapistId }) => {
   const deleteAvailabilityByTherapistId = async (TherapistId, HourId, date) => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:3001/availability?HourId=${HourId}&date=${date}&TherapistId=${TherapistId}`
+        `https://psicomatchapi.onrender.com/availability?HourId=${HourId}&date=${date}&TherapistId=${TherapistId}`
       );
 
       if (data) {
@@ -69,7 +69,7 @@ const Agenda = ({ therapistId }) => {
 
   const getHours = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/hour`);
+      const { data } = await axios.get(`https://psicomatchapi.onrender.com/hour`);
       setHour(data);
     } catch (error) {
       console.error(error.message);
