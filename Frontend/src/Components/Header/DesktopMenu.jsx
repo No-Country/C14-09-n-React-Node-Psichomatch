@@ -8,7 +8,6 @@ function DesktopMenu({ jwt, handleAccountExit }) {
 
   // const [nuevoJwt, setNuevoJwt] = useState('')
   const nuevoJwt = useContext(JwtContext);
-  console.log(nuevoJwt)
 
   return (
     <>
