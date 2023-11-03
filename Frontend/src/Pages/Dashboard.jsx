@@ -38,7 +38,7 @@ const Dashboard = function () {
   }, [params.id, data]);
 
   return (
-    <div className="flex w-full items-center justify-center flex-col my-12">
+    <div className="flex w-full items-center flex-col my-12 justify-center">
       <div className="flex justify-start gap-4 self-start px-6 ml-6 md:ml-8 lg:ml-16">
         <img src={iconHome} alt="Home Psicologos" />
         <div className="text-lg text-black font-medium">
@@ -53,7 +53,6 @@ const Dashboard = function () {
           Historial de Citas
         </h2>
         <section className="my-5 grid gap-5 m-5 md:grid-cols-2 xl:grid-cols-3">
-          {/* {console.log(data)} */}
           {data &&
             data?.map((reservation, index) => (
               <div className="bg-violet-50 p-10 rounded-2xl" key={index}>
