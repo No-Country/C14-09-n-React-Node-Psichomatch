@@ -29,29 +29,29 @@ const addReservation = async (req, res) => {
       });
       await availability.update({ status: true });
 
-      const data = await Reservation.findByPk(reservation.id, {
-        include: [
-          {
-            model: Availability,
-            include: Hour,
-          },
-          {
-            model: Patient,
-          },
-          {
-            model: Therapist,
-          },
-        ],
-      });
+      // const data = await Reservation.findByPk(reservation.id, {
+      //   include: [
+      //     {
+      //       model: Availability,
+      //       include: Hour,
+      //     },
+      //     {
+      //       model: Patient,
+      //     },
+      //     {
+      //       model: Therapist,
+      //     },
+      //   ],
+      // });
 
-      if(reservation) {
-        addReservationTerapist(data.Hour.hour,data.Availability.date , 
-          data.Patient.email , data.Patient.name, 
-          data.Therapist.email , data.Therapist.name)
-        addReservationPatient(data.Hour.hour, data.Availability.date, 
-          data.Patient.mail, data.Patient.name, 
-          data.Therapist.email, data.Therapist.name)
-      }
+      // if(reservation) {
+      //   addReservationTerapist(data.Hour.hour,data.Availability.date , 
+      //     data.Patient.email , data.Patient.name, 
+      //     data.Therapist.email , data.Therapist.name)
+      //   addReservationPatient(data.Hour.hour, data.Availability.date, 
+      //     data.Patient.mail, data.Patient.name, 
+      //     data.Therapist.email, data.Therapist.name)
+      // }
 
       res.status(200).json(reservation);
     } else {
