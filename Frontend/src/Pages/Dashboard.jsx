@@ -11,7 +11,7 @@ import CalendarDescription from "../Components/CalendarDescription";
 
 const Dashboard = function () {
   const params = useParams();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   const loadPatientReservation = async (id) => {
     const response = await getPatientReservation(params.id);
@@ -33,8 +33,9 @@ const Dashboard = function () {
   useEffect(() => {
     if (params.id) {
       loadPatientReservation(params.id);
+
     }
-  }, [params.id]);
+  }, [params.id, data]);
 
   return (
     <div className="flex w-full items-center justify-center flex-col">
@@ -45,9 +46,9 @@ const Dashboard = function () {
         <h2 className="mb-12 mt-1 pb-1 text-xl font-semibold text-center">
           Historial de Citas
         </h2>
-        <section className="my-5 grid  gap-5 m-5 md:grid-cols-2 xl:grid-cols-3">
+        <section className="my-5 grid gap-5 m-5 md:grid-cols-2 xl:grid-cols-3">
           {data &&
-            data.map((reservation, index) => (
+            data?.map((reservation, index) => (
               <div className="bg-violet-50 p-10" key={index}>
                 <h2>
                   <span className="font-bold">Fecha: </span>
