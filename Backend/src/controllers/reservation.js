@@ -10,11 +10,8 @@ const { Op } = require("sequelize");
 // Email Notification
 const {
   addReservationTerapist,
-  addReservationPatient
+  addReservationPatient,
 } = require("../middlewares/nodeMailer");
-
-
-
 
 const addReservation = async (req, res) => {
   const { AvailabilityId, PatientId, TherapistId } = req.body;
@@ -45,11 +42,11 @@ const addReservation = async (req, res) => {
       // });
 
       // if(reservation) {
-      //   addReservationTerapist(data.Hour.hour,data.Availability.date , 
-      //     data.Patient.email , data.Patient.name, 
+      //   addReservationTerapist(data.Hour.hour,data.Availability.date ,
+      //     data.Patient.email , data.Patient.name,
       //     data.Therapist.email , data.Therapist.name)
-      //   addReservationPatient(data.Hour.hour, data.Availability.date, 
-      //     data.Patient.mail, data.Patient.name, 
+      //   addReservationPatient(data.Hour.hour, data.Availability.date,
+      //     data.Patient.mail, data.Patient.name,
       //     data.Therapist.email, data.Therapist.name)
       // }
 
@@ -61,7 +58,6 @@ const addReservation = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 // const addReservation = async (req, res) => {
 //   const { AvailabilityId, PatientId, TherapistId } = req.body;
@@ -173,6 +169,55 @@ const deleteReservation = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+};
+
+const sendMail = async (req, res) => {
+  const { AvailabilityId, PatientId, TherapistId } = req.body;
+  try {
+
+    const availability = await Availability.findByPk(AvailabilityId);
+  
+    const patientExist = await Patient.findOne({
+      where: {
+        id: PatientId,
+      },
+    });
+    const therapistExist = await Patient.findOne({
+      where: {
+        id: TherapistId,
+      },
+    });
+  
+    const SelectedHour = await Hour.findOne({
+      where: {
+        id: availability.HourId,
+      },
+    });
+  
+    const patientEmail = patientExist.email;
+    const patientName = patientExist.name;
+    const therapistEmail = therapistExist.email;
+    const therapistName = therapistExist.name;
+    addReservationTerapist(
+      SelectedHour,
+      availability,
+      patientEmail,
+      patientName,
+      therapistEmail,
+      therapistName
+    );
+    addReservationPatient(
+      SelectedHour,
+      availability,
+      patientEmail,
+      patientName,
+      therapistEmail,
+      therapistName
+    );
+    
+  } catch (error) {
+    console.log(error.message);
   }
 };
 
