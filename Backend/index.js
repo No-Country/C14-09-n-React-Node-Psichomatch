@@ -32,9 +32,9 @@ const fillDataSequentially = async () => {
 
 const port = process.env.PORT || 3001;
 // alter: true
-conn.sync({ force: true }).then(() => {
+conn.sync().then(() => {
   server.listen(port, () => {
-    fillDataSequentially();
+    // fillDataSequentially();
 
     
     console.log("%s listening at ", port); // eslint-disable-line no-console

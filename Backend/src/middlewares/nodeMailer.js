@@ -102,8 +102,8 @@ const addReservationPatient = async (
         <p>Please send your bill to your therapist, ${therapistName}, at their email, ${therapistEmail}.</p>
         <p>They will be in touch as soon as possible.</p>
         
-        <p>Date:${availability.date}</p>
-        <p>Hour:${SelectedHour.hour}</p>
+        <p>Date:${availability}</p>
+        <p>Hour:${SelectedHour}</p>
         <p>Therapyst:${therapistName}</p>
         
       </body>
@@ -131,8 +131,8 @@ const addReservationTerapist = async (
         <p>Hi,</p>
         <p>We are pleased to confirm that your patient, ${patientName},</p>
         <p>has reserved a slot. They will send their payment invoice from their email, ${patientEmail}.</p>
-        <p>Date:${availability.date}</p>
-        <p>Hour:${SelectedHour.hour}</p>
+        <p>Date:${availability}</p>
+        <p>Hour:${SelectedHour}</p>
         <p>Patient:${patientName}</p>
       </body>
     </html>
