@@ -47,7 +47,6 @@ const Dashboard = function () {
           Historial de Citas
         </h2>
         <section className="my-5 grid gap-5 m-5 md:grid-cols-2 xl:grid-cols-3">
-          {console.log(data)}
           {data && (
             data?.map((reservation, index) => (
               <div className="bg-violet-50 p-10" key={index}>
