@@ -7,11 +7,13 @@ import NavLinksPatientMobile from "./NavLinksPatientMobile";
 import NavLinksTherapistMobile from "./NavLinksTherapistMobile";
 import NavLinksWithoutAccess from "./NavLinksWithoutAccess";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { JwtContext } from "../../Context/JwtContext";
 
 function MobileMenu({ jwt, mobileMenuOpen, setMobileMenuOpen, handleAccountExit }) {
   const location = useLocation();
   const nuevoJwt = useContext(JwtContext);
-
+  console.log(nuevoJwt)
   return (
     <Dialog
       as="div"
@@ -38,12 +40,12 @@ function MobileMenu({ jwt, mobileMenuOpen, setMobileMenuOpen, handleAccountExit 
             <div className="space-y-2 py-6">
               {nuevoJwt.jwt.token !== undefined ? (
                 <>
-                  {nuevoJwt.jwt.role === "patient" && (
+                  {nuevoJwt.role === "patient" && (
                     <>
                       <NavLinksPatientMobile jwt={jwt} />
                     </>
                   )}
-                  {nuevoJwt.jwt.role === "therapist" && (
+                  {nuevoJwt.role === "therapist" && (
                     <>
                       <NavLinksTherapistMobile jwt={jwt} />
                     </>

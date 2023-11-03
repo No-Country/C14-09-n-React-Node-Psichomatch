@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 function TherapistPrecios({ therapist }) {
   const [porcentaje, setPorcentaje] = useState(0.0);
@@ -30,7 +32,6 @@ function TherapistPrecios({ therapist }) {
         body: raw,
         redirect: "follow",
       };
-      alert(therapist.id);
       const response = await fetch(
         `https://psicomatchapi.onrender.com/therapist/updatePrice/${therapist.id}`,
         requestOptions
@@ -94,6 +95,7 @@ function TherapistPrecios({ therapist }) {
         <article className="my-3">
           <h2 className="text-2xl font-semibold text-center">Precios</h2>
           <p>Da un precio adecuado a tu servicio.</p>
+          <p className="text-center">Tu precio actual es de ${therapist.price}</p>
           <hr className="mt-3 border-[#e9e9e9]" />
         </article>
 
