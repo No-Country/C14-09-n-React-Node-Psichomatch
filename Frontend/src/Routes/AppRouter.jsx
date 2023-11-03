@@ -1,19 +1,19 @@
 import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { JwtContext } from "../Context/JwtContext";
-import { Login } from "../Components/Login";
-import { RecoverPassword } from "../Components/RecoverPassword";
+import Login from "../Components/Login";
+import RecoverPassword from "../Components/RecoverPassword";
 import { NotFoundScreen } from "../Pages/NotFoundScreen";
 import Dashboard from "../Pages/Dashboard";
 import { HomePage } from "../Pages/HomePage";
 import { Services } from "../Pages/Services";
 import { FindPsychologists } from "../Pages/FindPsychologists";
-import { AppointmentPatient } from "../Components/AppointmentPatient";
-import { Plans } from "../Pages/Plans";
-import { DashboardTherapist } from "../Pages/DashboardTherapist";
-import { TherapistAgenda } from "../Components/Therapist/TherapistAgenda";
-import { RegisterPatient } from "../Pages/RegisterPatient";
-import { RegisterTherapist } from "../Pages/RegisterTherapist";
+import AppointmentPatient from "../Components/AppointmentPatient";
+import Plans from "../Pages/Plans";
+import DashboardTherapist from "../Pages/DashboardTherapist";
+import TherapistAgenda from "../Components/Therapist/TherapistAgenda";
+import RegisterPatient from "../Pages/RegisterPatient";
+import RegisterTherapist from "../Pages/RegisterTherapist";
 
 function AppRouter() {
   const { jwt } = useContext(JwtContext);
