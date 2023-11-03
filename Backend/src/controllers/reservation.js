@@ -215,7 +215,7 @@ const sendMail = async (req, res) => {
       therapistEmail,
       therapistName
     );
-    
+
   } catch (error) {
     console.log(error.message);
   }
@@ -226,4 +226,5 @@ module.exports = {
   getReservationByTherapistId,
   getReservationByPatientId,
   deleteReservation,
+  sendMail,
 };
