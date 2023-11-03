@@ -10,6 +10,7 @@ import IconArrowRight from "../assets/Icons/arrowRight.svg";
 import IconArrowLeft from "../assets/Icons/arrowLeft.svg";
 import Swal from 'sweetalert2'
 import withReactContent from "sweetalert2-react-content";
+import axios from "axios";
 
 const AgendaCita = ({ patientId, therapistId }) => {
   const [hour, setHour] = useState([]);

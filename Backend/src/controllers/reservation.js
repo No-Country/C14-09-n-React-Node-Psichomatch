@@ -64,14 +64,6 @@ const addReservation = async (req, res) => {
 //   try {
 //     const availability = await Availability.findByPk(AvailabilityId);
 
-//     if (!availability.status) {
-//       const reservation = await Reservation.create({
-//         AvailabilityId,
-//         PatientId,
-//         TherapistId,
-//       });
-//       await availability.update({ status: true });
-
 //       const patientExist = await Patient.findOne({
 //         where: {
 //           id: PatientId,
@@ -183,7 +175,7 @@ const sendMail = async (req, res) => {
         id: PatientId,
       },
     });
-    const therapistExist = await Patient.findOne({
+    const therapistExist = await Therapist.findOne({
       where: {
         id: TherapistId,
       },
@@ -195,10 +187,10 @@ const sendMail = async (req, res) => {
       },
     });
   
-    const patientEmail = patientExist.email;
-    const patientName = patientExist.name;
-    const therapistEmail = therapistExist.email;
-    const therapistName = therapistExist.name;
+    const patientEmail = patientExist.email
+    const patientName = patientExist.name
+    const therapistEmail = therapistExist.email
+    const therapistName = therapistExist.name
     addReservationTerapist(
       SelectedHour,
       availability,
