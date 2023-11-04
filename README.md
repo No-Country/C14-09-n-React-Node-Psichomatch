@@ -33,7 +33,7 @@ Hernan Esquivel | [LinkedIn](www.linkedin.com/in/hernan-esquivel)
 
 
 ## 🚀 ¿Cómo usar PsichoMATCH?
-
+Puedes acceder a través del siguiente link: https://psichomatch-xrad.vercel.app/
 
 
 
